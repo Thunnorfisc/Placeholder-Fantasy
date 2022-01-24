@@ -43,6 +43,12 @@
     <Filter Include="Source Files\OverworldSystem">
       <UniqueIdentifier>{e76f8b18-4e69-48ff-baae-3dcf10908201}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Objects">
+      <UniqueIdentifier>{81f1917d-bc78-4b4b-8254-52a12c839c60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Objects">
+      <UniqueIdentifier>{ba04b4de-f564-4b9a-a155-530486cf20db}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="battleScene.cpp">
@@ -90,11 +96,17 @@
     <ClCompile Include="characterBattleManager.cpp">
       <Filter>Source Files\BattleSystem</Filter>
     </ClCompile>
-    <ClCompile Include="character.cpp">
-      <Filter>Source Files\OverworldSystem</Filter>
-    </ClCompile>
     <ClCompile Include="gameState.cpp">
       <Filter>Source Files\GeneralSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="character.cpp">
+      <Filter>Source Files\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -155,8 +167,20 @@
     <ClInclude Include="gameState.h">
       <Filter>Header Files\GeneralSystem</Filter>
     </ClInclude>
-    <ClInclude Include="character.h">
+    <ClInclude Include="Character.h">
       <Filter>Header Files\OverworldSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Interactable.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC.h">
+      <Filter>Header Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

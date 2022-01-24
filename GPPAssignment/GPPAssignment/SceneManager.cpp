@@ -16,7 +16,7 @@ SceneManager::SceneManager()
     // Format: sceneMap["Key"] = new SceneName(this);
     sceneMap["Title"] = new StartingMenu(this);
     sceneMap["Overworld"] = new Overworld(this);
-    sceneMap["Battle"] = new BattleScene(this);
+    //sceneMap["Battle"] = new BattleScene(this);
     sceneMap["PauseMenu"] = new PauseMenu(this);
 }
 
