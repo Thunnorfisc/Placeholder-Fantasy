@@ -12,6 +12,7 @@ StartingMenu::StartingMenu(SceneManager* manager)
     dxManager = manager;
     dxMenuText = new TextDX();
     dxTitle = new TextDX();
+    dxMenuMusic = new Sound();
     errorMsg = "";
 }
 
@@ -19,6 +20,8 @@ StartingMenu::~StartingMenu()
 {
     releaseAll();
     SAFE_DELETE(dxMenuText);
+    SAFE_DELETE(dxTitle);
+    SAFE_DELETE(dxMenuMusic);
 }
 
 //=============================================================================
@@ -79,6 +82,17 @@ void StartingMenu::initialize()
     cursor.setY(menuList.front().y);
     cursor.setScale(scaledCursorHeight, scaledCursorWidth);
 
+    // Sound/Music Initialize
+    // Menu Music
+    dxManager->getAudio().loadFile(MENUMUSIC, *dxMenuMusic);
+
+    // When option is changed
+    dxManager->getAudio().loadFile(OPTIONCHANGESFX, *dxOptionChange);
+
+    // Start Menu Music
+    Mail mail(*this, dxManager->getAudio(), mailTypes::PlaySoundEvent, dxMenuMusic);
+    dxManager->getPostOffice()->addMessages(mail);
+
     reset();            // reset all game variables
     return;
 }
@@ -130,12 +144,16 @@ void StartingMenu::optionSelected(std::string option) {
     // Start New Adventure -> Overworld at default position
     if (option == "Start New Adventure")
     {
+        Mail mail(*this, dxManager->getAudio(), mailTypes::StopSoundEvent, dxMenuMusic);
+        dxManager->getPostOffice()->addMessages(mail);
         dxManager->getState()->resetState();
         dxManager->switchScene("Overworld");
     }
     // Continue -> Overworld at saved position
     else if (option == "Continue")
     {
+        Mail mail(*this, dxManager->getAudio(), mailTypes::StopSoundEvent, dxMenuMusic);
+        dxManager->getPostOffice()->addMessages(mail);
         // Read file placeholder_save.txt
         std::ifstream file("placeholder_save.txt");
         if (file.is_open())
@@ -160,6 +178,8 @@ void StartingMenu::optionSelected(std::string option) {
     // Quit -> Quit the game
     else if (option == "Quit")
     {
+        Mail mail(*this, dxManager->getAudio(), mailTypes::StopSoundEvent, dxMenuMusic);
+        dxManager->getPostOffice()->addMessages(mail);
         PostQuitMessage(0);
     }
 }
@@ -214,3 +234,7 @@ void StartingMenu::resetAll()
     dxTitle->onResetDevice();
     return;
 }
+
+// Neccessary Evil Why Please God No More LNK2001 Errors
+void StartingMenu::onMessage(const Mail& mail)
+{ }

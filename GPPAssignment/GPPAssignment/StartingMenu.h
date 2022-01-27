@@ -26,6 +26,7 @@
 #include "sceneManager.h"
 #include "menuOption.h"
 #include "gameState.h"
+#include "audio.h"
 #include <vector>
 #include <fstream>
 
@@ -39,6 +40,8 @@ protected:
     TextDX  dxError;                  // Error Text
     TextDX* dxTitle;                  // Title Text
     TextDX* dxMenuText;               // Menu Text
+    Sound* dxMenuMusic;               // Menu Music
+    Sound* dxOptionChange;            // Change Options Sound Effect
     TextureManager cursorTexture;     // Cursor Texture
 
     std::string errorMsg;             // Error Message
@@ -63,5 +66,6 @@ public:
     void render();
     void releaseAll();
     void resetAll();
+    void onMessage(const Mail& mail);
 };
 #endif

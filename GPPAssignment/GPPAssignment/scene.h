@@ -22,7 +22,7 @@
 // ALL SCENES ARE A CHILD OF SCENE
 class Scene;
 
-class Scene
+class Scene: public MailSender, public MailReceiver
 {
 private:
 	std::vector<Character> characterList;
@@ -40,6 +40,7 @@ public:
 	virtual void render() = 0;
 	virtual void releaseAll() = 0;
 	virtual void resetAll() = 0;
+	virtual void onMessage(const Mail& mail) = 0;
 	//=========================================================
 	void setCharacterList(std::vector<Character> newCharacterList) { characterList = newCharacterList; }
 	std::vector<Character>* getCharacterList() { return &characterList; }

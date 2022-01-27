@@ -67,6 +67,7 @@ public:
     void render();
     void releaseAll();
     void resetAll();
+    void onMessage(const Mail& mail);
     
     //If you are using this in the future please rename it to something that is relevant to what it is used for.
     //void checkMouse();

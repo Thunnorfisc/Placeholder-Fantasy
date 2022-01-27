@@ -77,6 +77,7 @@ public:
 
 	void releaseAll();
 	void resetAll();
+	void onMessage(const Mail& mail);
 
 };
 #endif // !_PFANTASY_H

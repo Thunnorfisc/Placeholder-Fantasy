@@ -161,3 +161,6 @@ void BattleScene::reset()
 	return;
 }
 
+// Neccessary Evil Why Please God No More LNK2001 Errors
+void BattleScene::onMessage(const Mail& mail)
+{ }

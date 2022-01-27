@@ -43,6 +43,12 @@
     <Filter Include="Source Files\OverworldSystem">
       <UniqueIdentifier>{e76f8b18-4e69-48ff-baae-3dcf10908201}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\AudioSystem">
+      <UniqueIdentifier>{04b1d837-48ae-4cec-a62c-006758bf6af3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\AudioSystem">
+      <UniqueIdentifier>{ca1dba71-a9c3-4f63-b53e-b451e3f95f78}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="battleScene.cpp">
@@ -95,6 +101,18 @@
     </ClCompile>
     <ClCompile Include="gameState.cpp">
       <Filter>Source Files\GeneralSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="mail.cpp">
+      <Filter>Source Files\GeneralSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="audioEngine.cpp">
+      <Filter>Source Files\AudioSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="postOffice.cpp">
+      <Filter>Source Files\GeneralSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="audio.cpp">
+      <Filter>Source Files\AudioSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -157,6 +175,21 @@
     </ClInclude>
     <ClInclude Include="character.h">
       <Filter>Header Files\OverworldSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="audioEngine.h">
+      <Filter>Header Files\AudioSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="eventQueue.h">
+      <Filter>Header Files\GeneralSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="mail.h">
+      <Filter>Header Files\GeneralSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="audio.h">
+      <Filter>Header Files\AudioSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="postOffice.h">
+      <Filter>Header Files\GeneralSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

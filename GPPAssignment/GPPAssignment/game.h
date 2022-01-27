@@ -4,11 +4,14 @@
 
 #include <Windows.h>
 #include <mmsystem.h>
+#include <mmreg.h>
 #include "graphics.h"
 #include "input.h"
 #include "constants.h"
 #include "gameerror.h"
 #include "textDX.h"
+#include "postOffice.h"
+#include "audio.h"
 
 namespace gameNS
 {
@@ -24,6 +27,8 @@ protected:
 	//common game properties
 	Graphics* graphics;             // pointer to Graphics
 	Input* input;					// pointer to Input
+	PostOffice* mailManager;        // Pointer to Post Office (AKA Mail Manager)
+	Audio* audio;
 	HWND    hwnd;                   // window handle
 	HRESULT hr;                     // standard return type
 	LARGE_INTEGER timeStart;        // Performance Counter start value
@@ -53,6 +58,8 @@ public:
 	virtual void handleLostGraphicsDevice();										//Handle lost graphics device
 	Graphics* getGraphics() { return graphics; }									//Return pointer to Graphics
 	Input* getInput() { return input; }												//Return pointer to Input
+	PostOffice* getPostOffice() { return mailManager; }                             //Return pointer to Post Office
+	Audio& getAudio() { return *audio; }                                             //Return pointer to Audio
 	void exitGame() { PostMessage(hwnd, WM_DESTROY, 0, 0); }						//Exit the game
 
 	//Pure virtual function declarations

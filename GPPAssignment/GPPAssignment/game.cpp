@@ -4,7 +4,9 @@
 //Constructor
 Game::Game()
 {
-    input = new Input();	//initializing keyvoard input immediately
+    input = new Input();	//initializing keyboard input immediately
+    mailManager = new PostOffice();
+    audio = new Audio();
     paused = false;			//Game not paused
     graphics = NULL;
     initialized = false;
@@ -155,11 +157,10 @@ void Game::run(HWND hwnd) {
         input->vibrateControllers(frameTime);
         renderGame();
         input->readControllers();
-
         //Clear input
         //Call after al key checks are done.
         input->clear(inputNS::KEYS_PRESSED);
-
+        mailManager->dispatchMessages();
     }
 }
 
@@ -171,5 +172,7 @@ void Game::deleteAll() {
     releaseAll();               //call onLostDevice() for evert graphics items
     SAFE_DELETE(graphics);
     SAFE_DELETE(input);
+    SAFE_DELETE(mailManager);
+    SAFE_DELETE(audio);
     initialized = false;
 }

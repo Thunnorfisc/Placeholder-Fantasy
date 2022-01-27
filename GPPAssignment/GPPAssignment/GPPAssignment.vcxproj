@@ -147,6 +147,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="audio.cpp" />
+    <ClCompile Include="audioEngine.cpp" />
     <ClCompile Include="battleUI.cpp" />
     <ClCompile Include="character.cpp" />
     <ClCompile Include="characterBattleManager.cpp" />
@@ -155,9 +157,11 @@
     <ClCompile Include="graphics.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="mail.cpp" />
     <ClCompile Include="overworld.cpp" />
     <ClCompile Include="battleScene.cpp" />
     <ClCompile Include="pauseMenu.cpp" />
+    <ClCompile Include="postOffice.cpp" />
     <ClCompile Include="sceneManager.cpp" />
     <ClCompile Include="startingMenu.cpp" />
     <ClCompile Include="textDX.cpp" />
@@ -166,20 +170,25 @@
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="audio.h" />
+    <ClInclude Include="audioEngine.h" />
     <ClInclude Include="battleUI.h" />
     <ClInclude Include="character.h" />
     <ClInclude Include="characterBattleManager.h" />
     <ClInclude Include="constants.h" />
+    <ClInclude Include="eventQueue.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameerror.h" />
     <ClInclude Include="gameState.h" />
     <ClInclude Include="graphics.h" />
     <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="mail.h" />
     <ClInclude Include="menuOption.h" />
     <ClInclude Include="overworld.h" />
     <ClInclude Include="battleScene.h" />
     <ClInclude Include="pauseMenu.h" />
+    <ClInclude Include="postOffice.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="sceneManager.h" />
     <ClInclude Include="startingMenu.h" />

@@ -3,6 +3,7 @@
 #define WIN32_LEAN_AND_MEAN
 
 #include <Windows.h>
+#include <string>
 // Useful macros
 
 // Safely delete pointer referenced item
@@ -46,6 +47,10 @@ const char OVERWORLD_IMAGE[] = "assets\\PlaceholderWorldMap.png";
 const char Cursor[] = "assets\\cursor.png";
 const char PLACEHOLDERRECT[] = "assets\\PlaceholderRect.png";
 const char PLAYERCHARA_IMAGE[] = "assets\\blue_char.png";
+
+// Sound files
+const char MENUMUSIC[] = "sound\\music\\CASTLEVANIA_MENU_1.mp3";
+const char OPTIONCHANGESFX[] = "sound\\sound_effects\\switch27.mp3";
 
 //Asset Constants
 //const int SHIP_START_FRAME = 0;

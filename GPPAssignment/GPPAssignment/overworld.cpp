@@ -288,3 +288,7 @@ void Overworld::setWorldPosition()
     enemyChara.setX(worldX + GAME_WIDTH / 2);
     enemyChara.setY(worldY + 1840);
 }
+
+// Neccessary Evil Why Please God No More LNK2001 Errors
+void Overworld::onMessage(const Mail& mail)
+{ }
