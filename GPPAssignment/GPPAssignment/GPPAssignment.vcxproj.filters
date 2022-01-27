@@ -43,11 +43,11 @@
     <Filter Include="Source Files\OverworldSystem">
       <UniqueIdentifier>{e76f8b18-4e69-48ff-baae-3dcf10908201}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\AudioSystem">
-      <UniqueIdentifier>{04b1d837-48ae-4cec-a62c-006758bf6af3}</UniqueIdentifier>
+    <Filter Include="Header Files\Objects">
+      <UniqueIdentifier>{81f1917d-bc78-4b4b-8254-52a12c839c60}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\AudioSystem">
-      <UniqueIdentifier>{ca1dba71-a9c3-4f63-b53e-b451e3f95f78}</UniqueIdentifier>
+    <Filter Include="Source Files\Objects">
+      <UniqueIdentifier>{ba04b4de-f564-4b9a-a155-530486cf20db}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -96,23 +96,17 @@
     <ClCompile Include="characterBattleManager.cpp">
       <Filter>Source Files\BattleSystem</Filter>
     </ClCompile>
-    <ClCompile Include="character.cpp">
-      <Filter>Source Files\OverworldSystem</Filter>
-    </ClCompile>
     <ClCompile Include="gameState.cpp">
       <Filter>Source Files\GeneralSystem</Filter>
     </ClCompile>
-    <ClCompile Include="mail.cpp">
-      <Filter>Source Files\GeneralSystem</Filter>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="audioEngine.cpp">
-      <Filter>Source Files\AudioSystem</Filter>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Objects</Filter>
     </ClCompile>
-    <ClCompile Include="postOffice.cpp">
-      <Filter>Source Files\GeneralSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="audio.cpp">
-      <Filter>Source Files\AudioSystem</Filter>
+    <ClCompile Include="character.cpp">
+      <Filter>Source Files\Objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -173,23 +167,20 @@
     <ClInclude Include="gameState.h">
       <Filter>Header Files\GeneralSystem</Filter>
     </ClInclude>
-    <ClInclude Include="character.h">
+    <ClInclude Include="Character.h">
       <Filter>Header Files\OverworldSystem</Filter>
     </ClInclude>
-    <ClInclude Include="audioEngine.h">
-      <Filter>Header Files\AudioSystem</Filter>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="eventQueue.h">
-      <Filter>Header Files\GeneralSystem</Filter>
+    <ClInclude Include="Interactable.h">
+      <Filter>Header Files\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="mail.h">
-      <Filter>Header Files\GeneralSystem</Filter>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files\Objects</Filter>
     </ClInclude>
-    <ClInclude Include="audio.h">
-      <Filter>Header Files\AudioSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="postOffice.h">
-      <Filter>Header Files\GeneralSystem</Filter>
+    <ClInclude Include="NPC.h">
+      <Filter>Header Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
