@@ -87,7 +87,7 @@ void AudioEngine::loadAudio(const char* filename, std::vector<BYTE>& audioData, 
 	hr = MFCreateSourceReaderFromURL(wstr.c_str(), sourceReaderConfig.Get(), sourceReader.GetAddressOf());
 	if (FAILED(hr))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error: Unable to create source reader from URL!"));
-
+	
 	// Select the first audio stream, and deselect all other streams
 	hr = sourceReader->SetStreamSelection((DWORD)MF_SOURCE_READER_ALL_STREAMS, false);
 	if (FAILED(hr))

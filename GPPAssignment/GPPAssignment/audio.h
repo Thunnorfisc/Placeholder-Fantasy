@@ -59,6 +59,10 @@ public:
 
 	void loadFile(const char* filename, Sound& sound);
 
+	void playSound(const Sound& sound);
+	void stopSound(const Sound& sound);
+
 	void onMessage(const Mail& mail);
+
 };
 #endif

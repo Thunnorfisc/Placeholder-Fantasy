@@ -57,6 +57,22 @@ void Audio::loadFile(const char* filename, Sound& sound)
 	sound.audioBuffer.pContext = nullptr;
 }
 
+void Audio::playSound(const Sound& sound)
+{
+	// Handle Error
+	HRESULT hr = S_OK;
+	hr = sound.sourceVoice->SubmitSourceBuffer(&sound.audioBuffer);
+	if (FAILED(hr))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error: Unable to submit source buffer!"));
+
+	sound.sourceVoice->Start();
+}
+
+void Audio::stopSound(const Sound& sound)
+{
+	sound.sourceVoice->Stop();
+}
+
 void Audio::onMessage(const Mail& mail)
 {
 	// Play the sound

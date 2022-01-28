@@ -111,6 +111,10 @@ void Overworld::resetAll()
     return;
 }
 
+// Neccessary Evil Why Please God No More LNK2001 Errors
+void Overworld::onMessage(const Mail& mail)
+{ }
+
 //Initialize the world and set default position
 //void Overworld::initializeWorld()
 //{
@@ -181,91 +185,6 @@ void Overworld::resetAll()
 
 
 
-//=====================================================================================
-//                                  Movement Controls
-//                              Updates WorldX and WorldY
-//=====================================================================================
-void Overworld::controls(float frameTime) {
-    // Right Key
-    if (dxManager->getInput()->isKeyDown(NAVI_RIGHT_KEY))
-    {
-        playerChara.getImagePtr()->flipHorizontal(true);
-        playerChara.getImagePtr()->update(3*frameTime);
-        if (playerChara.getX() >= GAME_WIDTH / 2 - playerChara.getWidth() / 2 && -worldX + GAME_WIDTH <= (worldMap.getWidth()))
-        {
-            worldX -= MOVEMENTSPEED * frameTime;
-        }
-        else if (playerChara.getX() + playerChara.getImagePtr()->getWidth() <= GAME_WIDTH)
-        {
-            playerChara.setX(playerChara.getX() + MOVEMENTSPEED * frameTime);
-        }
-    }
-
-    // Left Key
-    if (dxManager->getInput()->isKeyDown(NAVI_LEFT_KEY))
-    {
-        playerChara.getImagePtr()->flipHorizontal(false);
-        playerChara.getImagePtr()->update(3 * frameTime);
-        if (playerChara.getX() <= GAME_WIDTH / 2 - playerChara.getImagePtr()->getWidth() / 2 && worldX < 0)
-        {
-            worldX += MOVEMENTSPEED * frameTime;
-        }
-        else if(playerChara.getX() >= 0)
-        {
-            playerChara.setX(playerChara.getX() - MOVEMENTSPEED * frameTime);
-        }
-    }
-
-    // Down Key
-    if (dxManager->getInput()->isKeyDown(NAVI_DOWN_KEY))
-    {
-        playerChara.getImagePtr()->update(3 * frameTime);
-        if (playerChara.getY() >= GAME_HEIGHT / 2 - playerChara.getImagePtr()->getHeight() / 2 && -worldY + GAME_WIDTH <= (worldMap.getHeight()))
-        {
-
-            worldY -= MOVEMENTSPEED * frameTime;
-
-        }
-        else if(playerChara.getY() + playerChara.getHeight() <= GAME_HEIGHT)
-        {
-            playerChara.setY(playerChara.getY() + MOVEMENTSPEED * frameTime);
-        }
-    }
-
-    // Up Key
-    if (dxManager->getInput()->isKeyDown(NAVI_UP_KEY))
-    {
-        playerChara.getImagePtr()->update(3 * frameTime);
-        if (playerChara.getY() <= GAME_HEIGHT / 2 - playerChara.getImagePtr()->getHeight() / 2 && worldY < 0)
-        {
-
-            worldY += MOVEMENTSPEED * frameTime;
-
-        }
-        else if (playerChara.getY() >= 0)
-        {
-            playerChara.setY(playerChara.getY() - MOVEMENTSPEED * frameTime);
-        }
-    }
-}
-
-//=====================================================================================
-//          worldX : x == windowX : (GameWidth/2 - worldWidth/2) + x
-//          worldY : y == windowY : (GameHeight/2 - worldHeight/2) + y
-//=====================================================================================
-void Overworld::setWorldPosition()
-{
-    //Setting the world map position
-    worldMap.setX(worldX);
-    worldMap.setY(worldY);
-
-    enemyChara.setX(worldX + GAME_WIDTH / 2);
-    enemyChara.setY(worldY + 1840);
-}
-
-// Neccessary Evil Why Please God No More LNK2001 Errors
-void Overworld::onMessage(const Mail& mail)
-{ }
 //void Overworld::controls(float frameTime) {
 //    // Right Key
 //    if (dxManager->getInput()->isKeyDown(NAVI_RIGHT_KEY))

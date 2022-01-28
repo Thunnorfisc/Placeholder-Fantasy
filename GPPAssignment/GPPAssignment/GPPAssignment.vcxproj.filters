@@ -49,6 +49,18 @@
     <Filter Include="Source Files\Objects">
       <UniqueIdentifier>{ba04b4de-f564-4b9a-a155-530486cf20db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\AudioSystem">
+      <UniqueIdentifier>{33c913c1-01d3-4661-80e0-105abab5dae9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AudioSystem">
+      <UniqueIdentifier>{d8f642d9-1659-40af-8907-f672654ed6d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\EventSystem">
+      <UniqueIdentifier>{b7bfd204-71a1-4765-869b-e01de5e00b0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EventSystem">
+      <UniqueIdentifier>{84eec352-68a5-4a5b-b9ea-34ca46c43149}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="battleScene.cpp">
@@ -107,6 +119,21 @@
     </ClCompile>
     <ClCompile Include="character.cpp">
       <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="audio.cpp">
+      <Filter>Source Files\AudioSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="audioEngine.cpp">
+      <Filter>Source Files\AudioSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="menuList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mail.cpp">
+      <Filter>Source Files\EventSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="postOffice.cpp">
+      <Filter>Source Files\EventSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -167,9 +194,6 @@
     <ClInclude Include="gameState.h">
       <Filter>Header Files\GeneralSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Character.h">
-      <Filter>Header Files\OverworldSystem</Filter>
-    </ClInclude>
     <ClInclude Include="Entity.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
@@ -180,6 +204,24 @@
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="NPC.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="audio.h">
+      <Filter>Header Files\AudioSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="audioEngine.h">
+      <Filter>Header Files\AudioSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="postOffice.h">
+      <Filter>Header Files\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="mail.h">
+      <Filter>Header Files\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="eventQueue.h">
+      <Filter>Header Files\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>

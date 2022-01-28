@@ -1,4 +1,19 @@
-﻿  character.cpp
-C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\image.h(53,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\image.h(54,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
-  GPPAssignment.vcxproj -> C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\Debug\GPPAssignment.exe
+﻿  audio.cpp
+  audioEngine.cpp
+  startingMenu.cpp
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\Image.h(53,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\Image.h(54,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(47,63): warning C4244: 'initializing': conversion from 'UINT' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(47,38): warning C4244: 'initializing': conversion from 'UINT' to 'const float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(48,61): warning C4244: 'initializing': conversion from 'UINT' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(48,37): warning C4244: 'initializing': conversion from 'UINT' to 'const float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(55,58): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(60,55): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(65,54): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(73,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(83,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(84,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(132,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(139,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+  GPPAssignment.vcxproj -> C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\Debug\GPPAssignment.exe

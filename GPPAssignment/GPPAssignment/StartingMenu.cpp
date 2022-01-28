@@ -13,6 +13,7 @@ StartingMenu::StartingMenu(SceneManager* manager)
     dxMenuText = new TextDX();
     dxTitle = new TextDX();
     dxMenuMusic = new Sound();
+    dxOptionChange = new Sound();
     errorMsg = "";
 }
 
@@ -22,6 +23,7 @@ StartingMenu::~StartingMenu()
     SAFE_DELETE(dxMenuText);
     SAFE_DELETE(dxTitle);
     SAFE_DELETE(dxMenuMusic);
+    SAFE_DELETE(dxOptionChange);
 }
 
 //=============================================================================
@@ -85,9 +87,8 @@ void StartingMenu::initialize()
     // Sound/Music Initialize
     // Menu Music
     dxManager->getAudio().loadFile(MENUMUSIC, *dxMenuMusic);
-
-    // When option is changed
     dxManager->getAudio().loadFile(OPTIONCHANGESFX, *dxOptionChange);
+
 
     // Start Menu Music
     Mail mail(*this, dxManager->getAudio(), mailTypes::PlaySoundEvent, dxMenuMusic);
@@ -112,6 +113,11 @@ void StartingMenu::reset()
 //=============================================================================
 void StartingMenu::update(float frameTime)
 {
+    if (dxOptionChange)
+    {
+        Sleep(150);
+        dxManager->getAudio().stopSound(*dxOptionChange);
+    }
     // When enter is pressed, check for which string it's currently at
     if (dxManager->getInput()->wasKeyPressed(VK_RETURN)) 
     {
@@ -120,6 +126,7 @@ void StartingMenu::update(float frameTime)
     // Move down
     if (dxManager->getInput()->wasKeyPressed(CURSOR_DOWN_KEY) && menuIndex != (menuList.size() - 1))
     {
+        dxManager->getAudio().playSound(*dxOptionChange);
         menuIndex++; // Increases menu index to tell where the location of the cursor is
         // cursor.setX(menuList.at(menuIndex).x - 20);
         cursor.setY(menuList.at(menuIndex).y);
