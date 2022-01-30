@@ -1,6 +1,4 @@
-﻿  audio.cpp
-  audioEngine.cpp
-  startingMenu.cpp
+﻿  startingMenu.cpp
 C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\Image.h(53,51): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
 C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\Image.h(54,53): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
 C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(47,63): warning C4244: 'initializing': conversion from 'UINT' to 'float', possible loss of data
@@ -15,5 +13,4 @@ C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssig
 C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(84,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(132,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
 C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(139,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Generating Code...
   GPPAssignment.vcxproj -> C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\Debug\GPPAssignment.exe
