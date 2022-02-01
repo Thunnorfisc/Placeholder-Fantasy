@@ -23,6 +23,7 @@
 #include "constants.h"
 #include <vector>
 
+enum audioTypes { Music, Sfx };
 class AudioEngine;
 
 class Sound
@@ -51,16 +52,37 @@ public:
 class Audio: public MailReceiver
 {
 private:
-	AudioEngine* audioEngine;          // XAudio2 Audio Engine
+	AudioEngine* audioEngine;            // XAudio2 Audio Engine
+
+	// A submix is a track that combines audio signals routed to it from specific audio tracks or track sends in the same sequence
+	IXAudio2SubmixVoice* sfxSubmix;      // Collection of all SFX
+	IXAudio2SubmixVoice* musicSubmix;    // Collection of all music files
+
+	// Music type
+	XAUDIO2_SEND_DESCRIPTOR sendMusic;
+	XAUDIO2_VOICE_SENDS musicSendList;
+
+	// Sound Effects type
+	XAUDIO2_SEND_DESCRIPTOR sendSfx;
+	XAUDIO2_VOICE_SENDS sfxSendList;
+
+	// Volume
+	float sfxVolume = 1.0f;
+	float musicVolume = 1.0f;
 
 public:
 	Audio();
 	~Audio();
 
-	void loadFile(const char* filename, Sound& sound);
+	void loadFile(const char* filename, Sound& sound, const audioTypes& audioType);
 
 	void playSound(const Sound& sound);
 	void stopSound(const Sound& sound);
+
+	void setVolume(const audioTypes& audioType, const float volume);
+	const float getVolume(const audioTypes& audioType);
+
+	void loadVolume();
 
 	void onMessage(const Mail& mail);
 

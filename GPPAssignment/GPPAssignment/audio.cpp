@@ -30,6 +30,29 @@ Sound::~Sound()
 Audio::Audio()
 {
 	audioEngine = new AudioEngine();
+	// Error Handling
+	HRESULT hr = S_OK;
+
+	// Create submix voices
+	// Second Param is number of input channels
+	// 44.1 kHz is the standard used
+	hr = audioEngine->audioDevice->CreateSubmixVoice(&musicSubmix, 1, 44100, 0, 0, 0, 0);
+	if (FAILED(hr))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error: Unable to create music submix voice!"));
+
+	hr = audioEngine->audioDevice->CreateSubmixVoice(&sfxSubmix, 1, 44100, 0, 0, 0, 0);
+	if (FAILED(hr))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error: Unable to create sound effect submix voice!"));
+	// The first flag, set to 0, means that we do not want to use a filter.
+	// The second param specifies the submix voice the voices should be send to.
+
+	sendSfx = { 0, sfxSubmix };
+	sfxSendList = { 1, &sendSfx };
+	sendMusic = { 0, musicSubmix };
+	musicSendList = { 1, &sendMusic };
+
+	musicSubmix->SetVolume(musicVolume);
+	sfxSubmix->SetVolume(sfxVolume);
 }
 
 Audio::~Audio()
@@ -40,14 +63,17 @@ Audio::~Audio()
 	}
 }
 
-void Audio::loadFile(const char* filename, Sound& sound)
+void Audio::loadFile(const char* filename, Sound& sound, const audioTypes& audioType)
 {
 	// Handle errors
 	HRESULT hr = S_OK;
 	audioEngine->loadAudio(filename, sound.audioData, &sound.waveFormat, sound.waveLength);
 
 	// Create source voice
-	hr = audioEngine->audioDevice->CreateSourceVoice(&sound.sourceVoice, sound.waveFormat);
+	if (audioType == audioTypes::Music)
+		hr = audioEngine->audioDevice->CreateSourceVoice(&sound.sourceVoice, sound.waveFormat, 0, XAUDIO2_DEFAULT_FREQ_RATIO, nullptr, &musicSendList, NULL);
+	else if (audioType == audioTypes::Sfx)
+		hr = audioEngine->audioDevice->CreateSourceVoice(&sound.sourceVoice, sound.waveFormat, 0, XAUDIO2_DEFAULT_FREQ_RATIO, nullptr, &sfxSendList, NULL);
 	if (FAILED(hr))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error: Unable to create source voice!"));
 
@@ -71,6 +97,38 @@ void Audio::playSound(const Sound& sound)
 void Audio::stopSound(const Sound& sound)
 {
 	sound.sourceVoice->Stop();
+}
+
+void Audio::setVolume(const audioTypes& audioType, const float volume)
+{
+	if (audioType == audioTypes::Music)
+	{
+		musicVolume = volume;
+		musicSubmix->SetVolume(volume);
+	}
+	else if (audioType == audioTypes::Sfx)
+	{
+		sfxVolume = volume;
+		sfxSubmix->SetVolume(volume);
+	}
+}
+
+const float Audio::getVolume(const audioTypes& audioType)
+{
+	if (audioType == audioTypes::Music)
+	{
+		return musicVolume;
+	}
+	else if (audioType == audioTypes::Sfx)
+	{
+		return sfxVolume;
+	}
+	return 1.0f;
+}
+
+void Audio::loadVolume()
+{
+	
 }
 
 void Audio::onMessage(const Mail& mail)

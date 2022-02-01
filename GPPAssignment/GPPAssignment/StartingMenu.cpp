@@ -86,8 +86,8 @@ void StartingMenu::initialize()
 
     // Sound/Music Initialize
     // Menu Music
-    dxManager->getAudio().loadFile(MENUMUSIC, *dxMenuMusic);
-    dxManager->getAudio().loadFile(OPTIONCHANGESFX, *dxOptionChange);
+    dxManager->getAudio().loadFile(MENUMUSIC, *dxMenuMusic, audioTypes::Music);
+    dxManager->getAudio().loadFile(OPTIONCHANGESFX, *dxOptionChange, audioTypes::Sfx);
 
 
     // Start Menu Music
@@ -137,6 +137,16 @@ void StartingMenu::update(float frameTime)
         menuIndex--; // Decreases menu index to tell where the location of the cursor is
         // cursor.setX(menuList.at(menuIndex).x - 20);
         cursor.setY(menuList.at(menuIndex).y);
+    }
+    // TESTING PURPOSES, REMOVE LATER
+    if (dxManager->getInput()->isKeyDown(CURSOR_LEFT_KEY))
+    {
+        dxManager->getAudio().setVolume(audioTypes::Music, dxManager->getAudio().getVolume(audioTypes::Music) - 0.1f);
+    }
+    // TESTING PURPOSES, REMOVE LATER
+    if (dxManager->getInput()->isKeyDown(CURSOR_RIGHT_KEY))
+    {
+        dxManager->getAudio().setVolume(audioTypes::Music, dxManager->getAudio().getVolume(audioTypes::Music) + 0.1f);
     }
     cursor.update(frameTime);
 }
@@ -204,11 +214,13 @@ void StartingMenu::collisions()
 //=============================================================================
 void StartingMenu::render()
 {
+    std::string musicVol = to_string(int(dxManager->getAudio().getVolume(audioTypes::Music) * 100)) + "%";
     dxManager->getGraphics()->spriteBegin();
     cursor.draw(TRANSCOLOR);
     dxError.setFontColor(graphicsNS::RED);
     dxTitle->setFontColor(graphicsNS::ORANGE);
     dxTitle->print("PlaceHolder Fantasy?", static_cast<int>(GAME_WIDTH / 2 - dxTitle->getWidth("PlaceHolder Fantasy?", dxTitle->getFont()) / 2), GAME_HEIGHT / 2 - 100);
+    dxError.print("(Left Arrow)<- Volume of Music: " + musicVol + " ->(Right Arrow)", static_cast<int>(GAME_WIDTH / 2 - dxError.getWidth("Volume of Music: ", dxError.getFont()) / 2), GAME_HEIGHT / 2 - 200);
     // dxError.print(errorMsg, static_cast<int>(GAME_WIDTH / 2 - dxTitle->getWidth("PlaceHolder Fantasy?", dxTitle->getFont()) / 2), GAME_HEIGHT / 2 - 200);
     dxMenuText->setFontColor(graphicsNS::BLACK);
     for(auto option: menuList) 
