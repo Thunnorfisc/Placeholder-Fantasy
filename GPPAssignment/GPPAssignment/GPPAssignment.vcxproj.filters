@@ -135,6 +135,12 @@
     <ClCompile Include="postOffice.cpp">
       <Filter>Source Files\EventSystem</Filter>
     </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="EntityManager.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="battleScene.h">
@@ -222,6 +228,12 @@
       <Filter>Header Files\EventSystem</Filter>
     </ClInclude>
     <ClInclude Include="Character.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManager.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>

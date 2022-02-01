@@ -47,6 +47,8 @@ const char OVERWORLD_IMAGE[] = "assets\\PlaceholderWorldMap.png";
 const char Cursor[] = "assets\\cursor.png";
 const char PLACEHOLDERRECT[] = "assets\\PlaceholderRect.png";
 const char PLAYERCHARA_IMAGE[] = "assets\\blue_char.png";
+const char BEDROOM_IMAGE[] = "assets\\Bedroom\\Bedroom.png";
+const char BED_IMAGE[] = "assets\\Bedroom\\Bed.png";
 
 // Sound files
 const char MENUMUSIC[] = "sound\\music\\CASTLEVANIA_MENU_1.mp3";

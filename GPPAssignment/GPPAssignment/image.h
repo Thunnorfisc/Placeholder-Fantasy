@@ -50,8 +50,8 @@ public:
 	//	return finalValue;
 	//}
 	virtual float getScaleY() { return spriteData.scaleY; }
-	virtual int getWidth() { return spriteData.width * spriteData.scaleX; }
-	virtual int getHeight() { return spriteData.height * spriteData.scaleY; }
+	virtual float getWidth() { return spriteData.width * spriteData.scaleX; }
+	virtual float getHeight() { return spriteData.height * spriteData.scaleY; }
 	virtual float getCenterX() { return spriteData.x + spriteData.width / 2 * getScaleX(); }
 	virtual float getCenterY() { return spriteData.y + spriteData.height / 2 * getScaleY(); }
 	virtual float getDegrees() { return spriteData.angle * (180.0f / (float)PI); }

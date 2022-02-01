@@ -20,6 +20,8 @@ using namespace std;
 
 Overworld::Overworld(SceneManager* manager) {
     dxManager = manager;
+    screenHeight = GAME_HEIGHT;
+    screenWidth = GAME_WIDTH;
 }
 
 Overworld::~Overworld()
@@ -33,7 +35,29 @@ Overworld::~Overworld()
 //=============================================================================
 void Overworld::initialize()
 {
+    //Initializing starting world
+    Boundary newBounds;
+    newBounds.maxX = GAME_WIDTH;
+    newBounds.minX = 0;
+    newBounds.maxY = 0;
+    newBounds.minY = GAME_HEIGHT;
+    world.initialize(dxManager, BEDROOM_IMAGE, newBounds);
+    float test = world.getWidth();
+    float test1 = world.getX();
+    world.setX(screenWidth / 2 - world.getWidth() / 2.0);
+    float test2 = world.getX();
+    world.setY(screenHeight / 2 - world.getHeight() / 2.0);
+
+    //initializing Players
     player.initializeTextures(dxManager, MAINCHARA_ANIMATION, MAINCHARA_IMAGE);
+    player.setScale(1.5, 1.5);
+
+    player.setX(screenWidth/2 - player.getWidth()/2.0);
+    
+    player.setY(screenHeight/2 - player.getHeight()/2.0);
+
+    //entManager.push(&world);
+    //entManager.push(&world);
     return;
 }
 
@@ -84,8 +108,12 @@ void Overworld::render()
 {
     dxManager->getGraphics()->spriteBegin();
 
-    player.draw(TRANSCOLOR);
     //Draw the world map
+    world.draw(TRANSCOLOR);
+
+    //Here is where the layer system go
+    player.draw(TRANSCOLOR);
+    
     //worldMap.draw(TRANSCOLOR);
 
     //renderCharacters();
