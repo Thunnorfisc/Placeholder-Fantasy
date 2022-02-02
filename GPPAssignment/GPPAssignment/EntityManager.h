@@ -3,18 +3,20 @@
 #define WIN32_LEAN_AND_MEAN
 
 #include "Entity.h"
+#include "Character.h"
+#include "Player.h"
 #include <vector>
 
 class EntityManager
 {
 private:
-	std::vector<Entity*> layer;
+	std::vector<std::unique_ptr<Entity>> layer;
 
 public:
 	EntityManager();
 	~EntityManager();
 
-	std::vector<Entity*> retrieveLayers() { return layer; }
+	std::vector<std::unique_ptr<Entity>> retrieveLayers() { return layer; }
 
 	void push(Entity* ent);
 	void insert(Entity* ent, int index);
