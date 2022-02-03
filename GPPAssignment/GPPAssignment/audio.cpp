@@ -26,6 +26,12 @@ Sound::~Sound()
 	}
 }
 
+Stream::Stream(const char* filename, const bool loop, const audioTypes type) : filename(filename), loop(loop), type(type)
+{
+
+}
+
+Stream::~Stream() { };
 
 Audio::Audio()
 {
@@ -57,10 +63,25 @@ Audio::Audio()
 
 Audio::~Audio()
 {
-	if (audioEngine)
-	{
-		SAFE_DELETE(audioEngine);
-	}
+	ZeroMemory(&sfxSendList, sizeof(sfxSendList));
+	ZeroMemory(&musicSendList, sizeof(musicSendList));
+
+	ZeroMemory(&sendSfx, sizeof(sendSfx));
+	ZeroMemory(&sendMusic, sizeof(sendMusic));
+
+	musicSubmix->DestroyVoice();
+	sfxSubmix->DestroyVoice();
+
+	audioEngine->audioDevice->StopEngine();
+
+	SAFE_DELETE(audioEngine);
+
+	if (streamingThread->joinable())
+		streamingThread->join();
+
+	if (streamingThread)
+		delete streamingThread;
+
 }
 
 void Audio::loadFile(const char* filename, Sound& sound, const audioTypes& audioType)
@@ -98,6 +119,25 @@ void Audio::stopSound(const Sound& sound)
 {
 	sound.sourceVoice->Stop();
 }
+
+void Audio::streamFile(const char* filename, const bool loop, const audioTypes type)
+{
+	audioEngine->streamStopped = false;
+	if (type == audioTypes::Music)
+		streamingThread = new std::thread(&AudioEngine::streamFile, audioEngine, filename, musicSendList, loop);
+	else if (type == audioTypes::Sfx)
+		streamingThread = new std::thread(&AudioEngine::streamFile, audioEngine, filename, sfxSendList, loop);
+}
+
+void Audio::endStream()
+{
+	audioEngine->streamStopped = true;
+	// Check if active thread of execution
+	if (streamingThread->joinable())
+		streamingThread->join();
+}
+
+
 
 void Audio::setVolume(const audioTypes& audioType, const float volume)
 {
@@ -152,6 +192,19 @@ void Audio::onMessage(const Mail& mail)
 	else if (mail.type == mailTypes::StopSoundEvent)
 	{
 		((Sound*)mail.message)->sourceVoice->Stop();
+	}
+
+	else if (mail.type == mailTypes::BeginStream)
+	{
+		if (mail.message == nullptr)
+		{
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error: Mail empty bad!"));
+		}
+		streamFile(((Stream*)mail.message)->filename, ((Stream*)mail.message)->loop, ((Stream*)mail.message)->type);
+	}
+	else if (mail.type == mailTypes::EndStream)
+	{
+		endStream();
 	}
 }
 

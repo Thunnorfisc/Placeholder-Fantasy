@@ -2,7 +2,7 @@
 #define _MAIL_H
 #define WIN32_LEAN_AND_MEAN
 
-enum mailTypes { PlaySoundEvent, StopSoundEvent };
+enum mailTypes { PlaySoundEvent, StopSoundEvent, BeginStream, EndStream };
 
 class MailSender;
 class MailReceiver;

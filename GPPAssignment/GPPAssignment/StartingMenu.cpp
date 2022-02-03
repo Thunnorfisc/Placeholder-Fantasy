@@ -12,13 +12,14 @@ StartingMenu::StartingMenu(SceneManager* manager)
     dxManager = manager;
     dxMenuText = new TextDX();
     dxTitle = new TextDX();
-    dxMenuMusic = new Sound();
     dxOptionChange = new Sound();
     errorMsg = "";
 }
 
 StartingMenu::~StartingMenu()
 {
+    Mail mail(*this, dxManager->getAudio(), mailTypes::EndStream, dxMenuMusic);
+    dxManager->getPostOffice()->addMessages(mail);
     releaseAll();
     SAFE_DELETE(dxMenuText);
     SAFE_DELETE(dxTitle);
@@ -86,12 +87,12 @@ void StartingMenu::initialize()
 
     // Sound/Music Initialize
     // Menu Music
-    dxManager->getAudio().loadFile(MENUMUSIC, *dxMenuMusic, audioTypes::Music);
-    dxManager->getAudio().loadFile(OPTIONCHANGESFX, *dxOptionChange, audioTypes::Sfx);
+    dxMenuMusic = new Stream(MENUMUSIC, true, audioTypes::Music);
+    //dxManager->getAudio().loadFile(OPTIONCHANGESFX, *dxOptionChange, audioTypes::Sfx);
 
 
     // Start Menu Music
-    Mail mail(*this, dxManager->getAudio(), mailTypes::PlaySoundEvent, dxMenuMusic);
+    Mail mail(*this, dxManager->getAudio(), mailTypes::BeginStream, dxMenuMusic);
     dxManager->getPostOffice()->addMessages(mail);
 
     reset();            // reset all game variables
@@ -115,8 +116,7 @@ void StartingMenu::update(float frameTime)
 {
     if (dxOptionChange)
     {
-        Sleep(150);
-        dxManager->getAudio().stopSound(*dxOptionChange);
+        //dxManager->getAudio().stopSound(*dxOptionChange);
     }
     // When enter is pressed, check for which string it's currently at
     if (dxManager->getInput()->wasKeyPressed(VK_RETURN)) 
@@ -126,7 +126,7 @@ void StartingMenu::update(float frameTime)
     // Move down
     if (dxManager->getInput()->wasKeyPressed(CURSOR_DOWN_KEY) && menuIndex != (menuList.size() - 1))
     {
-        dxManager->getAudio().playSound(*dxOptionChange);
+        //dxManager->getAudio().playSound(*dxOptionChange);
         menuIndex++; // Increases menu index to tell where the location of the cursor is
         // cursor.setX(menuList.at(menuIndex).x - 20);
         cursor.setY(menuList.at(menuIndex).y);
@@ -161,7 +161,7 @@ void StartingMenu::optionSelected(std::string option) {
     // Start New Adventure -> Overworld at default position
     if (option == "Start New Adventure")
     {
-        Mail mail(*this, dxManager->getAudio(), mailTypes::StopSoundEvent, dxMenuMusic);
+        Mail mail(*this, dxManager->getAudio(), mailTypes::EndStream, dxMenuMusic);
         dxManager->getPostOffice()->addMessages(mail);
         dxManager->getState()->resetState();
         dxManager->switchScene("Overworld");
@@ -169,7 +169,7 @@ void StartingMenu::optionSelected(std::string option) {
     // Continue -> Overworld at saved position
     else if (option == "Continue")
     {
-        Mail mail(*this, dxManager->getAudio(), mailTypes::StopSoundEvent, dxMenuMusic);
+        Mail mail(*this, dxManager->getAudio(), mailTypes::EndStream, dxMenuMusic);
         dxManager->getPostOffice()->addMessages(mail);
         // Read file placeholder_save.txt
         std::ifstream file("placeholder_save.txt");
@@ -195,7 +195,7 @@ void StartingMenu::optionSelected(std::string option) {
     // Quit -> Quit the game
     else if (option == "Quit")
     {
-        Mail mail(*this, dxManager->getAudio(), mailTypes::StopSoundEvent, dxMenuMusic);
+        Mail mail(*this, dxManager->getAudio(), mailTypes::EndStream, dxMenuMusic);
         dxManager->getPostOffice()->addMessages(mail);
         PostQuitMessage(0);
     }
