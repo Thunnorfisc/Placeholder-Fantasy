@@ -153,11 +153,13 @@
     <ClCompile Include="character.cpp" />
     <ClCompile Include="characterBattleManager.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityManager.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameState.cpp" />
     <ClCompile Include="graphics.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="Interactable.cpp" />
     <ClCompile Include="mail.cpp" />
     <ClCompile Include="menuList.cpp" />
     <ClCompile Include="overworld.cpp" />
@@ -171,6 +173,7 @@
     <ClCompile Include="texturemanager.cpp" />
     <ClCompile Include="userinterface.cpp" />
     <ClCompile Include="winmain.cpp" />
+    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="audio.h" />
@@ -180,6 +183,7 @@
     <ClInclude Include="characterBattleManager.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityManager.h" />
     <ClInclude Include="eventQueue.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameerror.h" />
@@ -202,6 +206,7 @@
     <ClInclude Include="textDX.h" />
     <ClInclude Include="texturemanager.h" />
     <ClInclude Include="userinterface.h" />
+    <ClInclude Include="World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -35,6 +35,8 @@ protected:
     Input* input;         // pointer to the input system
     HRESULT hr;             // standard return type
     bool    active;         // only active entities may collide
+    std::string tag;
+    int layer;
 
     // Axis aligned box collision detection
     // Pre: &ent = Other entity
@@ -58,7 +60,16 @@ public:
         center = VECTOR2(getCenterX(), getCenterY());
         return &center;
     }
+    //Set Layer
+    virtual void setLayer(int l) { layer = l; }
 
+    //Get Layer
+    virtual int getLayer() { return layer; }
+
+    //Set Game Tag
+    virtual void setTag(std::string T) { tag = T; }
+
+    virtual std::string getTag() { return tag; }
     // Return RECT structure used for BOX and ROTATED_BOX collision detection.
     virtual const RECT& getEdge() const { return edge; }
 

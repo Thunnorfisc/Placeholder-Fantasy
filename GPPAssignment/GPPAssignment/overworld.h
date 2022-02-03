@@ -15,7 +15,9 @@
 #define WIN32_LEAN_AND_MEAN
 
 #include "sceneManager.h"
+#include "EntityManager.h"
 #include "Player.h"
+#include "World.h"
 #include "NPC.h"
 #include "Interactable.h"
 
@@ -26,7 +28,14 @@ class Overworld : public Scene
 protected:
     SceneManager* dxManager;
 
+    EntityManager entManager;
+
     Player player;
+    Interactable bed;
+
+    World world;
+
+    float screenWidth, screenHeight;
 
 public:
     // Constructor

@@ -20,6 +20,8 @@ using namespace std;
 
 Overworld::Overworld(SceneManager* manager) {
     dxManager = manager;
+    screenHeight = GAME_HEIGHT;
+    screenWidth = GAME_WIDTH;
 }
 
 Overworld::~Overworld()
@@ -33,7 +35,38 @@ Overworld::~Overworld()
 //=============================================================================
 void Overworld::initialize()
 {
-    player.initializeTextures(dxManager, MAINCHARA_ANIMATION, MAINCHARA_IMAGE);
+    //Initializing starting world
+    Boundary newBounds;
+    newBounds.maxX = GAME_WIDTH;
+    newBounds.minX = 0;
+    newBounds.maxY = 0;
+    newBounds.minY = GAME_HEIGHT;
+    world.initialize(dxManager, BEDROOM_IMAGE, newBounds);
+    float test = world.getWidth();
+    float test1 = world.getX();
+    world.setX(screenWidth / 2 - world.getWidth() / 2.0);
+    float test2 = world.getX();
+    world.setY(screenHeight / 2 - world.getHeight() / 2.0);
+
+    //initialize bed
+    bed.initialize(dxManager, BED_IMAGE);
+    bed.setX(screenWidth* 0.27);
+    bed.setY(screenHeight * 0.1);
+
+    entManager.push(&bed);
+
+    //initializing Players
+    player.initialize(dxManager, MAINCHARA_ANIMATION, MAINCHARA_IMAGE);
+    player.setScale(1.5, 1.5);
+
+    player.setX(screenWidth/2 - player.getWidth()/2.0);
+    
+    player.setY(screenHeight/2 - player.getHeight()/2.0);
+
+    player.setTag("Player");
+
+    //Add the entities to the lists
+    entManager.push(&player);
     return;
 }
 
@@ -56,6 +89,51 @@ void Overworld::update(float frameTime)
         //dxManager->getState()->setValueToState("WorldY", worldY);
         dxManager->switchScene("PauseMenu");
     }
+
+    // moves left
+    if (dxManager->getInput()->isKeyDown(VK_LEFT))
+    {
+        player.setX(player.getX() - MOVEMENTSPEED * frameTime);
+    }
+    else if (dxManager->getInput()->isKeyDown(VK_RIGHT))
+    {
+        player.setX(player.getX() + MOVEMENTSPEED * frameTime);
+    }
+
+    if (dxManager->getInput()->isKeyDown(VK_UP))
+    {
+        player.setY(player.getY() - MOVEMENTSPEED * frameTime);
+    }    
+    else if (dxManager->getInput()->isKeyDown(VK_DOWN))
+    {
+        player.setY(player.getY() + MOVEMENTSPEED * frameTime);
+    }
+
+    //Somehow separate the player from the rest, maybe using a type. And then check for different types of collsion
+    for (Entity* ent : entManager.retrieveLayers())
+    {
+        //Run Update for all ent (invalid)
+        ent->update(frameTime);
+
+        std::string str = typeid(&ent).name();
+        if (ent->getTag() != "Player")
+        {
+
+        }
+        //Do checking for entitites that are not 
+        if (ent->getTag() == "Interactable")
+        {
+            Interactable* interactable = dynamic_cast<Interactable*> (ent);
+            interactable->triggerLayer(&player, &entManager);
+            VECTOR2 collisionVector;
+            if (interactable->collidesWith(player, collisionVector))
+            {
+                //
+            }
+            //ent->collidesWith(entManager.findPlayer())
+        }
+    }
+
 }
 
 void Overworld::ai()
@@ -84,8 +162,15 @@ void Overworld::render()
 {
     dxManager->getGraphics()->spriteBegin();
 
-    player.draw(TRANSCOLOR);
     //Draw the world map
+    world.draw(TRANSCOLOR);
+
+    //Here is where the layer system go
+    for (Entity* ent : entManager.retrieveLayers())
+    {
+        ent->draw(TRANSCOLOR);
+    }
+    
     //worldMap.draw(TRANSCOLOR);
 
     //renderCharacters();

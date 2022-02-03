@@ -12,7 +12,7 @@ Character::Character()
 
 }
 
-bool Character::initializeTextures(Game *gameptr,const char *OverworldTexture = NULL, const char* BattleTexture = NULL)
+bool Character::initialize(Game *gameptr,const char *OverworldTexture = NULL, const char* BattleTexture = NULL)
 {
 	if(OverworldTexture != NULL)
 		overworldTexture.initialize(gameptr->getGraphics(), OverworldTexture);
@@ -20,6 +20,8 @@ bool Character::initializeTextures(Game *gameptr,const char *OverworldTexture = 
 		battleTexture.initialize(gameptr->getGraphics(), BattleTexture);
 
 	currentTexture = &overworldTexture;
+
+	setTag("Character");
 
 	Entity::initialize(gameptr, 34, 34, 0, currentTexture);
 
@@ -60,4 +62,10 @@ bool Character::collideBox(Entity& ent, VECTOR2& collisionVector)
     // set collision vector
     collisionVector = *ent.getCenter() - *getCenter();
     return true;
+}
+
+void Character::update(float frameTime)
+{
+
+	return Entity::update(frameTime);
 }

@@ -16,7 +16,8 @@
 #define SAFE_ON_LOST_DEVICE(ptr) {if(ptr){delete [](ptr); ptr = NULL}}
 //Safely call onRestDevice
 #define SAFE_ON_RESET_DEVICE(ptr) {if(ptr){ptr->onResetDevice();}}
-#define TRANSCOLOR SETCOLOR_ARGB(255,255,255,255)
+#define TRANSCOLOR SETCOLOR_ARGB(255,254,254,254)
+//#define XTRANSCOLOR SETCOLOR_ARGB(0,255,0,255)
 #define BACKGROUNDCOLOUR SETCOLOR_ARGB(200,20,20,20)
 
 //Constants
@@ -47,6 +48,8 @@ const char OVERWORLD_IMAGE[] = "assets\\PlaceholderWorldMap.png";
 const char Cursor[] = "assets\\cursor.png";
 const char PLACEHOLDERRECT[] = "assets\\PlaceholderRect.png";
 const char PLAYERCHARA_IMAGE[] = "assets\\blue_char.png";
+const char BEDROOM_IMAGE[] = "assets\\Bedroom\\Bedroom.png";
+const char BED_IMAGE[] = "assets\\Bedroom\\Bed.png";
 
 // Sound files
 const char MENUMUSIC[] = "sound\\music\\CASTLEVANIA_MENU_1.mp3";
@@ -80,4 +83,6 @@ const float ENEMYSECTION = GAME_WIDTH * 0.25;
 const float TEAMSECTION = GAME_WIDTH * 0.75;
 
 const float OFFSET = 10;
+const float TRIGGEROFFSET = 20;
+
 #endif // !_CONSTANTS_H_
