@@ -22,6 +22,7 @@
 #include "gameerror.h"
 #include "constants.h"
 #include <vector>
+#include <thread>
 
 enum audioTypes { Music, Sfx };
 class AudioEngine;
@@ -47,6 +48,19 @@ public:
 	friend class Audio;
 };
 
+class Stream
+{
+private:
+	const char* filename;                        // Filename
+	bool loop = false;                     // Loop the stream? Defaults to false
+	audioTypes type = audioTypes::Music;   // Type of audio. Defaults to music.
+	
+public:
+	Stream(const char* filename, const bool loop, const audioTypes type);
+	~Stream();
+
+	friend class Audio;
+};
 
 // Feeder and message handler
 class Audio: public MailReceiver
@@ -66,6 +80,9 @@ private:
 	XAUDIO2_SEND_DESCRIPTOR sendSfx;
 	XAUDIO2_VOICE_SENDS sfxSendList;
 
+	// Streaming Thread
+	std::thread* streamingThread;
+
 	// Volume
 	float sfxVolume = 1.0f;
 	float musicVolume = 1.0f;
@@ -78,6 +95,9 @@ public:
 
 	void playSound(const Sound& sound);
 	void stopSound(const Sound& sound);
+
+	void streamFile(const char* filename, const bool loop, const audioTypes type);
+	void endStream();
 
 	void setVolume(const audioTypes& audioType, const float volume);
 	const float getVolume(const audioTypes& audioType);

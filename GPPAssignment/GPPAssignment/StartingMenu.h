@@ -40,7 +40,7 @@ protected:
     TextDX  dxError;                  // Error Text
     TextDX* dxTitle;                  // Title Text
     TextDX* dxMenuText;               // Menu Text
-    Sound* dxMenuMusic;               // Menu Music
+    Stream* dxMenuMusic;               // Menu Music
     Sound* dxOptionChange;            // Change Options Sound Effect
     TextureManager cursorTexture;     // Cursor Texture
 
