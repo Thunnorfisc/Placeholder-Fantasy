@@ -15,10 +15,10 @@ public:
 	~EntityManager();
 
 	std::vector<Entity*> retrieveLayers() { return layer; }
-
+	void update(float frameTime);
 	void push(Entity* ent);
-	void insert(Entity& ent, int index);
+	void insert(Entity* ent, int index);
 	void remove(int index);
-	void replace(int originalIndex, int newIndex);
+	//void replace(int originalIndex, int newIndex);
 };
 #endif // !_ENTITYMANAGER_H_

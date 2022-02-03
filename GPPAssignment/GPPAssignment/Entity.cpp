@@ -14,7 +14,7 @@ Entity::Entity()
 	deltaV.x = 0.0;
 	deltaV.y = 0.0;
 	active = true;
-	
+	tag = "";
 }
 
 bool Entity::initialize(Game* gameptr, int width, int height, int ncols, TextureManager* textureM)

@@ -25,7 +25,7 @@ protected:
 public:
 	Character();
 
-	virtual bool initializeTextures(Game* gameptr, const char* OverworldTexture, const char* BattleTexture);
+	virtual bool initialize(Game* gameptr, const char* OverworldTexture, const char* BattleTexture);
 
 	virtual void update(float frameTime);
 

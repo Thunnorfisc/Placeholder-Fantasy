@@ -56,12 +56,14 @@ void Overworld::initialize()
     entManager.push(&bed);
 
     //initializing Players
-    player.initializeTextures(dxManager, MAINCHARA_ANIMATION, MAINCHARA_IMAGE);
+    player.initialize(dxManager, MAINCHARA_ANIMATION, MAINCHARA_IMAGE);
     player.setScale(1.5, 1.5);
 
     player.setX(screenWidth/2 - player.getWidth()/2.0);
     
     player.setY(screenHeight/2 - player.getHeight()/2.0);
+
+    player.setTag("Player");
 
     //Add the entities to the lists
     entManager.push(&player);
@@ -88,15 +90,50 @@ void Overworld::update(float frameTime)
         dxManager->switchScene("PauseMenu");
     }
 
+    // moves left
+    if (dxManager->getInput()->isKeyDown(VK_LEFT))
+    {
+        player.setX(player.getX() - MOVEMENTSPEED * frameTime);
+    }
+    else if (dxManager->getInput()->isKeyDown(VK_RIGHT))
+    {
+        player.setX(player.getX() + MOVEMENTSPEED * frameTime);
+    }
+
+    if (dxManager->getInput()->isKeyDown(VK_UP))
+    {
+        player.setY(player.getY() - MOVEMENTSPEED * frameTime);
+    }    
+    else if (dxManager->getInput()->isKeyDown(VK_DOWN))
+    {
+        player.setY(player.getY() + MOVEMENTSPEED * frameTime);
+    }
+
     //Somehow separate the player from the rest, maybe using a type. And then check for different types of collsion
     for (Entity* ent : entManager.retrieveLayers())
     {
+        //Run Update for all ent (invalid)
+        ent->update(frameTime);
+
         std::string str = typeid(&ent).name();
-        if (typeid(&ent).name() == "Interactable")
+        if (ent->getTag() != "Player")
         {
+
+        }
+        //Do checking for entitites that are not 
+        if (ent->getTag() == "Interactable")
+        {
+            Interactable* interactable = dynamic_cast<Interactable*> (ent);
+            interactable->triggerLayer(&player, &entManager);
+            VECTOR2 collisionVector;
+            if (interactable->collidesWith(player, collisionVector))
+            {
+                //
+            }
             //ent->collidesWith(entManager.findPlayer())
         }
     }
+
 }
 
 void Overworld::ai()

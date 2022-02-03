@@ -83,4 +83,6 @@ const float ENEMYSECTION = GAME_WIDTH * 0.25;
 const float TEAMSECTION = GAME_WIDTH * 0.75;
 
 const float OFFSET = 10;
+const float TRIGGEROFFSET = 20;
+
 #endif // !_CONSTANTS_H_

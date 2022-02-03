@@ -12,6 +12,8 @@ bool Interactable::initialize(Game* gameptr, const char* texture)
 
     Entity::initialize(gameptr, 0, 0, 0, &intTexture);
 
+    setTag("Interactable");
+
     return true;
 }
 
@@ -19,11 +21,14 @@ bool Interactable::collideBox(Entity& ent, VECTOR2& collisionVector)
 {
     if (!active || !ent.getActive()) return false;
 
+    float test1 = ent.getCenterX();
+    float test2 = ent.getWidth();
+
     // Check for collision using Axis Aligned Bounding Box.
-    if ((getCenterX() + edge.right * getScaleX() < ent.getCenterX() + ent.getEdge().left * ent.getScaleX()) ||
-        (getCenterX() + edge.left * getScaleX() > ent.getCenterX() + ent.getEdge().right * ent.getScaleX()) ||
-        (getCenterY() + edge.bottom * getScaleY() < ent.getCenterY() + ent.getEdge().top * ent.getScaleY()) ||
-        (getCenterY() + edge.top * getScaleY() > ent.getCenterY() + ent.getEdge().bottom * ent.getScaleY()))
+    if ((getCenterX() + edge.right * getWidth() < ent.getCenterX() + ent.getEdge().left * ent.getWidth()) ||
+        (getCenterX() + edge.left * getWidth() > ent.getCenterX() + ent.getEdge().right * ent.getWidth()) ||
+        (getCenterY() + edge.bottom * getHeight() - TRIGGEROFFSET < ent.getCenterY() + ent.getEdge().top * ent.getHeight()) ||
+        (getCenterY() + edge.top * getHeight() + TRIGGEROFFSET > ent.getCenterY() + ent.getEdge().bottom * ent.getHeight()))
     {
         return false;
     }
@@ -31,6 +36,55 @@ bool Interactable::collideBox(Entity& ent, VECTOR2& collisionVector)
     // set collision vector
     collisionVector = *ent.getCenter() - *getCenter();
     return true;
+}
+
+void Interactable::triggerLayer(Player* player, EntityManager* entManager)
+{
+    if (!active || !player->getActive()) return;
+
+    // Check for trigger on top
+    if (player->getX() + player->getWidth() > getX() &&
+        player->getX() < getX() + getWidth() &&
+        player->getY() + player->getHeight() > getY() &&
+        player->getY() + player->getHeight() < getY() + TRIGGEROFFSET)
+    {
+        if (player->getLayer() > getLayer())
+        {
+            if (getLayer() != 0)
+            {
+                //Bring down a layer
+                entManager->insert(player, getLayer() - 1);
+                entManager->remove(player->getLayer());
+            }
+            else 
+            {
+                entManager->insert(this, getLayer() + 1);
+                entManager->remove(player->getLayer());
+                entManager->insert(player, getLayer() - 1);
+                entManager->remove(getLayer());
+            }
+            
+        }
+
+        return;
+    }
+
+    // Check for trigger on Bottom
+    if (player->getX() + player->getWidth() > getX() &&
+        player->getX() < getX() + getWidth() &&
+        player->getY() > getY() + getHeight() - TRIGGEROFFSET &&
+        player->getY() < getY() + getHeight())
+    {
+        if (player->getLayer() < getLayer())
+        {
+            //Bring down a layer
+            int oldIndex = player->getLayer();
+            entManager->insert(player, getLayer() + 1);
+            entManager->remove(oldIndex);
+        }
+
+        return;
+    }
 }
 
 void Interactable::update(float frameTime)
