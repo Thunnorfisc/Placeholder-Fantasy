@@ -92,6 +92,9 @@ public:
     // Set velocity.
     virtual void  setVelocity(VECTOR2 v) { velocity = v; }
 
+    virtual void  setVelocityX(float v) { velocity.x = v; }
+    virtual void  setVelocityY(float v) { velocity.y = v; }
+
     // Set delta velocity. Added to velocity in update().
     virtual void  setDeltaV(VECTOR2 dv) { deltaV = dv; }
 

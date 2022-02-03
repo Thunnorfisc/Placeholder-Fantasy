@@ -93,22 +93,23 @@ void Overworld::update(float frameTime)
     // moves left
     if (dxManager->getInput()->isKeyDown(VK_LEFT))
     {
-        player.setX(player.getX() - MOVEMENTSPEED * frameTime);
+        player.setVelocityX(-MOVEMENTSPEED);
     }
     else if (dxManager->getInput()->isKeyDown(VK_RIGHT))
     {
-        player.setX(player.getX() + MOVEMENTSPEED * frameTime);
+        player.setVelocityX(MOVEMENTSPEED);
     }
+    else { player.setVelocityX(0); }
 
     if (dxManager->getInput()->isKeyDown(VK_UP))
     {
-        player.setY(player.getY() - MOVEMENTSPEED * frameTime);
-    }    
+        player.setVelocityY(-MOVEMENTSPEED);
+    }
     else if (dxManager->getInput()->isKeyDown(VK_DOWN))
     {
-        player.setY(player.getY() + MOVEMENTSPEED * frameTime);
+        player.setVelocityY(MOVEMENTSPEED);
     }
-
+    else { player.setVelocityY(0); }
     //Somehow separate the player from the rest, maybe using a type. And then check for different types of collsion
     for (Entity* ent : entManager.retrieveLayers())
     {
@@ -128,7 +129,22 @@ void Overworld::update(float frameTime)
             VECTOR2 collisionVector;
             if (interactable->collidesWith(player, collisionVector))
             {
-                //
+                if (collisionVector.x < 0 && player.getVelocity().x > 0)
+                {
+                    player.setVelocityX(0);
+                }
+                if (collisionVector.x > 0 && player.getVelocity().x < 0)
+                {
+                    player.setVelocityX(0);
+                }
+                if (collisionVector.y < 0 && player.getVelocity().y > 0)
+                {
+                    player.setVelocityY(0);
+                }
+                if (collisionVector.y > 0 && player.getVelocity().y < 0)
+                {
+                    player.setVelocityY(0);
+                }
             }
             //ent->collidesWith(entManager.findPlayer())
         }

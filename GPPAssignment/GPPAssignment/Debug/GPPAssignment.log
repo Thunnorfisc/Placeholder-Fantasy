@@ -1,2 +1,8 @@
-﻿  Interactable.cpp
+﻿  overworld.cpp
+C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\overworld.cpp(47,32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\overworld.cpp(49,33): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\overworld.cpp(53,25): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\overworld.cpp(54,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\overworld.cpp(62,31): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\overworld.cpp(64,32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   GPPAssignment.vcxproj -> C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\Debug\GPPAssignment.exe

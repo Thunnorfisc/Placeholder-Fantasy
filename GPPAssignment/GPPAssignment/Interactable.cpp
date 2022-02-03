@@ -25,10 +25,10 @@ bool Interactable::collideBox(Entity& ent, VECTOR2& collisionVector)
     float test2 = ent.getWidth();
 
     // Check for collision using Axis Aligned Bounding Box.
-    if ((getCenterX() + edge.right * getWidth() < ent.getCenterX() + ent.getEdge().left * ent.getWidth()) ||
-        (getCenterX() + edge.left * getWidth() > ent.getCenterX() + ent.getEdge().right * ent.getWidth()) ||
-        (getCenterY() + edge.bottom * getHeight() - TRIGGEROFFSET < ent.getCenterY() + ent.getEdge().top * ent.getHeight()) ||
-        (getCenterY() + edge.top * getHeight() + TRIGGEROFFSET > ent.getCenterY() + ent.getEdge().bottom * ent.getHeight()))
+    if (ent.getX() + ent.getWidth() < getX() ||
+        ent.getX() > getX() + getWidth() ||
+        ent.getY() + ent.getHeight() < getY() + TRIGGEROFFSET ||
+        ent.getY() > getY() + getHeight() - TRIGGEROFFSET)
     {
         return false;
     }
