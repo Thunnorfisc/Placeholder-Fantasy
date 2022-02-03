@@ -27,6 +27,8 @@ public:
 
 	virtual bool initializeTextures(Game* gameptr, const char* OverworldTexture, const char* BattleTexture);
 
+	virtual void update(float frameTime);
+
 	virtual TextureManager* getTexture() { return currentTexture; }
 
 	virtual bool switchTexture();

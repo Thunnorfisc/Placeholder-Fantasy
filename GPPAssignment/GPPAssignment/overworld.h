@@ -31,6 +31,8 @@ protected:
     EntityManager entManager;
 
     Player player;
+    Interactable bed;
+
     World world;
 
     float screenWidth, screenHeight;

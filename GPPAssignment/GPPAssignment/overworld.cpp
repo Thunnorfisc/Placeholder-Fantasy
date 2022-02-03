@@ -48,6 +48,13 @@ void Overworld::initialize()
     float test2 = world.getX();
     world.setY(screenHeight / 2 - world.getHeight() / 2.0);
 
+    //initialize bed
+    bed.initialize(dxManager, BED_IMAGE);
+    bed.setX(screenWidth* 0.27);
+    bed.setY(screenHeight * 0.1);
+
+    entManager.push(&bed);
+
     //initializing Players
     player.initializeTextures(dxManager, MAINCHARA_ANIMATION, MAINCHARA_IMAGE);
     player.setScale(1.5, 1.5);
@@ -56,8 +63,8 @@ void Overworld::initialize()
     
     player.setY(screenHeight/2 - player.getHeight()/2.0);
 
-    //entManager.push(&world);
-    //entManager.push(&world);
+    //Add the entities to the lists
+    entManager.push(&player);
     return;
 }
 
@@ -79,6 +86,16 @@ void Overworld::update(float frameTime)
         //dxManager->getState()->setValueToState("WorldX", worldX);
         //dxManager->getState()->setValueToState("WorldY", worldY);
         dxManager->switchScene("PauseMenu");
+    }
+
+    //Somehow separate the player from the rest, maybe using a type. And then check for different types of collsion
+    for (Entity* ent : entManager.retrieveLayers())
+    {
+        std::string str = typeid(&ent).name();
+        if (typeid(&ent).name() == "Interactable")
+        {
+            //ent->collidesWith(entManager.findPlayer())
+        }
     }
 }
 
@@ -112,7 +129,10 @@ void Overworld::render()
     world.draw(TRANSCOLOR);
 
     //Here is where the layer system go
-    player.draw(TRANSCOLOR);
+    for (Entity* ent : entManager.retrieveLayers())
+    {
+        ent->draw(TRANSCOLOR);
+    }
     
     //worldMap.draw(TRANSCOLOR);
 

@@ -159,6 +159,7 @@
     <ClCompile Include="graphics.cpp" />
     <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="Interactable.cpp" />
     <ClCompile Include="mail.cpp" />
     <ClCompile Include="menuList.cpp" />
     <ClCompile Include="overworld.cpp" />

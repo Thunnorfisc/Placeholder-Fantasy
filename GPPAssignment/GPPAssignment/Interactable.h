@@ -7,8 +7,15 @@
 class Interactable : public Entity
 {
 protected:
+	TextureManager intTexture;
 
 public:
+	Interactable();
+
+	bool initialize(Game* gameptr, const char* texture);
+
 	virtual bool collideBox(Entity& ent, VECTOR2& collisionVector);
+
+	virtual void update(float frameTime);
 };
 #endif // !_Interactable_H_

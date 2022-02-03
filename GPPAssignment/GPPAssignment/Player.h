@@ -9,10 +9,12 @@ class Player : public Character
 {
 protected:
 	std::vector<Character> teamList;
-
+	bool centered;
 
 public:
 	Player();
+
+	virtual void update(float frameTime);
 
 	int attack() {
 		return 0;

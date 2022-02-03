@@ -3,7 +3,7 @@
 //Constructor
 EntityManager::EntityManager() 
 {
-	layer = std::vector<std::unique_ptr<Entity>>();
+	layer = std::vector<Entity*>();
 }
 
 EntityManager::~EntityManager() {}
@@ -15,9 +15,9 @@ void EntityManager::push(Entity* ent)
 }
 
 //Insert somewhere in the list
-void EntityManager::insert(Entity* ent, int index)
+void EntityManager::insert(Entity& ent, int index)
 {
-	if (index < layer.size()) layer.insert(layer.begin()+index, ent);
+	if (index < layer.size()) layer.insert(layer.begin()+index, &ent);
 	else return;
 }
 

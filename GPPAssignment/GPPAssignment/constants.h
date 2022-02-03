@@ -16,7 +16,8 @@
 #define SAFE_ON_LOST_DEVICE(ptr) {if(ptr){delete [](ptr); ptr = NULL}}
 //Safely call onRestDevice
 #define SAFE_ON_RESET_DEVICE(ptr) {if(ptr){ptr->onResetDevice();}}
-#define TRANSCOLOR SETCOLOR_ARGB(255,255,255,255)
+#define TRANSCOLOR SETCOLOR_ARGB(255,254,254,254)
+//#define XTRANSCOLOR SETCOLOR_ARGB(0,255,0,255)
 #define BACKGROUNDCOLOUR SETCOLOR_ARGB(200,20,20,20)
 
 //Constants

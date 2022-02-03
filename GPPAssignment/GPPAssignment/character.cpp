@@ -61,3 +61,8 @@ bool Character::collideBox(Entity& ent, VECTOR2& collisionVector)
     collisionVector = *ent.getCenter() - *getCenter();
     return true;
 }
+
+void Character::update(float frameTime)
+{
+	return Entity::update(frameTime);
+}
