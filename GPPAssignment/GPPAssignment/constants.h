@@ -84,5 +84,5 @@ const float TEAMSECTION = GAME_WIDTH * 0.75;
 
 const float OFFSET = 10;
 const float TRIGGEROFFSET = 20;
-
+const int MAXLAYERS = 30;
 #endif // !_CONSTANTS_H_

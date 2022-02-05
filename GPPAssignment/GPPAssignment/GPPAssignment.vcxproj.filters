@@ -144,6 +144,9 @@
     <ClCompile Include="Interactable.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="EntityManagerV2.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="battleScene.h">
@@ -237,6 +240,9 @@
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
     <ClInclude Include="EntityManager.h">
+      <Filter>Header Files\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="EntityManagerV2.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
   </ItemGroup>

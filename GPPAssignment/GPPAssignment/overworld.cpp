@@ -35,6 +35,8 @@ Overworld::~Overworld()
 //=============================================================================
 void Overworld::initialize()
 {
+    entManagerV2.Initialize(6);
+
     //Initializing starting world
     Boundary newBounds;
     newBounds.maxX = GAME_WIDTH;
@@ -53,7 +55,8 @@ void Overworld::initialize()
     bed.setX(screenWidth* 0.27);
     bed.setY(screenHeight * 0.1);
 
-    entManager.push(&bed);
+    entManagerV2.AddToLayer(&bed, entManagerV2.Size() - 2);
+    //entManager.push(&bed);
 
     //initializing Players
     player.initialize(dxManager, MAINCHARA_ANIMATION, MAINCHARA_IMAGE);
@@ -66,7 +69,8 @@ void Overworld::initialize()
     player.setTag("Player");
 
     //Add the entities to the lists
-    entManager.push(&player);
+    entManagerV2.AddToLayer(&player, entManagerV2.Size() - 3);
+    //entManager.push(&player);
     return;
 }
 
@@ -110,43 +114,13 @@ void Overworld::update(float frameTime)
         player.setVelocityY(MOVEMENTSPEED);
     }
     else { player.setVelocityY(0); }
-    //Somehow separate the player from the rest, maybe using a type. And then check for different types of collsion
-    for (Entity* ent : entManager.retrieveLayers())
+
+    //V2 TriggerLayers
+    for (std::vector<Entity*>* layer : entManagerV2.GetLayers())
     {
-        //Run Update for all ent (invalid)
-        ent->update(frameTime);
-
-        std::string str = typeid(&ent).name();
-        if (ent->getTag() != "Player")
+        for (int i = 0; i < layer->size(); i++)
         {
-
-        }
-        //Do checking for entitites that are not 
-        if (ent->getTag() == "Interactable")
-        {
-            Interactable* interactable = dynamic_cast<Interactable*> (ent);
-            interactable->triggerLayer(&player, &entManager);
-            VECTOR2 collisionVector;
-            if (interactable->collidesWith(player, collisionVector))
-            {
-                if (collisionVector.x < 0 && player.getVelocity().x > 0)
-                {
-                    player.setVelocityX(0);
-                }
-                if (collisionVector.x > 0 && player.getVelocity().x < 0)
-                {
-                    player.setVelocityX(0);
-                }
-                if (collisionVector.y < 0 && player.getVelocity().y > 0)
-                {
-                    player.setVelocityY(0);
-                }
-                if (collisionVector.y > 0 && player.getVelocity().y < 0)
-                {
-                    player.setVelocityY(0);
-                }
-            }
-            //ent->collidesWith(entManager.findPlayer())
+            layer->at(i)->update(frameTime);
         }
     }
 
@@ -162,6 +136,19 @@ void Overworld::ai()
 void Overworld::collisions()
 {
     VECTOR2 collisionVector;
+
+    //V2 TriggerLayers
+    for (std::vector<Entity*>* layer : entManagerV2.GetLayers())
+    {
+        for (int i = 0; i < layer->size(); i++)
+        {
+            if (layer->at(i)->getTag() == "Interactable")
+            {
+                Interactable* interactable = dynamic_cast<Interactable*> (layer->at(i));
+                interactable->triggerLayerV2(&player, &entManagerV2);
+            }
+        }
+    }
 
     //if (playerChara.collidesWith(enemyChara, collisionVector))
     //{
@@ -182,10 +169,21 @@ void Overworld::render()
     world.draw(TRANSCOLOR);
 
     //Here is where the layer system go
-    for (Entity* ent : entManager.retrieveLayers())
+
+    //V2 System
+    for (std::vector<Entity*>* layer : entManagerV2.GetLayers())
     {
-        ent->draw(TRANSCOLOR);
+        for (int i = 0; i < layer->size(); i++)
+        {
+            layer->at(i)->draw(TRANSCOLOR);
+        }
     }
+
+    ////V1 System
+    //for (Entity* ent : entManager.retrieveLayers())
+    //{
+    //    ent->draw(TRANSCOLOR);
+    //}
     
     //worldMap.draw(TRANSCOLOR);
 

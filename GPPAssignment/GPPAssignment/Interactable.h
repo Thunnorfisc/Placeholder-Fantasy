@@ -5,6 +5,7 @@
 #include "Entity.h"
 #include "Player.h"
 #include "EntityManager.h"
+#include "EntityManagerV2.h"
 #include <vector>
 
 class Interactable : public Entity
@@ -20,6 +21,8 @@ public:
 	virtual bool collideBox(Entity& ent, VECTOR2& collisionVector);
 
 	void triggerLayer(Player* player, EntityManager* layerSystem);
+
+	void triggerLayerV2(Entity* player, EntityManagerV2* layerSystem);
 
 	virtual void update(float frameTime);
 };

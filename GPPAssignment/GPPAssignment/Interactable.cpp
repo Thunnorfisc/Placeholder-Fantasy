@@ -87,6 +87,45 @@ void Interactable::triggerLayer(Player* player, EntityManager* entManager)
     }
 }
 
+void Interactable::triggerLayerV2(Entity* ent, EntityManagerV2* entManagerV2)
+{
+    if (!active || !ent->getActive()) return;
+
+    // Check for trigger on top
+    if (ent->getX() + ent->getWidth() > getX() &&
+        ent->getX() < getX() + getWidth() &&
+        ent->getY() + ent->getHeight() > getY() &&
+        ent->getY() + ent->getHeight() < getY() + TRIGGEROFFSET)
+    {
+        //Bring Back
+        if (ent->getLayer() >= getLayer() && getLayer() - 1 >= 0)
+        {
+            entManagerV2->RemoveFromLayer(ent, ent->getLayer());
+            entManagerV2->AddToLayer(ent, getLayer() - 1);
+        }
+
+        return;
+    }
+
+    // Check for trigger on Bottom
+    if (ent->getX() + ent->getWidth() > getX() &&
+        ent->getX() < getX() + getWidth() &&
+        ent->getY() > getY() + getHeight() - TRIGGEROFFSET &&
+        ent->getY() < getY() + getHeight())
+    {
+
+        //Bring forward
+        if (ent->getLayer() < getLayer() )
+        {
+            //Bring down a layer
+            entManagerV2->RemoveFromLayer(ent, ent->getLayer());
+            entManagerV2->AddToLayer(ent, getLayer());
+        }
+
+        return;
+    }
+}
+
 void Interactable::update(float frameTime)
 {
 
