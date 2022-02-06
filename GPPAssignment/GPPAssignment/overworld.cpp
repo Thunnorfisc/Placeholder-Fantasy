@@ -146,6 +146,7 @@ void Overworld::collisions()
             {
                 Interactable* interactable = dynamic_cast<Interactable*> (layer->at(i));
                 interactable->triggerLayerV2(&player, &entManagerV2);
+                interactable->collideBox(&player, collisionVector);
             }
         }
     }

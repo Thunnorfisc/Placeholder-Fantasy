@@ -17,27 +17,85 @@ bool Interactable::initialize(Game* gameptr, const char* texture)
     return true;
 }
 
-bool Interactable::collideBox(Entity& ent, VECTOR2& collisionVector)
+/// <summary>
+/// This is to check for the collision of the entity and the current game object.
+/// </summary>
+/// <param name="ent"></param>
+/// <param name="collisionVector"></param>
+/// <returns></returns>
+bool Interactable::collideBox(Entity* ent, VECTOR2& collisionVector)
 {
-    if (!active || !ent.getActive()) return false;
-
-    float test1 = ent.getCenterX();
-    float test2 = ent.getWidth();
-
-    // Check for collision using Axis Aligned Bounding Box.
-    if (ent.getX() + ent.getWidth() < getX() ||
-        ent.getX() > getX() + getWidth() ||
-        ent.getY() + ent.getHeight() < getY() + TRIGGEROFFSET ||
-        ent.getY() > getY() + getHeight() - TRIGGEROFFSET)
+    //if either entity is not active return false
+    if (!ent->getActive() || !getActive())
     {
+        ent->setCollisionVector(VECTOR2(0, 0));
         return false;
     }
 
-    // set collision vector
-    collisionVector = *ent.getCenter() - *getCenter();
+    //Check for collision using the Axis Aligned Bounding Box
+    if ((getCenterX() + getEdge().right * getWidth() / 2 <= ent->getCenterX() + ent->getEdge().left * ent->getWidth() / 2) ||
+        (getCenterX() + getEdge().left * getWidth() / 2 >= ent->getCenterX() + ent->getEdge().right * ent->getWidth() / 2) ||
+        (getCenterY() + getEdge().bottom * getHeight() / 2 - TRIGGEROFFSET <= ent->getCenterY() + ent->getEdge().top * ent->getHeight() / 2) ||
+        (getCenterY() + getEdge().top * getHeight() / 2 + TRIGGEROFFSET >= ent->getCenterY() + ent->getEdge().bottom * ent->getHeight() / 2))
+    {
+        ent->setCollisionVector(VECTOR2(0, 0));
+        return false;
+    }
+
+    //Test Statements
+    float test5 = ent->getCenterX() + ent->getEdge().right * ent->getWidth() / 2;
+    float test6 = getCenterX() + getEdge().left * getWidth() / 2;
+    float test11 = ent->getCenterY() + ent->getEdge().bottom * ent->getHeight() / 2;
+    float test12 = ent->getCenterY() + ent->getEdge().bottom * ent->getHeight() / 2;
+    bool test1= (getCenterX() + getEdge().right * getWidth() / 2 - 1  > ent->getCenterX() + ent->getEdge().left * ent->getWidth() / 2);
+    bool test2= (getCenterX() + getEdge().left * getWidth() / 2  < ent->getCenterX() + ent->getEdge().left * ent->getWidth() / 2);
+    bool test3= (getCenterX() + getEdge().right * getWidth() / 2 > ent->getCenterX() + ent->getEdge().right * ent->getWidth() / 2);
+    bool test4= (getCenterX() + getEdge().left * getWidth() / 2 + 1< ent->getCenterX() + ent->getEdge().right * ent->getWidth() / 2);
+
+    bool test7= (getCenterY() + getEdge().bottom * getHeight() / 2 > ent->getCenterY() + ent->getEdge().top * ent->getHeight() / 2);
+    bool test8= (getCenterY() + getEdge().top * getHeight() / 2 < ent->getCenterY() + ent->getEdge().top * ent->getHeight() / 2);
+    bool test9= (getCenterY() + getEdge().bottom * getHeight() / 2 > ent->getCenterY() + ent->getEdge().bottom * ent->getHeight() / 2);
+    bool test10= (getCenterY() + getEdge().top * getHeight() / 2 + 1 < ent->getCenterY() + ent->getEdge().bottom * ent->getHeight() / 2);
+
+
+    //V2
+    //Check for collision for Horizontal with Vertical range
+    if (((getCenterY() + getEdge().bottom * getHeight() / 2 - TRIGGEROFFSET > ent->getCenterY() + ent->getEdge().top * ent->getHeight() / 2) &&
+        (getCenterY() + getEdge().top * getHeight() / 2 + TRIGGEROFFSET< ent->getCenterY() + ent->getEdge().top * ent->getHeight() / 2))
+        ||
+        ((getCenterY() + getEdge().bottom * getHeight() / 2 - TRIGGEROFFSET > ent->getCenterY() + ent->getEdge().bottom * ent->getHeight() / 2) &&
+         (getCenterY() + getEdge().top * getHeight() / 2 + TRIGGEROFFSET< ent->getCenterY() + ent->getEdge().bottom * ent->getHeight() / 2))
+        )
+    {
+
+        ent->setCollisionVector(VECTOR2(ent->getCenterX() - getCenterX(), 0));
+    }
+    //Check for collision for Vertical with Horizontal range
+    if (((getCenterX() + getEdge().right * getWidth() / 2 - 1 > ent->getCenterX() + ent->getEdge().left * ent->getWidth() / 2) &&
+        (getCenterX() + getEdge().left * getWidth() / 2 < ent->getCenterX() + ent->getEdge().left * ent->getWidth() / 2))
+        ||
+        ((getCenterX() + getEdge().right * getWidth() / 2 > ent->getCenterX() + ent->getEdge().right * ent->getWidth() / 2) &&
+         (getCenterX() + getEdge().left * getWidth() / 2 + 1< ent->getCenterX() + ent->getEdge().right * ent->getWidth() / 2))
+        )
+    {
+
+        ent->setCollisionVector(VECTOR2(0, ent->getCenterY() - getCenterY()));
+    }
+    //set collision Vector
+    //ent->setCollisionVector(*ent->getCenter() - *getCenter());
+
     return true;
 }
+bool Interactable::collideBox(Entity& ent, VECTOR2& collisionVector)
+{
+    return false;
+}
 
+/// <summary>
+/// This is used to swap the layers for gameObjects in the game using the entityManager V1(deprecated) 
+/// </summary>
+/// <param name="player"></param>
+/// <param name="entManager"></param>
 void Interactable::triggerLayer(Player* player, EntityManager* entManager)
 {
     if (!active || !player->getActive()) return;
@@ -87,6 +145,11 @@ void Interactable::triggerLayer(Player* player, EntityManager* entManager)
     }
 }
 
+/// <summary>
+/// This is used to swap the position of a gameObject that has triggered the trigger by moving Entity from one layer to another
+/// </summary>
+/// <param name="ent"></param>
+/// <param name="entManagerV2"></param>
 void Interactable::triggerLayerV2(Entity* ent, EntityManagerV2* entManagerV2)
 {
     if (!active || !ent->getActive()) return;

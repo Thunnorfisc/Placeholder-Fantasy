@@ -18,6 +18,7 @@ public:
 
 	bool initialize(Game* gameptr, const char* texture);
 
+	virtual bool collideBox(Entity* ent, VECTOR2& collisionVector);
 	virtual bool collideBox(Entity& ent, VECTOR2& collisionVector);
 
 	void triggerLayer(Player* player, EntityManager* layerSystem);
