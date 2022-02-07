@@ -55,7 +55,7 @@ void Overworld::initialize()
     bed.setX(screenWidth* 0.27);
     bed.setY(screenHeight * 0.1);
 
-    entManagerV2.AddToLayer(&bed, entManagerV2.Size() - 2);
+    entManagerV2.AddToLayer(&bed, entManagerV2.Size() - 2); 
     //entManager.push(&bed);
 
     //initializing Players
@@ -91,7 +91,7 @@ void Overworld::update(float frameTime)
         // Store world coordinates into game state
         //dxManager->getState()->setValueToState("WorldX", worldX);
         //dxManager->getState()->setValueToState("WorldY", worldY);
-        dxManager->switchScene("PauseMenu");
+        dxManager->layerScene("PauseMenu");
     }
 
     // moves left

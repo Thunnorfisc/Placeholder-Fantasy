@@ -245,5 +245,8 @@
     <ClInclude Include="EntityManagerV2.h">
       <Filter>Header Files\Objects</Filter>
     </ClInclude>
+    <ClInclude Include="stack.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -17,6 +17,8 @@
 
 #include <map>
 #include <vector>
+#include <stack>
+#include "stack.hpp"
 #include "game.h"
 #include "scene.h"
 #include "gameState.h"
@@ -24,7 +26,7 @@
 class SceneManager: public Game
 {
 protected:
-	Scene* currentScene;						// The scene the game is currently on
+	Stack<Scene*> sceneStack;                   // Stack of scenes
 	GameState currentState;						// The state the game has, keeps data that is a global variable
 	std::vector<Character> characterList;		// The list of characters
 	std::map<std::string, Scene*> sceneMap;     // Map of scenes, used to switch scenes and keep scenes
@@ -39,6 +41,15 @@ public:
 	// When the character list is needed when switching scene
 	void switchScene(std::string scene, std::vector<Character> characterList);
 
+	// Layer scene over other scenes
+	void layerScene(std::string scene);
+
+	// Layer scene over other scenes with character list
+	void layerScene(std::string scene, std::vector<Character> characterList);
+
+	// Unlayer scene for previous scene
+	void unlayerScene();
+
 	void initialize(HWND hwnd);
 
 	// These methods are inherited from Game. Used to call the respective methods in the scenes.
@@ -50,7 +61,7 @@ public:
 	void releaseAll();
 	void resetAll();
 
-	std::vector<Character>* getCharacterList() { return currentScene->getCharacterList(); }
+	std::vector<Character>* getCharacterList() { return sceneStack.getTop()->getCharacterList(); }
 	// Gets the game state
 	GameState* getState() { return &currentState;  }
 };
