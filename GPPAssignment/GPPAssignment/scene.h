@@ -27,6 +27,9 @@ class Scene: public MailSender, public MailReceiver
 private:
 	std::vector<Character> characterList;
 
+protected:
+	bool paused = false;
+
 public:
 	Scene() {}
 	~Scene() {}
@@ -44,6 +47,7 @@ public:
 	//=========================================================
 	void setCharacterList(std::vector<Character> newCharacterList) { characterList = newCharacterList; }
 	std::vector<Character>* getCharacterList() { return &characterList; }
-
+	void setPause(bool pauseState) { paused = pauseState; }
+	bool getPause() { return paused; }
 };
 #endif

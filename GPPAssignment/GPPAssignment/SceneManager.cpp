@@ -55,17 +55,20 @@ void SceneManager::reset()
 
 void SceneManager::update()
 {
-    currentScene->update(frameTime);
+    if (currentScene->getPause() == false)
+        currentScene->update(frameTime);
 }
 
 void SceneManager::ai()
 {
-    currentScene->ai();
+    if (currentScene->getPause() == false)
+        currentScene->ai();
 }
 
 void SceneManager::collisions()
 {
-    currentScene->collisions();
+    if (currentScene->getPause() == false)
+        currentScene->collisions();
 }
 
 //=============================================================================
@@ -73,7 +76,8 @@ void SceneManager::collisions()
 //=============================================================================
 void SceneManager::render()
 {
-    currentScene->render();
+    if (currentScene->getPause() == false)
+        currentScene->render();
 }
 
 //=============================================================================

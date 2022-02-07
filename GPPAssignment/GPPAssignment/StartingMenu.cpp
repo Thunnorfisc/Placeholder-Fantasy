@@ -141,12 +141,12 @@ void StartingMenu::update(float frameTime)
     // TESTING PURPOSES, REMOVE LATER
     if (dxManager->getInput()->isKeyDown(CURSOR_LEFT_KEY))
     {
-        dxManager->getAudio().setVolume(audioTypes::Music, dxManager->getAudio().getVolume(audioTypes::Music) - 0.1f);
+        dxManager->getAudio().setVolume(audioTypes::Music, dxManager->getAudio().getVolume(audioTypes::Music) - 0.01f);
     }
     // TESTING PURPOSES, REMOVE LATER
     if (dxManager->getInput()->isKeyDown(CURSOR_RIGHT_KEY))
     {
-        dxManager->getAudio().setVolume(audioTypes::Music, dxManager->getAudio().getVolume(audioTypes::Music) + 0.1f);
+        dxManager->getAudio().setVolume(audioTypes::Music, dxManager->getAudio().getVolume(audioTypes::Music) + 0.01f);
     }
     cursor.update(frameTime);
 }
@@ -190,7 +190,8 @@ void StartingMenu::optionSelected(std::string option) {
     // Option -> Whatever options we have
     else if (option == "Options")
     {
-
+        // DEBUGGING, PLEASE REMOVE
+        paused = true;
     }
     // Quit -> Quit the game
     else if (option == "Quit")
