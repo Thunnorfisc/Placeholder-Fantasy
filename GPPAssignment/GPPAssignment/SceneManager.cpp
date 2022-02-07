@@ -35,34 +35,49 @@ SceneManager::~SceneManager()
 // dxManager->switchScene(the one you want to switch to) to switch scenes
 void SceneManager::switchScene(std::string scene)
 {
+    // Clear the stack to prevent double same scene initialized in the stack
     sceneStack.clearStack();
+    // Push the new scene to the stack
     sceneStack.push(sceneMap[scene]);
+    // Initialize the scene
     sceneStack.getTop()->initialize();
 }
 
 void SceneManager::switchScene(std::string scene, std::vector<Character> characterList)
 {
+    // Clear the stack to prevent double same scene initialized in the stack
     sceneStack.clearStack();
+    // Push the new scene to the stack
     sceneStack.push(sceneMap[scene]);
+    // Set the character list
     sceneStack.getTop()->setCharacterList(characterList);
+    // Initialize the scene
     sceneStack.getTop()->initialize();
 }
 
+// dxManager->layerScene(the one you want to switch to) to layer scenes
 void SceneManager::layerScene(std::string scene)
 {
+    // Push the new scene on top of the stack
     sceneStack.push(sceneMap[scene]);
+    // Initialize the scene
     sceneStack.getTop()->initialize();
 }
 
 void SceneManager::layerScene(std::string scene, std::vector<Character> characterList)
 {
+    // Push the new scene on top of the stack
     sceneStack.push(sceneMap[scene]);
+    // Set the character list
     sceneStack.getTop()->setCharacterList(characterList);
+    // Initialize the scene
     sceneStack.getTop()->initialize();
 }
 
+// To go back to the previous scene (AKA the second scene in the stack), call dxManager->unlayerScene()
 void SceneManager::unlayerScene()
 {
+    // Remove the top scene to go back to the previous scene
     sceneStack.pop();
 }
 
