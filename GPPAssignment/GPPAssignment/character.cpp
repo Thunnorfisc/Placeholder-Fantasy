@@ -64,6 +64,11 @@ bool Character::collideBox(Entity& ent, VECTOR2& collisionVector)
     return true;
 }
 
+bool Character::collideBox(Entity* ent, VECTOR2& collisionVector)
+{
+	return false;
+}
+
 void Character::update(float frameTime)
 {
 

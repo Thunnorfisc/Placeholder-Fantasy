@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\</FILEPATH>
+      <FILENAME>XAudio2.h</FILENAME>
+      <LINE>1228</LINE>
+      <COLUMN>17</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>The enum type 'XAUDIO2_WINDOWS_PROCESSOR_SPECIFIER' is unscoped. Prefer 'enum class' over 'enum' (Enum.3).</DESCRIPTION>
+    <FUNCTION>XAudio2Create</FUNCTION>
+    <DECORATED>?XAudio2Create@@YAJPAPAUIXAudio2@@IW4XAUDIO2_WINDOWS_PROCESSOR_SPECIFIER@@@Z</DECORATED>
+    <FUNCLINE>1228</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\</FILEPATH>
+      <FILENAME>gameerror.h</FILENAME>
+      <LINE>39</LINE>
+      <COLUMN>13</COLUMN>
+    </SFA>
+    <DEFECTCODE>26439</DEFECTCODE>
+    <DESCRIPTION>This kind of function may not throw. Declare it 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>GameError::{dtor}</FUNCTION>
+    <DECORATED>??1GameError@@UAE@XZ</DECORATED>
+    <FUNCLINE>39</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>

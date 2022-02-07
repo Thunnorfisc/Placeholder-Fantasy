@@ -1,0 +1,438 @@
+﻿<?xml version="1.0" encoding="utf-8"?><DEFECTS><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\</FILEPATH>
+      <FILENAME>xaudio2.h</FILENAME>
+      <LINE>1228</LINE>
+      <COLUMN>17</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>The enum type 'XAUDIO2_WINDOWS_PROCESSOR_SPECIFIER' is unscoped. Prefer 'enum class' over 'enum' (Enum.3).</DESCRIPTION>
+    <FUNCTION>XAudio2Create</FUNCTION>
+    <DECORATED>?XAudio2Create@@YAJPAPAUIXAudio2@@IW4XAUDIO2_WINDOWS_PROCESSOR_SPECIFIER@@@Z</DECORATED>
+    <FUNCLINE>1228</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\</FILEPATH>
+      <FILENAME>gameerror.h</FILENAME>
+      <LINE>39</LINE>
+      <COLUMN>13</COLUMN>
+    </SFA>
+    <DEFECTCODE>26439</DEFECTCODE>
+    <DESCRIPTION>This kind of function may not throw. Declare it 'noexcept' (f.6).</DESCRIPTION>
+    <FUNCTION>GameError::{dtor}</FUNCTION>
+    <DECORATED>??1GameError@@UAE@XZ</DECORATED>
+    <FUNCLINE>39</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\</FILEPATH>
+      <FILENAME>audio.cpp</FILENAME>
+      <LINE>29</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>The enum type 'audioTypes' is unscoped. Prefer 'enum class' over 'enum' (Enum.3).</DESCRIPTION>
+    <FUNCTION>Stream::{ctor}</FUNCTION>
+    <DECORATED>??0Stream@@QAE@PBD_NW4audioTypes@@@Z</DECORATED>
+    <FUNCLINE>29</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\</FILEPATH>
+      <FILENAME>audio.cpp</FILENAME>
+      <LINE>36</LINE>
+      <COLUMN>7</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Audio::streamingThread' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Audio::{ctor}</FUNCTION>
+    <DECORATED>??0Audio@@QAE@XZ</DECORATED>
+    <FUNCLINE>36</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>Audio::streamingThread</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\</FILEPATH>
+      <FILENAME>d3dx9math.h</FILENAME>
+      <LINE>59</LINE>
+      <COLUMN>4</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'D3DXFLOAT16::value' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>D3DXFLOAT16::{ctor}</FUNCTION>
+    <DECORATED>??0D3DXFLOAT16@@QAE@XZ</DECORATED>
+    <FUNCLINE>59</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>D3DXFLOAT16::value</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\</FILEPATH>
+      <FILENAME>d3dx9math.h</FILENAME>
+      <LINE>91</LINE>
+      <COLUMN>4</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'D3DXVECTOR2::y' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>D3DXVECTOR2::{ctor}</FUNCTION>
+    <DECORATED>??0D3DXVECTOR2@@QAE@XZ</DECORATED>
+    <FUNCLINE>91</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>D3DXVECTOR2::y</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\</FILEPATH>
+      <FILENAME>d3dx9math.h</FILENAME>
+      <LINE>240</LINE>
+      <COLUMN>4</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'D3DXVECTOR4::w' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>D3DXVECTOR4::{ctor}</FUNCTION>
+    <DECORATED>??0D3DXVECTOR4@@QAE@XZ</DECORATED>
+    <FUNCLINE>240</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>D3DXVECTOR4::w</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\</FILEPATH>
+      <FILENAME>d3dx9math.h</FILENAME>
+      <LINE>429</LINE>
+      <COLUMN>4</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'D3DXQUATERNION::w' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>D3DXQUATERNION::{ctor}</FUNCTION>
+    <DECORATED>??0D3DXQUATERNION@@QAE@XZ</DECORATED>
+    <FUNCLINE>429</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>D3DXQUATERNION::w</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\</FILEPATH>
+      <FILENAME>d3dx9math.h</FILENAME>
+      <LINE>475</LINE>
+      <COLUMN>4</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'D3DXPLANE::a' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>D3DXPLANE::{ctor}</FUNCTION>
+    <DECORATED>??0D3DXPLANE@@QAE@XZ</DECORATED>
+    <FUNCLINE>475</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>D3DXPLANE::a</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\</FILEPATH>
+      <FILENAME>d3dx9math.h</FILENAME>
+      <LINE>516</LINE>
+      <COLUMN>4</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'D3DXCOLOR::b' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>D3DXCOLOR::{ctor}</FUNCTION>
+    <DECORATED>??0D3DXCOLOR@@QAE@XZ</DECORATED>
+    <FUNCLINE>516</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>D3DXCOLOR::b</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\</FILEPATH>
+      <FILENAME>d3dx9math.inl</FILENAME>
+      <LINE>26</LINE>
+      <COLUMN>13</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'D3DXFLOAT16::value' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>D3DXFLOAT16::{ctor}</FUNCTION>
+    <DECORATED>??0D3DXFLOAT16@@QAE@M@Z</DECORATED>
+    <FUNCLINE>26</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>D3DXFLOAT16::value</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\</FILEPATH>
+      <FILENAME>d3dx9math.inl</FILENAME>
+      <LINE>77</LINE>
+      <COLUMN>13</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'D3DXVECTOR2::y' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>D3DXVECTOR2::{ctor}</FUNCTION>
+    <DECORATED>??0D3DXVECTOR2@@QAE@PBUD3DXFLOAT16@@@Z</DECORATED>
+    <FUNCLINE>77</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>D3DXVECTOR2::y</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\</FILEPATH>
+      <FILENAME>d3dx9math.inl</FILENAME>
+      <LINE>517</LINE>
+      <COLUMN>13</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'D3DXVECTOR4::w' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>D3DXVECTOR4::{ctor}</FUNCTION>
+    <DECORATED>??0D3DXVECTOR4@@QAE@PBUD3DXFLOAT16@@@Z</DECORATED>
+    <FUNCLINE>517</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>D3DXVECTOR4::w</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\</FILEPATH>
+      <FILENAME>d3dx9math.inl</FILENAME>
+      <LINE>1068</LINE>
+      <COLUMN>16</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'D3DXQUATERNION::w' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>D3DXQUATERNION::{ctor}</FUNCTION>
+    <DECORATED>??0D3DXQUATERNION@@QAE@PBUD3DXFLOAT16@@@Z</DECORATED>
+    <FUNCLINE>1068</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>D3DXQUATERNION::w</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\</FILEPATH>
+      <FILENAME>d3dx9math.inl</FILENAME>
+      <LINE>1241</LINE>
+      <COLUMN>11</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'D3DXPLANE::c' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>D3DXPLANE::{ctor}</FUNCTION>
+    <DECORATED>??0D3DXPLANE@@QAE@PBUD3DXFLOAT16@@@Z</DECORATED>
+    <FUNCLINE>1241</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>D3DXPLANE::c</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\Include\</FILEPATH>
+      <FILENAME>d3dx9math.inl</FILENAME>
+      <LINE>1376</LINE>
+      <COLUMN>11</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'D3DXCOLOR::b' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>D3DXCOLOR::{ctor}</FUNCTION>
+    <DECORATED>??0D3DXCOLOR@@QAE@PBUD3DXFLOAT16@@@Z</DECORATED>
+    <FUNCLINE>1376</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>D3DXCOLOR::b</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\</FILEPATH>
+      <FILENAME>Entity.h</FILENAME>
+      <LINE>86</LINE>
+      <COLUMN>58</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>The enum type 'entityNS::COLLISION_TYPE' is unscoped. Prefer 'enum class' over 'enum' (Enum.3).</DESCRIPTION>
+    <FUNCTION>Entity::getCollisionType</FUNCTION>
+    <DECORATED>?getCollisionType@Entity@@UAE?AW4COLLISION_TYPE@entityNS@@XZ</DECORATED>
+    <FUNCLINE>86</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\</FILEPATH>
+      <FILENAME>game.cpp</FILENAME>
+      <LINE>5</LINE>
+      <COLUMN>6</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Game::hwnd' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Game::{ctor}</FUNCTION>
+    <DECORATED>??0Game@@QAE@XZ</DECORATED>
+    <FUNCLINE>5</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>Game::hwnd</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\</FILEPATH>
+      <FILENAME>graphics.cpp</FILENAME>
+      <LINE>6</LINE>
+      <COLUMN>10</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Graphics::d3dpp' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Graphics::{ctor}</FUNCTION>
+    <DECORATED>??0Graphics@@QAE@XZ</DECORATED>
+    <FUNCLINE>6</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>Graphics::d3dpp</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\</FILEPATH>
+      <FILENAME>graphics.cpp</FILENAME>
+      <LINE>421</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>The enum type 'graphicsNS::DISPLAY_MODE' is unscoped. Prefer 'enum class' over 'enum' (Enum.3).</DESCRIPTION>
+    <FUNCTION>Graphics::changeDisplayMode</FUNCTION>
+    <DECORATED>?changeDisplayMode@Graphics@@QAEXW4DISPLAY_MODE@graphicsNS@@@Z</DECORATED>
+    <FUNCLINE>421</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\</FILEPATH>
+      <FILENAME>image.cpp</FILENAME>
+      <LINE>3</LINE>
+      <COLUMN>7</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'Image::hr' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>Image::{ctor}</FUNCTION>
+    <DECORATED>??0Image@@QAE@XZ</DECORATED>
+    <FUNCLINE>3</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>Image::hr</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\</FILEPATH>
+      <FILENAME>mail.cpp</FILENAME>
+      <LINE>3</LINE>
+      <COLUMN>54</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>The enum type 'mailTypes' is unscoped. Prefer 'enum class' over 'enum' (Enum.3).</DESCRIPTION>
+    <FUNCTION>Mail::{ctor}</FUNCTION>
+    <DECORATED>??0Mail@@QAE@XZ</DECORATED>
+    <FUNCLINE>3</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\</FILEPATH>
+      <FILENAME>sceneManager.cpp</FILENAME>
+      <LINE>13</LINE>
+      <COLUMN>14</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'SceneManager::currentScene' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>SceneManager::{ctor}</FUNCTION>
+    <DECORATED>??0SceneManager@@QAE@XZ</DECORATED>
+    <FUNCLINE>13</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>SceneManager::currentScene</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\</FILEPATH>
+      <FILENAME>startingMenu.cpp</FILENAME>
+      <LINE>144</LINE>
+      <COLUMN>103</COLUMN>
+    </SFA>
+    <DEFECTCODE>26812</DEFECTCODE>
+    <DESCRIPTION>The enum type 'audioTypes' is unscoped. Prefer 'enum class' over 'enum' (Enum.3).</DESCRIPTION>
+    <FUNCTION>StartingMenu::update</FUNCTION>
+    <DECORATED>?update@StartingMenu@@UAEXM@Z</DECORATED>
+    <FUNCLINE>115</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\</FILEPATH>
+      <FILENAME>textDX.cpp</FILENAME>
+      <LINE>6</LINE>
+      <COLUMN>8</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'TextDX::graphics' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>TextDX::{ctor}</FUNCTION>
+    <DECORATED>??0TextDX@@QAE@XZ</DECORATED>
+    <FUNCLINE>6</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>TextDX::graphics</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\</FILEPATH>
+      <FILENAME>texturemanager.cpp</FILENAME>
+      <LINE>3</LINE>
+      <COLUMN>16</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'TextureManager::hr' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>TextureManager::{ctor}</FUNCTION>
+    <DECORATED>??0TextureManager@@QAE@XZ</DECORATED>
+    <FUNCLINE>3</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>TextureManager::hr</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\</FILEPATH>
+      <FILENAME>userinterface.cpp</FILENAME>
+      <LINE>3</LINE>
+      <COLUMN>15</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>Variable 'UserInterface::numofChara' is uninitialized. Always initialize a member variable (type.6).</DESCRIPTION>
+    <FUNCTION>UserInterface::{ctor}</FUNCTION>
+    <DECORATED>??0UserInterface@@QAE@XZ</DECORATED>
+    <FUNCLINE>3</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>UserInterface::numofChara</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\</FILEPATH>
+      <FILENAME>winmain.cpp</FILENAME>
+      <LINE>12</LINE>
+      <COLUMN>11</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'WinMain': this instance has no annotations. See c:\program files (x86)\windows kits\10\include\10.0.19041.0\um\winbase.h(1006). </DESCRIPTION>
+    <FUNCTION>WinMain</FUNCTION>
+    <DECORATED>WinMain@16</DECORATED>
+    <FUNCLINE>12</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT><DEFECT>
+    <SFA>
+      <FILEPATH>C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\</FILEPATH>
+      <FILENAME>winmain.cpp</FILENAME>
+      <LINE>29</LINE>
+      <COLUMN>11</COLUMN>
+    </SFA>
+    <DEFECTCODE>28251</DEFECTCODE>
+    <DESCRIPTION>Inconsistent annotation for 'WinMain': this instance has no annotations. See c:\program files (x86)\windows kits\10\include\10.0.19041.0\um\winbase.h(1006). Note: There are several prototypes for this function. This warning compares the first with instance number 3. </DESCRIPTION>
+    <FUNCTION>WinMain</FUNCTION>
+    <DECORATED>WinMain@16</DECORATED>
+    <FUNCLINE>29</FUNCLINE>
+    <PATH></PATH>
+  </DEFECT></DEFECTS>

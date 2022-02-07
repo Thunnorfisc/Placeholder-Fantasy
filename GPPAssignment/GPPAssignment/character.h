@@ -34,5 +34,7 @@ public:
 	virtual bool switchTexture();
 
 	virtual bool collideBox(Entity& ent, VECTOR2& collisionVector);
+	virtual bool collideBox(Entity* ent, VECTOR2& collisionVector);
+
 };
 #endif // !_CHARACTER_H_

@@ -4,8 +4,8 @@ Entity::Entity()
 {
 	collisionType = entityNS::BOX;
 	edge.left = -1;
-	edge.right = -1;
-	edge.top = 1;
+	edge.top = -1;
+	edge.right = 1;
 	edge.bottom = 1;
 	mass = 1.0;
 	velocity.x = 0.0;
@@ -27,6 +27,7 @@ void Entity::activate() { active = true; }
 
 void Entity::update(float frameTime) 
 {
+
 	Image::update(frameTime);
 }
 

@@ -16,6 +16,7 @@
 
 #include "sceneManager.h"
 #include "EntityManager.h"
+#include "EntityManagerV2.h"
 #include "Player.h"
 #include "World.h"
 #include "NPC.h"
@@ -28,6 +29,7 @@ class Overworld : public Scene
 protected:
     SceneManager* dxManager;
 
+    EntityManagerV2 entManagerV2;
     EntityManager entManager;
 
     Player player;

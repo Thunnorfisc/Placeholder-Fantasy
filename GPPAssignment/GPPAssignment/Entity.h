@@ -37,11 +37,13 @@ protected:
     bool    active;         // only active entities may collide
     std::string tag;
     int layer;
+    VECTOR2 collisionVector;
 
     // Axis aligned box collision detection
     // Pre: &ent = Other entity
     // Post: &collisionVector contains collision vector
     virtual bool collideBox(Entity& ent, VECTOR2& collisionVector) = NULL;
+    virtual bool collideBox(Entity* ent, VECTOR2& collisionVector) = NULL;
 
 
 public:
@@ -60,6 +62,10 @@ public:
         center = VECTOR2(getCenterX(), getCenterY());
         return &center;
     }
+
+    //set collisionVector
+    virtual void setCollisionVector(VECTOR2 collisionV) { collisionVector = collisionV; }
+    
     //Set Layer
     virtual void setLayer(int l) { layer = l; }
 
@@ -91,6 +97,9 @@ public:
 
     // Set velocity.
     virtual void  setVelocity(VECTOR2 v) { velocity = v; }
+
+    virtual void  setVelocityX(float v) { velocity.x = v; }
+    virtual void  setVelocityY(float v) { velocity.y = v; }
 
     // Set delta velocity. Added to velocity in update().
     virtual void  setDeltaV(VECTOR2 dv) { deltaV = dv; }
@@ -129,6 +138,7 @@ public:
 
     // Does this entity collide with ent?
     virtual bool collidesWith(Entity& ent, VECTOR2& collisionVector);
+
 
     // Damage this Entity with weapon.
     //virtual void damage(int weapon);
