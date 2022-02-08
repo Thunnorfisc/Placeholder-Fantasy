@@ -38,6 +38,7 @@ protected:
     SceneManager* dxManager;          // Call to the SceneManager
     TextDX  dxError;                  // Error Text
     TextDX* dxMenuText;               // Menu Text
+    Sound* dxOptionChange;            // Change Options Sound Effect
     TextureManager cursorTexture;     // Cursor Texture
 
     int menuIndex = 0;                // Indexing for menu

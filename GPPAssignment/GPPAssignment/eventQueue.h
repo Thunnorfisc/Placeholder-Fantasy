@@ -10,8 +10,8 @@ class EventQueue
 {
 private:
 	std::queue<Mail> queue;              // The queue itself
-	mutable std::mutex mutex;         // Mutex: For allowing threads to access queue
-	std::condition_variable condition;// Block calling thread until notified
+	mutable std::mutex mutex;            // Mutex: For allowing threads to access queue
+	std::condition_variable condition;   // Block calling thread until notified
 public:
 	EventQueue() : queue(), mutex(), condition() {};
 	~EventQueue() {};

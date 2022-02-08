@@ -15,8 +15,10 @@ PauseMenu::PauseMenu(SceneManager* manager)
 
 PauseMenu::~PauseMenu()
 {
+    dxManager->getAudio().stopSound(*dxOptionChange);
     releaseAll();
     SAFE_DELETE(dxMenuText);
+    SAFE_DELETE(dxOptionChange);
 }
 
 //=============================================================================
@@ -66,6 +68,8 @@ void PauseMenu::initialize()
     cursor.setY(menuList.front().y);
     cursor.setScale(scaledCursorHeight, scaledCursorWidth);
 
+    dxOptionChange = new Sound(OPTIONCHANGESFX, audioTypes::Sfx);
+    dxManager->getAudio().loadFile(*dxOptionChange);
 
     reset();            // reset all game variables
     return;
@@ -92,12 +96,14 @@ void PauseMenu::update(float frameTime)
     }
     if (dxManager->getInput()->wasKeyPressed(CURSOR_DOWN_KEY) && menuIndex != (menuList.size() - 1))               // if move down
     {
+        dxManager->getAudio().playSound(*dxOptionChange);
         menuIndex++;
         // cursor.setX(menuList.at(menuIndex).x - 20);
         cursor.setY(menuList.at(menuIndex).y);
     }
     if (dxManager->getInput()->wasKeyPressed(CURSOR_UP_KEY) && menuIndex != 0)               // if move up
     {
+        dxManager->getAudio().playSound(*dxOptionChange);
         menuIndex--;
         // cursor.setX(menuList.at(menuIndex).x - 20);
         cursor.setY(menuList.at(menuIndex).y);
@@ -113,6 +119,7 @@ void PauseMenu::update(float frameTime)
 void PauseMenu::optionSelected(std::string option) {
     if (option == "Back")
     {
+        dxManager->getAudio().stopSound(*dxOptionChange);
         dxManager->unlayerScene();
     }
     else if (option == "Stats")
@@ -154,6 +161,7 @@ void PauseMenu::optionSelected(std::string option) {
     }
     else if (option == "Return to Title")
     {
+        dxManager->getAudio().stopSound(*dxOptionChange);
         dxManager->getState()->resetState();
         dxManager->switchScene("Title");
     }

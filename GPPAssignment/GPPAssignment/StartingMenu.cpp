@@ -19,8 +19,7 @@ StartingMenu::~StartingMenu()
 {
     Mail mail(*this, dxManager->getAudio(), mailTypes::EndStream, dxMenuMusic);
     dxManager->getPostOffice()->addMessages(mail);
-    Mail mail2(*this, dxManager->getAudio(), mailTypes::StopSoundEvent, dxOptionChange);
-    dxManager->getPostOffice()->addMessages(mail2);
+    dxManager->getAudio().stopSound(*dxOptionChange);
     //Mail mail2(*this, dxManager->getAudio(), mailTypes::StopSoundEvent, dxOptionChange);
     //dxManager->getPostOffice()->addMessages(mail2);
     releaseAll();
@@ -125,7 +124,7 @@ void StartingMenu::update(float frameTime)
     // Move down
     if (dxManager->getInput()->wasKeyPressed(CURSOR_DOWN_KEY) && menuIndex != (menuList.size() - 1))
     {
-        //dxManager->getAudio().playSound(*dxOptionChange);
+        dxManager->getAudio().playSound(*dxOptionChange);
         menuIndex++; // Increases menu index to tell where the location of the cursor is
         // cursor.setX(menuList.at(menuIndex).x - 20);
         cursor.setY(menuList.at(menuIndex).y);
@@ -133,16 +132,17 @@ void StartingMenu::update(float frameTime)
     // Move up
     if (dxManager->getInput()->wasKeyPressed(CURSOR_UP_KEY) && menuIndex != 0)
     {
+        dxManager->getAudio().playSound(*dxOptionChange);
         menuIndex--; // Decreases menu index to tell where the location of the cursor is
         // cursor.setX(menuList.at(menuIndex).x - 20);
         cursor.setY(menuList.at(menuIndex).y);
     }
-    // TESTING PURPOSES, REMOVE LATER
+    // TESTING PURPOSES, REMOVE LATER...NOT
     if (dxManager->getInput()->isKeyDown(CURSOR_LEFT_KEY))
     {
         dxManager->getAudio().setVolume(audioTypes::Music, dxManager->getAudio().getVolume(audioTypes::Music) - 0.01f);
     }
-    // TESTING PURPOSES, REMOVE LATER
+    // TESTING PURPOSES, REMOVE LATER...NOT
     if (dxManager->getInput()->isKeyDown(CURSOR_RIGHT_KEY))
     {
         dxManager->getAudio().setVolume(audioTypes::Music, dxManager->getAudio().getVolume(audioTypes::Music) + 0.01f);
@@ -162,6 +162,7 @@ void StartingMenu::optionSelected(std::string option) {
     {
         Mail streamMail(*this, dxManager->getAudio(), mailTypes::EndStream, dxMenuMusic);
         dxManager->getPostOffice()->addMessages(streamMail);
+        dxManager->getAudio().stopSound(*dxOptionChange);
         dxManager->getState()->resetState();
         dxManager->switchScene("StartingWorld");
     }
@@ -170,6 +171,7 @@ void StartingMenu::optionSelected(std::string option) {
     {
         Mail mail(*this, dxManager->getAudio(), mailTypes::EndStream, dxMenuMusic);
         dxManager->getPostOffice()->addMessages(mail);
+        dxManager->getAudio().stopSound(*dxOptionChange);
         // Read file placeholder_save.txt
         std::ifstream file("placeholder_save.txt");
         if (file.is_open())
@@ -199,6 +201,7 @@ void StartingMenu::optionSelected(std::string option) {
     {
         Mail mail(*this, dxManager->getAudio(), mailTypes::EndStream, dxMenuMusic);
         dxManager->getPostOffice()->addMessages(mail);
+        dxManager->getAudio().stopSound(*dxOptionChange);
         PostQuitMessage(0);
     }
 }
