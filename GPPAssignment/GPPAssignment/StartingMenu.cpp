@@ -163,7 +163,7 @@ void StartingMenu::optionSelected(std::string option) {
         Mail streamMail(*this, dxManager->getAudio(), mailTypes::EndStream, dxMenuMusic);
         dxManager->getPostOffice()->addMessages(streamMail);
         dxManager->getState()->resetState();
-        dxManager->switchScene("StartingRoom");
+        dxManager->switchScene("StartingWorld");
     }
     // Continue -> Overworld at saved position
     else if (option == "Continue")
