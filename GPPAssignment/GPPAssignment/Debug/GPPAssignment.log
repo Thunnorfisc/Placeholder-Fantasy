@@ -1,7 +1,0 @@
-﻿  sceneManager.cpp
-C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\constants.h(131,38): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\constants.h(136,40): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\Interactable.h(38,54): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\Interactable.h(38,77): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
-C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\stack.hpp(102): warning C4715: 'Stack<Scene *>::getTop': not all control paths return a value
-  GPPAssignment.vcxproj -> C:\Users\jason\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\Debug\GPPAssignment.exe

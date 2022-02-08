@@ -116,6 +116,12 @@ void AudioEngine::loadAudio(const char* filename, std::vector<BYTE>& audioData, 
 
 	// Create the source reader
 	Microsoft::WRL::ComPtr<IMFSourceReader> sourceReader;
+
+	// Set the source reader to synchronous mode
+	hr = sourceReaderConfig->SetUnknown(MF_SOURCE_READER_ASYNC_CALLBACK, nullptr);
+	if (FAILED(hr))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error: Unable to set the source reader to synchronous mode!"));
+
 	hr = MFCreateSourceReaderFromURL(wsFilename.c_str(), sourceReaderConfig.Get(), sourceReader.GetAddressOf());
 	if (FAILED(hr))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error: Unable to create source reader from URL!"));
@@ -188,8 +194,8 @@ void AudioEngine::loadAudio(const char* filename, std::vector<BYTE>& audioData, 
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error: Unable to select audio stream!"));
 
 	// Copy data into byte vector
-	Microsoft::WRL::ComPtr<IMFSample> sample = nullptr;
-	Microsoft::WRL::ComPtr<IMFMediaBuffer> buffer = nullptr;
+	Microsoft::WRL::ComPtr <IMFSample> sample = nullptr;
+	Microsoft::WRL::ComPtr <IMFMediaBuffer> buffer = nullptr;
 	BYTE* localAudioData = NULL;
 	DWORD localAudioDataLength = 0;
 
@@ -207,7 +213,7 @@ void AudioEngine::loadAudio(const char* filename, std::vector<BYTE>& audioData, 
 		// Check for end of stream
 		if (flags & MF_SOURCE_READERF_ENDOFSTREAM)
 			break;
-		
+	
 		if (sample == nullptr)
 			continue;
 

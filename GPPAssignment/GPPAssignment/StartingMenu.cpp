@@ -19,6 +19,10 @@ StartingMenu::~StartingMenu()
 {
     Mail mail(*this, dxManager->getAudio(), mailTypes::EndStream, dxMenuMusic);
     dxManager->getPostOffice()->addMessages(mail);
+    Mail mail2(*this, dxManager->getAudio(), mailTypes::StopSoundEvent, dxOptionChange);
+    dxManager->getPostOffice()->addMessages(mail2);
+    //Mail mail2(*this, dxManager->getAudio(), mailTypes::StopSoundEvent, dxOptionChange);
+    //dxManager->getPostOffice()->addMessages(mail2);
     releaseAll();
     SAFE_DELETE(dxMenuText);
     SAFE_DELETE(dxTitle);
@@ -87,14 +91,11 @@ void StartingMenu::initialize()
     // Sound/Music Initialize
     // Menu Music
     dxMenuMusic = new Stream(MENUMUSIC, true, audioTypes::Music);
-    dxOptionChange = new Stream(OPTIONCHANGESFX, true, audioTypes::Sfx);
-
-
+    dxOptionChange = new Sound(OPTIONCHANGESFX, audioTypes::Sfx);
+    dxManager->getAudio().loadFile(*dxOptionChange);
     // Start Menu Music
-    Mail ma(*this, dxManager->getAudio(), mailTypes::BeginStream, dxMenuMusic);
-    dxManager->getPostOffice()->addMessages(ma);
-    //Mail mail(*this, dxManager->getAudio(), mailTypes::BeginStream, dxOptionChange);
-    //dxManager->getPostOffice()->addMessages(mail);
+    Mail mail(*this, dxManager->getAudio(), mailTypes::BeginStream, dxMenuMusic);
+    dxManager->getPostOffice()->addMessages(mail);
     musicIsPlaying = false;
 
     reset();            // reset all game variables
@@ -159,10 +160,8 @@ void StartingMenu::optionSelected(std::string option) {
     // Start New Adventure -> Overworld at default position
     if (option == "Start New Adventure")
     {
-        Mail ma(*this, dxManager->getAudio(), mailTypes::EndStream, dxMenuMusic);
-        dxManager->getPostOffice()->addMessages(ma);
-        Mail mail(*this, dxManager->getAudio(), mailTypes::EndStream, dxOptionChange);
-        dxManager->getPostOffice()->addMessages(mail);
+        Mail streamMail(*this, dxManager->getAudio(), mailTypes::EndStream, dxMenuMusic);
+        dxManager->getPostOffice()->addMessages(streamMail);
         dxManager->getState()->resetState();
         dxManager->switchScene("StartingRoom");
     }
