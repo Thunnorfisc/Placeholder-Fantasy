@@ -85,4 +85,8 @@ const float TEAMSECTION = GAME_WIDTH * 0.75;
 const float OFFSET = 10;
 const float TRIGGEROFFSET = 20;
 const int MAXLAYERS = 30;
+
+//Size Values for Teleports
+const int BEDROOM_TP_WIDTH	= 192;
+const int BEDROOM_TP_HEIGHT = 54;
 #endif // !_CONSTANTS_H_

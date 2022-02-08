@@ -4,6 +4,7 @@
 
 #include "image.h"
 #include "game.h"
+#include "Player.h"
 
 struct Boundary
 {
@@ -13,17 +14,22 @@ struct Boundary
 	float maxY;
 };
 
+//Reminder to multiply bounds by scale
 class World : public Image
 {
 private:
-	Boundary bounds;
+	Boundary worldBounds;
 	TextureManager backgroundImage;
 public:
 
 	World();
 
-	bool initialize(Game* gameptr, const char* backgroundTexture, Boundary bounds);
+	void BoundsSetup(float minX, float minY, float maxX, float maxY);
 
-	Boundary retrieveBound() { return bounds; }
+	bool initialize(Game* gameptr, const char* backgroundTexture);
+
+	void CheckBoundsCollision(Player* player);
+
+	Boundary* retrieveBound() { return &worldBounds; }
 };
 #endif // !_WORLD_H_

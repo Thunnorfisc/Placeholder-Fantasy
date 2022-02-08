@@ -14,7 +14,13 @@ Entity::Entity()
 	deltaV.x = 0.0;
 	deltaV.y = 0.0;
 	active = true;
+	classTag = "";
 	tag = "";
+
+	collisionVector.x = 0;
+	collisionVector.y = 0;
+	worldCollisionVector.x = 0;
+	worldCollisionVector.y = 0;
 }
 
 bool Entity::initialize(Game* gameptr, int width, int height, int ncols, TextureManager* textureM)

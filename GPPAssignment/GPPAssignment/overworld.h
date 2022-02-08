@@ -33,7 +33,9 @@ protected:
     EntityManager entManager;
 
     Player player;
+
     Interactable bed;
+    Interactable tpObject;
 
     World world;
 

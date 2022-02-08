@@ -38,17 +38,23 @@ void Overworld::initialize()
     entManagerV2.Initialize(6);
 
     //Initializing starting world
-    Boundary newBounds;
-    newBounds.maxX = GAME_WIDTH;
-    newBounds.minX = 0;
-    newBounds.maxY = 0;
-    newBounds.minY = GAME_HEIGHT;
-    world.initialize(dxManager, BEDROOM_IMAGE, newBounds);
+    world.initialize(dxManager, BEDROOM_IMAGE);
+    world.BoundsSetup(world.getWidth() * 0.75, world.getWidth() * 0.25, world.getHeight() * 0.9, world.getHeight() * 0.1);
+
     float test = world.getWidth();
     float test1 = world.getX();
     world.setX(screenWidth / 2 - world.getWidth() / 2.0);
     float test2 = world.getX();
     world.setY(screenHeight / 2 - world.getHeight() / 2.0);
+
+    //initialize tp
+    tpObject.initialize(dxManager,NULL);
+    tpObject.setSceneManager(dxManager);
+    tpObject.setSize(BEDROOM_TP_WIDTH,BEDROOM_TP_HEIGHT);
+    tpObject.setX(((world.retrieveBound()->maxX + world.retrieveBound()->minX) * 0.5) - tpObject.getWidth() / 2);
+    tpObject.setY(world.retrieveBound()->maxY - tpObject.getHeight()/2);
+    tpObject.setTag("tpObj");
+    entManagerV2.AddToLayer(&tpObject, 0);
 
     //initialize bed
     bed.initialize(dxManager, BED_IMAGE);
@@ -66,7 +72,7 @@ void Overworld::initialize()
     
     player.setY(screenHeight/2 - player.getHeight()/2.0);
 
-    player.setTag("Player");
+    player.setClass("Player");
 
     //Add the entities to the lists
     entManagerV2.AddToLayer(&player, entManagerV2.Size() - 3);
@@ -137,16 +143,19 @@ void Overworld::collisions()
 {
     VECTOR2 collisionVector;
 
+    world.CheckBoundsCollision(&player);
+
     //V2 TriggerLayers
     for (std::vector<Entity*>* layer : entManagerV2.GetLayers())
     {
         for (int i = 0; i < layer->size(); i++)
         {
-            if (layer->at(i)->getTag() == "Interactable")
+            if (layer->at(i)->getClass() == "Interactable")
             {
                 Interactable* interactable = dynamic_cast<Interactable*> (layer->at(i));
                 interactable->triggerLayerV2(&player, &entManagerV2);
                 interactable->collideBox(&player, collisionVector);
+                interactable->triggerBox(&player, collisionVector);
             }
         }
     }

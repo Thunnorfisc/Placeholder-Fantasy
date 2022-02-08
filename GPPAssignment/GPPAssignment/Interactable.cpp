@@ -3,16 +3,18 @@
 Interactable::Interactable()
 {
     intTexture = TextureManager();
+    dxManager = NULL;
+    colliding = false;
 }
 
-bool Interactable::initialize(Game* gameptr, const char* texture)
+bool Interactable::initialize(Game* gameptr, const char* texture = NULL)
 {
     if (texture != NULL)
         intTexture.initialize(gameptr->getGraphics(), texture);
 
     Entity::initialize(gameptr, 0, 0, 0, &intTexture);
 
-    setTag("Interactable");
+    setClass("Interactable");
 
     return true;
 }
@@ -25,10 +27,12 @@ bool Interactable::initialize(Game* gameptr, const char* texture)
 /// <returns></returns>
 bool Interactable::collideBox(Entity* ent, VECTOR2& collisionVector)
 {
+    
     //if either entity is not active return false
     if (!ent->getActive() || !getActive())
     {
         ent->setCollisionVector(VECTOR2(0, 0));
+        colliding = false;
         return false;
     }
 
@@ -39,24 +43,26 @@ bool Interactable::collideBox(Entity* ent, VECTOR2& collisionVector)
         (getCenterY() + getEdge().top * getHeight() / 2 + TRIGGEROFFSET >= ent->getCenterY() + ent->getEdge().bottom * ent->getHeight() / 2))
     {
         ent->setCollisionVector(VECTOR2(0, 0));
+        colliding = false;
         return false;
     }
 
     //Test Statements
-    float test5 = ent->getCenterX() + ent->getEdge().right * ent->getWidth() / 2;
-    float test6 = getCenterX() + getEdge().left * getWidth() / 2;
-    float test11 = ent->getCenterY() + ent->getEdge().bottom * ent->getHeight() / 2;
-    float test12 = ent->getCenterY() + ent->getEdge().bottom * ent->getHeight() / 2;
-    bool test1= (getCenterX() + getEdge().right * getWidth() / 2 - 1  > ent->getCenterX() + ent->getEdge().left * ent->getWidth() / 2);
-    bool test2= (getCenterX() + getEdge().left * getWidth() / 2  < ent->getCenterX() + ent->getEdge().left * ent->getWidth() / 2);
-    bool test3= (getCenterX() + getEdge().right * getWidth() / 2 > ent->getCenterX() + ent->getEdge().right * ent->getWidth() / 2);
-    bool test4= (getCenterX() + getEdge().left * getWidth() / 2 + 1< ent->getCenterX() + ent->getEdge().right * ent->getWidth() / 2);
+    //float test5 = ent->getCenterX() + ent->getEdge().right * ent->getWidth() / 2;
+    //float test6 = getCenterX() + getEdge().left * getWidth() / 2;
+    //float test11 = ent->getCenterY() + ent->getEdge().bottom * ent->getHeight() / 2;
+    //float test12 = ent->getCenterY() + ent->getEdge().bottom * ent->getHeight() / 2;
+    //bool test1= (getCenterX() + getEdge().right * getWidth() / 2 - 1  > ent->getCenterX() + ent->getEdge().left * ent->getWidth() / 2);
+    //bool test2= (getCenterX() + getEdge().left * getWidth() / 2  < ent->getCenterX() + ent->getEdge().left * ent->getWidth() / 2);
+    //bool test3= (getCenterX() + getEdge().right * getWidth() / 2 > ent->getCenterX() + ent->getEdge().right * ent->getWidth() / 2);
+    //bool test4= (getCenterX() + getEdge().left * getWidth() / 2 + 1< ent->getCenterX() + ent->getEdge().right * ent->getWidth() / 2);
 
-    bool test7= (getCenterY() + getEdge().bottom * getHeight() / 2 > ent->getCenterY() + ent->getEdge().top * ent->getHeight() / 2);
-    bool test8= (getCenterY() + getEdge().top * getHeight() / 2 < ent->getCenterY() + ent->getEdge().top * ent->getHeight() / 2);
-    bool test9= (getCenterY() + getEdge().bottom * getHeight() / 2 > ent->getCenterY() + ent->getEdge().bottom * ent->getHeight() / 2);
-    bool test10= (getCenterY() + getEdge().top * getHeight() / 2 + 1 < ent->getCenterY() + ent->getEdge().bottom * ent->getHeight() / 2);
+    //bool test7= (getCenterY() + getEdge().bottom * getHeight() / 2 > ent->getCenterY() + ent->getEdge().top * ent->getHeight() / 2);
+    //bool test8= (getCenterY() + getEdge().top * getHeight() / 2 < ent->getCenterY() + ent->getEdge().top * ent->getHeight() / 2);
+    //bool test9= (getCenterY() + getEdge().bottom * getHeight() / 2 > ent->getCenterY() + ent->getEdge().bottom * ent->getHeight() / 2);
+    //bool test10= (getCenterY() + getEdge().top * getHeight() / 2 + 1 < ent->getCenterY() + ent->getEdge().bottom * ent->getHeight() / 2);
 
+    colliding = true;
 
     //V2
     //Check for collision for Horizontal with Vertical range
@@ -86,9 +92,26 @@ bool Interactable::collideBox(Entity* ent, VECTOR2& collisionVector)
 
     return true;
 }
-bool Interactable::collideBox(Entity& ent, VECTOR2& collisionVector)
+
+/// <summary>
+/// This is to check if the entity is in trigger range with the current game object. Use either this or collideBox
+/// </summary>
+/// <param name="ent"></param>
+/// <param name="collisionVector"></param>
+/// <returns></returns>
+void Interactable::triggerBox(Entity* ent, VECTOR2& collisionVector)
 {
-    return false;
+    //Check for collision using the Axis Aligned Bounding Box
+    if ((getCenterX() + getEdge().right * getWidth() / 2 <= ent->getCenterX() + ent->getEdge().left * ent->getWidth() / 2) ||
+        (getCenterX() + getEdge().left * getWidth() / 2 >= ent->getCenterX() + ent->getEdge().right * ent->getWidth() / 2) ||
+        (getCenterY() + getEdge().bottom * getHeight() / 2 - TRIGGEROFFSET <= ent->getCenterY() + ent->getEdge().top * ent->getHeight() / 2) ||
+        (getCenterY() + getEdge().top * getHeight() / 2 + TRIGGEROFFSET >= ent->getCenterY() + ent->getEdge().bottom * ent->getHeight() / 2))
+    {
+        colliding = false;
+        return;
+    }
+
+     colliding = true;
 }
 
 /// <summary>
@@ -191,6 +214,13 @@ void Interactable::triggerLayerV2(Entity* ent, EntityManagerV2* entManagerV2)
 
 void Interactable::update(float frameTime)
 {
+    if (colliding && input->isKeyDown(VK_SPACE))
+    {
+        if (tag == "tpObj" && dxManager != NULL)
+        {
+            dxManager->switchScene("Title");
+        }
 
+    }
 	Entity::update(frameTime);
 }

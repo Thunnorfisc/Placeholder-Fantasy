@@ -21,7 +21,7 @@ bool Character::initialize(Game *gameptr,const char *OverworldTexture = NULL, co
 
 	currentTexture = &overworldTexture;
 
-	setTag("Character");
+	setClass("Character");
 
 	Entity::initialize(gameptr, 34, 34, 0, currentTexture);
 
