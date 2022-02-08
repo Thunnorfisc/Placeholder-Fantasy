@@ -1,2 +1,27 @@
-﻿  audioEngine.cpp
+﻿  overworld.cpp
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\overworld.cpp(49,32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\overworld.cpp(51,33): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\overworld.cpp(55,25): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\overworld.cpp(56,27): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\overworld.cpp(65,31): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\overworld.cpp(67,32): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\overworld.cpp(127,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\overworld.cpp(149,27): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\overworld.cpp(183,27): warning C4018: '<': signed/unsigned mismatch
+  sceneManager.cpp
+  startingMenu.cpp
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(51,63): warning C4244: 'initializing': conversion from 'UINT' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(51,38): warning C4244: 'initializing': conversion from 'UINT' to 'const float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(52,61): warning C4244: 'initializing': conversion from 'UINT' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(52,37): warning C4244: 'initializing': conversion from 'UINT' to 'const float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(59,58): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(64,55): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(69,54): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(77,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(87,36): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(88,33): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(131,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\startingMenu.cpp(138,43): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\GPPAssignment\stack.hpp(102): warning C4715: 'Stack<Scene *>::getTop': not all control paths return a value
   GPPAssignment.vcxproj -> C:\Users\Willthunder\Documents\GitHub\Placeholder-Fantasy\GPPAssignment\Debug\GPPAssignment.exe

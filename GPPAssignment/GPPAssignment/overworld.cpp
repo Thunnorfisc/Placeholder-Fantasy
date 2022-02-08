@@ -73,8 +73,6 @@ void Overworld::initialize()
 
     //entManager.push(&player);
     dxMenuMusic = new Stream(MENUMUSIC, true, audioTypes::Music);
-    dxOptionChange = new Sound(OPTIONCHANGESFX, audioTypes::Sfx);
-    dxManager->getAudio().loadFile(*dxOptionChange);
     Mail mail(*this, dxManager->getAudio(), mailTypes::BeginStream, dxMenuMusic);
     dxManager->getPostOffice()->addMessages(mail);
     return;
