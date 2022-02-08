@@ -41,7 +41,7 @@ protected:
     TextDX* dxTitle;                  // Title Text
     TextDX* dxMenuText;               // Menu Text
     Stream* dxMenuMusic;               // Menu Music
-    Stream* dxOptionChange;            // Change Options Sound Effect
+    Sound* dxOptionChange;            // Change Options Sound Effect
     TextureManager cursorTexture;     // Cursor Texture
 
     std::string errorMsg;             // Error Message

@@ -21,6 +21,7 @@
 #include "World.h"
 #include "NPC.h"
 #include "Interactable.h"
+#include "audio.h"
 
 using namespace std;
 
@@ -31,6 +32,9 @@ protected:
 
     EntityManagerV2 entManagerV2;
     EntityManager entManager;
+    
+    Stream* dxMenuMusic;
+    Sound* dxOptionChange;
 
     Player player;
 

@@ -26,10 +26,14 @@
 
 enum audioTypes { Music, Sfx };
 class AudioEngine;
+class Audio;
 
 class Sound
 {
 private:
+	const char* filename;               // Filename
+	audioTypes type;                    // Type of audio. Defaults to music.
+
 	IXAudio2SourceVoice* sourceVoice;	// the XAudio2 source voice
 	WAVEFORMATEX* waveFormat;			// the format of the audio file
 	unsigned int waveLength;			// the length of the wave
@@ -42,7 +46,7 @@ private:
 	unsigned int index;					// the index of the actual sound to play
 
 public:
-	Sound();
+	Sound(const char* filename, audioTypes type);
 	~Sound();
 
 	friend class Audio;
@@ -51,7 +55,7 @@ public:
 class Stream
 {
 private:
-	const char* filename;                        // Filename
+	const char* filename;                  // Filename
 	bool loop = false;                     // Loop the stream? Defaults to false
 	audioTypes type = audioTypes::Music;   // Type of audio. Defaults to music.
 	
@@ -91,7 +95,7 @@ public:
 	Audio();
 	~Audio();
 
-	void loadFile(const char* filename, Sound& sound, const audioTypes& audioType);
+	void loadFile(Sound& sound);
 
 	void playSound(const Sound& sound);
 	void stopSound(const Sound& sound);
