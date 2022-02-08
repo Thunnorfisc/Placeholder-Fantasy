@@ -41,10 +41,11 @@ protected:
     TextDX* dxTitle;                  // Title Text
     TextDX* dxMenuText;               // Menu Text
     Stream* dxMenuMusic;               // Menu Music
-    Sound* dxOptionChange;            // Change Options Sound Effect
+    Stream* dxOptionChange;            // Change Options Sound Effect
     TextureManager cursorTexture;     // Cursor Texture
 
     std::string errorMsg;             // Error Message
+    bool musicIsPlaying;              // Check if music is playing
 
     int menuIndex = 0;                // Indexing for menu
     std::vector<MenuOption> menuList; // The list of menuOptions to allow menu creation

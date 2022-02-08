@@ -12,7 +12,6 @@ StartingMenu::StartingMenu(SceneManager* manager)
     dxManager = manager;
     dxMenuText = new TextDX();
     dxTitle = new TextDX();
-    dxOptionChange = new Sound();
     errorMsg = "";
 }
 
@@ -88,12 +87,15 @@ void StartingMenu::initialize()
     // Sound/Music Initialize
     // Menu Music
     dxMenuMusic = new Stream(MENUMUSIC, true, audioTypes::Music);
-    //dxManager->getAudio().loadFile(OPTIONCHANGESFX, *dxOptionChange, audioTypes::Sfx);
+    dxOptionChange = new Stream(OPTIONCHANGESFX, true, audioTypes::Sfx);
 
 
     // Start Menu Music
-    Mail mail(*this, dxManager->getAudio(), mailTypes::BeginStream, dxMenuMusic);
-    dxManager->getPostOffice()->addMessages(mail);
+    Mail ma(*this, dxManager->getAudio(), mailTypes::BeginStream, dxMenuMusic);
+    dxManager->getPostOffice()->addMessages(ma);
+    //Mail mail(*this, dxManager->getAudio(), mailTypes::BeginStream, dxOptionChange);
+    //dxManager->getPostOffice()->addMessages(mail);
+    musicIsPlaying = false;
 
     reset();            // reset all game variables
     return;
@@ -114,10 +116,6 @@ void StartingMenu::reset()
 //=============================================================================
 void StartingMenu::update(float frameTime)
 {
-    if (dxOptionChange)
-    {
-        //dxManager->getAudio().stopSound(*dxOptionChange);
-    }
     // When enter is pressed, check for which string it's currently at
     if (dxManager->getInput()->wasKeyPressed(VK_RETURN)) 
     {
@@ -141,12 +139,12 @@ void StartingMenu::update(float frameTime)
     // TESTING PURPOSES, REMOVE LATER
     if (dxManager->getInput()->isKeyDown(CURSOR_LEFT_KEY))
     {
-        dxManager->getAudio().setVolume(audioTypes::Music, dxManager->getAudio().getVolume(audioTypes::Music) - 0.1f);
+        dxManager->getAudio().setVolume(audioTypes::Music, dxManager->getAudio().getVolume(audioTypes::Music) - 0.01f);
     }
     // TESTING PURPOSES, REMOVE LATER
     if (dxManager->getInput()->isKeyDown(CURSOR_RIGHT_KEY))
     {
-        dxManager->getAudio().setVolume(audioTypes::Music, dxManager->getAudio().getVolume(audioTypes::Music) + 0.1f);
+        dxManager->getAudio().setVolume(audioTypes::Music, dxManager->getAudio().getVolume(audioTypes::Music) + 0.01f);
     }
     cursor.update(frameTime);
 }
@@ -161,7 +159,9 @@ void StartingMenu::optionSelected(std::string option) {
     // Start New Adventure -> Overworld at default position
     if (option == "Start New Adventure")
     {
-        Mail mail(*this, dxManager->getAudio(), mailTypes::EndStream, dxMenuMusic);
+        Mail ma(*this, dxManager->getAudio(), mailTypes::EndStream, dxMenuMusic);
+        dxManager->getPostOffice()->addMessages(ma);
+        Mail mail(*this, dxManager->getAudio(), mailTypes::EndStream, dxOptionChange);
         dxManager->getPostOffice()->addMessages(mail);
         dxManager->getState()->resetState();
         dxManager->switchScene("Overworld");
@@ -190,7 +190,10 @@ void StartingMenu::optionSelected(std::string option) {
     // Option -> Whatever options we have
     else if (option == "Options")
     {
+        // DEBUGGING, PLEASE REMOVE
 
+        Mail mail(*this, dxManager->getAudio(), mailTypes::EndStream, dxMenuMusic);
+        dxManager->getPostOffice()->addMessages(mail);
     }
     // Quit -> Quit the game
     else if (option == "Quit")

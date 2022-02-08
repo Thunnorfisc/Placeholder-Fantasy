@@ -198,7 +198,7 @@ void Audio::onMessage(const Mail& mail)
 	{
 		if (mail.message == nullptr)
 		{
-			throw(GameError(gameErrorNS::FATAL_ERROR, "Error: Mail empty bad!"));
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Error: Mail is empty!"));
 		}
 		streamFile(((Stream*)mail.message)->filename, ((Stream*)mail.message)->loop, ((Stream*)mail.message)->type);
 	}

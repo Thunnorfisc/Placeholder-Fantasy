@@ -24,48 +24,90 @@ SceneManager::SceneManager()
 SceneManager::~SceneManager()
 {
 	SceneManager::releaseAll();
+    sceneStack.~Stack();
+    // Delete all pointers
+    std::map<std::string, Scene*>::iterator i;
+    for (i = sceneMap.begin(); i != sceneMap.end(); i++)
+    {
+        SAFE_DELETE(sceneMap[i->first]);
+    }
 }
 // dxManager->switchScene(the one you want to switch to) to switch scenes
 void SceneManager::switchScene(std::string scene)
 {
-    currentScene = sceneMap[scene];
-    currentScene->initialize();
+    // Clear the stack to prevent double same scene initialized in the stack
+    sceneStack.clearStack();
+    // Push the new scene to the stack
+    sceneStack.push(sceneMap[scene]);
+    // Initialize the scene
+    sceneStack.getTop()->initialize();
 }
 
 void SceneManager::switchScene(std::string scene, std::vector<Character> characterList)
 {
-    currentScene = sceneMap[scene];
-    currentScene->setCharacterList(characterList);
-    currentScene->initialize();
+    // Clear the stack to prevent double same scene initialized in the stack
+    sceneStack.clearStack();
+    // Push the new scene to the stack
+    sceneStack.push(sceneMap[scene]);
+    // Set the character list
+    sceneStack.getTop()->setCharacterList(characterList);
+    // Initialize the scene
+    sceneStack.getTop()->initialize();
+}
+
+// dxManager->layerScene(the one you want to switch to) to layer scenes
+void SceneManager::layerScene(std::string scene)
+{
+    // Push the new scene on top of the stack
+    sceneStack.push(sceneMap[scene]);
+    // Initialize the scene
+    sceneStack.getTop()->initialize();
+}
+
+void SceneManager::layerScene(std::string scene, std::vector<Character> characterList)
+{
+    // Push the new scene on top of the stack
+    sceneStack.push(sceneMap[scene]);
+    // Set the character list
+    sceneStack.getTop()->setCharacterList(characterList);
+    // Initialize the scene
+    sceneStack.getTop()->initialize();
+}
+
+// To go back to the previous scene (AKA the second scene in the stack), call dxManager->unlayerScene()
+void SceneManager::unlayerScene()
+{
+    // Remove the top scene to go back to the previous scene
+    sceneStack.pop();
 }
 
 // Initialize SceneManager with title/main menu
 void SceneManager::initialize(HWND hwnd)
 {
     Game::initialize(hwnd);
-    currentScene = sceneMap["Title"];
-    currentScene->initialize();
+    sceneStack.push(sceneMap["Title"]);
+    sceneStack.getTop()->initialize();
 }
 
 void SceneManager::reset()
 {
-    currentScene->reset();
+    sceneStack.getTop()->reset();
     return;
 }
 
 void SceneManager::update()
 {
-    currentScene->update(frameTime);
+    sceneStack.getTop()->update(frameTime);
 }
 
 void SceneManager::ai()
 {
-    currentScene->ai();
+    sceneStack.getTop()->ai();
 }
 
 void SceneManager::collisions()
 {
-    currentScene->collisions();
+    sceneStack.getTop()->collisions();
 }
 
 //=============================================================================
@@ -73,7 +115,7 @@ void SceneManager::collisions()
 //=============================================================================
 void SceneManager::render()
 {
-    currentScene->render();
+    sceneStack.getTop()->render();
 }
 
 //=============================================================================
@@ -82,7 +124,7 @@ void SceneManager::render()
 //=============================================================================
 void SceneManager::releaseAll()
 {
-    currentScene->releaseAll();
+    sceneStack.getTop()->releaseAll();
     Game::releaseAll();
     return;
 }
@@ -93,7 +135,7 @@ void SceneManager::releaseAll()
 //=============================================================================
 void SceneManager::resetAll()
 {
-    currentScene->resetAll();
+    sceneStack.getTop()->resetAll();
     Game::resetAll();
     return;
 }

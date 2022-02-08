@@ -113,7 +113,7 @@ void PauseMenu::update(float frameTime)
 void PauseMenu::optionSelected(std::string option) {
     if (option == "Back")
     {
-        dxManager->switchScene("Overworld");
+        dxManager->unlayerScene();
     }
     else if (option == "Stats")
     {
