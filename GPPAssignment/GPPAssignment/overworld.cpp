@@ -70,7 +70,13 @@ void Overworld::initialize()
 
     //Add the entities to the lists
     entManagerV2.AddToLayer(&player, entManagerV2.Size() - 3);
+
     //entManager.push(&player);
+    dxMenuMusic = new Stream(MENUMUSIC, true, audioTypes::Music);
+    dxOptionChange = new Sound(OPTIONCHANGESFX, audioTypes::Sfx);
+    dxManager->getAudio().loadFile(*dxOptionChange);
+    Mail mail(*this, dxManager->getAudio(), mailTypes::BeginStream, dxMenuMusic);
+    dxManager->getPostOffice()->addMessages(mail);
     return;
 }
 
@@ -88,6 +94,8 @@ void Overworld::update(float frameTime)
     // Goes to pause menu
     if (dxManager->getInput()->wasKeyPressed(VK_ESCAPE)) 
     {
+        Mail ma(*this, dxManager->getAudio(), mailTypes::EndStream, dxMenuMusic);
+        dxManager->getPostOffice()->addMessages(ma);
         // Store world coordinates into game state
         //dxManager->getState()->setValueToState("WorldX", worldX);
         //dxManager->getState()->setValueToState("WorldY", worldY);

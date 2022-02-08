@@ -1,7 +1,7 @@
 #include "audio.h"
 #include <stdexcept>
 
-Sound::Sound() : sourceVoice(nullptr), waveFormat(nullptr)
+Sound::Sound(const char* filename, audioTypes type) : filename(filename), type(type), sourceVoice(nullptr), waveFormat(nullptr)
 {
 	audioData.clear();
 	// The RtlZeroMemory routine fills a block of memory with zeros.
@@ -84,16 +84,16 @@ Audio::~Audio()
 
 }
 
-void Audio::loadFile(const char* filename, Sound& sound, const audioTypes& audioType)
+void Audio::loadFile(Sound& sound)
 {
 	// Handle errors
 	HRESULT hr = S_OK;
-	audioEngine->loadAudio(filename, sound.audioData, &sound.waveFormat, sound.waveLength);
+	audioEngine->loadAudio(sound.filename, sound.audioData, &sound.waveFormat, sound.waveLength);
 
 	// Create source voice
-	if (audioType == audioTypes::Music)
+	if (sound.type == audioTypes::Music)
 		hr = audioEngine->audioDevice->CreateSourceVoice(&sound.sourceVoice, sound.waveFormat, 0, XAUDIO2_DEFAULT_FREQ_RATIO, nullptr, &musicSendList, NULL);
-	else if (audioType == audioTypes::Sfx)
+	else if (sound.type == audioTypes::Sfx)
 		hr = audioEngine->audioDevice->CreateSourceVoice(&sound.sourceVoice, sound.waveFormat, 0, XAUDIO2_DEFAULT_FREQ_RATIO, nullptr, &sfxSendList, NULL);
 	if (FAILED(hr))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error: Unable to create source voice!"));

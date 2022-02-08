@@ -188,8 +188,8 @@ void AudioEngine::loadAudio(const char* filename, std::vector<BYTE>& audioData, 
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Error: Unable to select audio stream!"));
 
 	// Copy data into byte vector
-	Microsoft::WRL::ComPtr<IMFSample> sample = nullptr;
-	Microsoft::WRL::ComPtr<IMFMediaBuffer> buffer = nullptr;
+	Microsoft::WRL::ComPtr <IMFSample> sample = nullptr;
+	Microsoft::WRL::ComPtr <IMFMediaBuffer> buffer = nullptr;
 	BYTE* localAudioData = NULL;
 	DWORD localAudioDataLength = 0;
 
@@ -207,7 +207,7 @@ void AudioEngine::loadAudio(const char* filename, std::vector<BYTE>& audioData, 
 		// Check for end of stream
 		if (flags & MF_SOURCE_READERF_ENDOFSTREAM)
 			break;
-		
+	
 		if (sample == nullptr)
 			continue;
 
