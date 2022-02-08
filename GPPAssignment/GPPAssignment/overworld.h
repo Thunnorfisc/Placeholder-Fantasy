@@ -19,7 +19,7 @@
 #include "EntityManagerV2.h"
 #include "Player.h"
 #include "World.h"
-#include "NPC.h"
+//#include "NPC.h"
 #include "Interactable.h"
 
 using namespace std;
@@ -30,13 +30,21 @@ protected:
     SceneManager* dxManager;
 
     EntityManagerV2 entManagerV2;
-    EntityManager entManager;
 
+    //Player Objects
     Player player;
 
-    Interactable bed;
-    Interactable tpObject;
+    //NPCs
+    //NPC npc1;
 
+    //Things to collide with
+    //Interactable cliff_1;
+    //Interactable cliff_2;
+    //Interactable cliff_3;
+    //Interactable wagon;
+    //Interactable waterfall;
+
+    //World objects
     World world;
 
     float screenWidth, screenHeight;
@@ -52,7 +60,7 @@ public:
     void initialize();
 
     //Override virtual in from Game
-    void reset();
+    void reset() { return; };
     void update(float frameTime);
     void ai();
     void collisions();
@@ -60,6 +68,6 @@ public:
     void releaseAll();
     void resetAll();
     void onMessage(const Mail& mail);
-    
+
 };
 #endif // !_MAP_H

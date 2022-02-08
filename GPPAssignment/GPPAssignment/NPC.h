@@ -14,6 +14,9 @@ protected:
 	std::vector<string> dialogLines;
 
 public:
+	NPC();
+	~NPC();
 
+	bool initialize();
 };
 #endif // !_NPC_H_

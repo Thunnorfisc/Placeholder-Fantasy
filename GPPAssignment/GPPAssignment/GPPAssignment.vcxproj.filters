@@ -84,7 +84,7 @@
     <ClCompile Include="startingMenu.cpp">
       <Filter>Source Files\MenuSystem</Filter>
     </ClCompile>
-    <ClCompile Include="overworld.cpp">
+    <ClCompile Include="StartingRoom.cpp">
       <Filter>Source Files\OverworldSystem</Filter>
     </ClCompile>
     <ClCompile Include="game.cpp">
@@ -126,9 +126,6 @@
     <ClCompile Include="audioEngine.cpp">
       <Filter>Source Files\AudioSystem</Filter>
     </ClCompile>
-    <ClCompile Include="menuList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="mail.cpp">
       <Filter>Source Files\EventSystem</Filter>
     </ClCompile>
@@ -147,12 +144,18 @@
     <ClCompile Include="EntityManagerV2.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="menuList.cpp">
+      <Filter>Source Files\MenuSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Overworld.cpp">
+      <Filter>Source Files\OverworldSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="battleScene.h">
       <Filter>Header Files\BattleSystem</Filter>
     </ClInclude>
-    <ClInclude Include="overworld.h">
+    <ClInclude Include="StartingRoom.h">
       <Filter>Header Files\OverworldSystem</Filter>
     </ClInclude>
     <ClInclude Include="startingMenu.h">
@@ -247,6 +250,9 @@
     </ClInclude>
     <ClInclude Include="stack.hpp">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Overworld.h">
+      <Filter>Header Files\OverworldSystem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

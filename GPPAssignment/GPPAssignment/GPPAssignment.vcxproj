@@ -163,8 +163,9 @@
     <ClCompile Include="Interactable.cpp" />
     <ClCompile Include="mail.cpp" />
     <ClCompile Include="menuList.cpp" />
-    <ClCompile Include="overworld.cpp" />
+    <ClCompile Include="StartingRoom.cpp" />
     <ClCompile Include="battleScene.cpp" />
+    <ClCompile Include="Overworld.cpp" />
     <ClCompile Include="pauseMenu.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="postOffice.cpp" />
@@ -197,7 +198,8 @@
     <ClInclude Include="mail.h" />
     <ClInclude Include="menuOption.h" />
     <ClInclude Include="NPC.h" />
-    <ClInclude Include="overworld.h" />
+    <ClInclude Include="Overworld.h" />
+    <ClInclude Include="StartingRoom.h" />
     <ClInclude Include="battleScene.h" />
     <ClInclude Include="pauseMenu.h" />
     <ClInclude Include="Player.h" />

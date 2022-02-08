@@ -38,17 +38,6 @@ public:
 	virtual float getX() { return spriteData.x; }
 	virtual float getY() { return spriteData.y; }
 	virtual float getScaleX() { return spriteData.scaleX; }
-	//virtual float getScaleX2DP() {
-
-	//	float value = (int)(spriteData.scaleX * 100);
-	//	return (float)value / 100;
-	//}
-	//virtual int test() {
-	//	float value = (int)(spriteData.scaleX * 100);
-	//	float decimals = spriteData.scaleX * 100 - value;
-	//	int finalValue = spriteData.scaleX * 100 - decimals;
-	//	return finalValue;
-	//}
 	virtual float getScaleY() { return spriteData.scaleY; }
 	virtual float getWidth() { return spriteData.width * spriteData.scaleX; }
 	virtual float getHeight() { return spriteData.height * spriteData.scaleY; }
@@ -80,5 +69,6 @@ public:
 	virtual void setAnimationComplete(bool a) { animComplete = a; }
 	virtual void setColorFilter(COLOR_ARGB color) { colorFilter = color; }
 	virtual void setTextureManager(TextureManager* textureM) { textureManager = textureM; }
+	virtual TextureManager* getTextureManager() { return textureManager; }
 };
 #endif // !_IMAGE_H

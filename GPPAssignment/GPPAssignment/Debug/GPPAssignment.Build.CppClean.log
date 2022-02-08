@@ -20,6 +20,7 @@ c:\users\jason\documents\github\placeholder-fantasy\gppassignment\gppassignment\
 c:\users\jason\documents\github\placeholder-fantasy\gppassignment\gppassignment\debug\battleui.obj
 c:\users\jason\documents\github\placeholder-fantasy\gppassignment\gppassignment\debug\audioengine.obj
 c:\users\jason\documents\github\placeholder-fantasy\gppassignment\gppassignment\debug\audio.obj
+c:\users\jason\documents\github\placeholder-fantasy\gppassignment\gppassignment\debug\world.obj
 c:\users\jason\documents\github\placeholder-fantasy\gppassignment\gppassignment\debug\winmain.obj
 c:\users\jason\documents\github\placeholder-fantasy\gppassignment\gppassignment\debug\userinterface.obj
 c:\users\jason\documents\github\placeholder-fantasy\gppassignment\gppassignment\debug\texturemanager.obj
@@ -27,10 +28,13 @@ c:\users\jason\documents\github\placeholder-fantasy\gppassignment\gppassignment\
 c:\users\jason\documents\github\placeholder-fantasy\gppassignment\gppassignment\debug\startingmenu.obj
 c:\users\jason\documents\github\placeholder-fantasy\gppassignment\gppassignment\debug\scenemanager.obj
 c:\users\jason\documents\github\placeholder-fantasy\gppassignment\gppassignment\debug\postoffice.obj
-c:\users\jason\documents\github\placeholder-fantasy\gppassignment\gppassignment\debug\world.obj
 c:\users\jason\documents\github\placeholder-fantasy\gppassignment\debug\gppassignment.exe
 c:\users\jason\documents\github\placeholder-fantasy\gppassignment\gppassignment\debug\gppassignment.ilk
 c:\users\jason\documents\github\placeholder-fantasy\gppassignment\debug\gppassignment.pdb
+c:\users\jason\documents\github\placeholder-fantasy\gppassignment\gppassignment\debug\interactable.obj.enc
+c:\users\jason\documents\github\placeholder-fantasy\gppassignment\gppassignment\debug\player.obj.enc
+c:\users\jason\documents\github\placeholder-fantasy\gppassignment\gppassignment\debug\startingmenu.obj.enc
+c:\users\jason\documents\github\placeholder-fantasy\gppassignment\gppassignment\debug\world.obj.enc
 c:\users\jason\documents\github\placeholder-fantasy\gppassignment\gppassignment\debug\gppassignment.tlog\cl.command.1.tlog
 c:\users\jason\documents\github\placeholder-fantasy\gppassignment\gppassignment\debug\gppassignment.tlog\cl.read.1.tlog
 c:\users\jason\documents\github\placeholder-fantasy\gppassignment\gppassignment\debug\gppassignment.tlog\cl.write.1.tlog

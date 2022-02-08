@@ -39,5 +39,28 @@ void Player::update(float frameTime)
 	else {
 		setY(getY() + velocity.y * frameTime);
 	}
+
+
+	// Player Movement Inputs
+	if (input->isKeyDown(VK_LEFT))
+	{
+		setVelocityX(-MOVEMENTSPEED);
+	}
+	else if (input->isKeyDown(VK_RIGHT))
+	{
+		setVelocityX(MOVEMENTSPEED);
+	}
+	else { setVelocityX(0); }
+
+	if (input->isKeyDown(VK_UP))
+	{
+		setVelocityY(-MOVEMENTSPEED);
+	}
+	else if (input->isKeyDown(VK_DOWN))
+	{
+		setVelocityY(MOVEMENTSPEED);
+	}
+	else { setVelocityY(0); }
+
 	return Character::update(frameTime);
 }

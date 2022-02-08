@@ -164,7 +164,7 @@ void StartingMenu::optionSelected(std::string option) {
         Mail mail(*this, dxManager->getAudio(), mailTypes::EndStream, dxOptionChange);
         dxManager->getPostOffice()->addMessages(mail);
         dxManager->getState()->resetState();
-        dxManager->switchScene("Overworld");
+        dxManager->switchScene("StartingRoom");
     }
     // Continue -> Overworld at saved position
     else if (option == "Continue")
@@ -180,7 +180,7 @@ void StartingMenu::optionSelected(std::string option) {
             {
                 dxManager->getState()->setValueToState(key, { value, type }); // Put to the globalMap
             }
-            dxManager->switchScene("Overworld");
+            dxManager->switchScene("StartingRoom");
         }
         else
         {
