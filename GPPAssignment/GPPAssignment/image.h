@@ -35,6 +35,8 @@ public:
 	virtual void update(float frameTime);
 	const virtual SpriteData& getSpriteInfo() { return spriteData; }
 	virtual bool getVisible() { return visible; }
+	virtual float getOriX() { return spriteData.oriX; }
+	virtual float getOriY() { return spriteData.oriY; }
 	virtual float getX() { return spriteData.x; }
 	virtual float getY() { return spriteData.y; }
 	virtual float getScaleX() { return spriteData.scaleX; }
@@ -52,8 +54,16 @@ public:
 	virtual RECT getSpriteDataRect() { return spriteData.rect; }
 	virtual bool getAnimationComplete() { return animComplete; }
 	virtual COLOR_ARGB getColorFilter() { return colorFilter; }
+	virtual void setPos(float newX, float newY) 
+	{ 
+		spriteData.x = newX; 
+		spriteData.y = newY; 
+		spriteData.oriX = newX;
+		spriteData.oriY = newY;
+	}
 	virtual void setX(float newX) { spriteData.x = newX; }
 	virtual void setY(float newY) { spriteData.y = newY; }
+	virtual void setScale(float scale) { spriteData.scaleX = scale; spriteData.scaleY = scale; }
 	virtual void setScale(float scaleX, float scaleY) { spriteData.scaleX = scaleX; spriteData.scaleY = scaleY; }
 	virtual void setScaleX(float scaleX) { spriteData.scaleX = scaleX; }
 	virtual void setScaleY(float scaleY) { spriteData.scaleY = scaleY; }

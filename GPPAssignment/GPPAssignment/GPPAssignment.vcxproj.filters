@@ -150,6 +150,9 @@
     <ClCompile Include="Overworld.cpp">
       <Filter>Source Files\OverworldSystem</Filter>
     </ClCompile>
+    <ClCompile Include="NPC.cpp">
+      <Filter>Source Files\Objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="battleScene.h">

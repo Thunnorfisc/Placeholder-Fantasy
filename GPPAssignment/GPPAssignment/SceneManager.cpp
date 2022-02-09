@@ -8,6 +8,7 @@
 #include "StartingMenu.h"
 #include "battleScene.h"
 #include "StartingRoom.h"
+#include "Overworld.h"
 #include "pauseMenu.h"
 
 SceneManager::SceneManager()
@@ -15,8 +16,8 @@ SceneManager::SceneManager()
     // Map of scenes here, use dxManager->switchScene(the one you want to switch to) to switch scenes
     // Format: sceneMap["Key"] = new SceneName(this);
     sceneMap["Title"] = new StartingMenu(this);
-    sceneMap["StartingWorld"] = new StartingRoom(this);
-    //sceneMap["Overworld"] = new StartingRoom(this);
+    sceneMap["StartingRoom"] = new StartingRoom(this);
+    sceneMap["Overworld"] = new Overworld(this);
     //sceneMap["Battle"] = new BattleScene(this);
     sceneMap["PauseMenu"] = new PauseMenu(this);
 }

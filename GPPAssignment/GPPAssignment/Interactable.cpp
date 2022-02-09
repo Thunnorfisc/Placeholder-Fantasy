@@ -5,6 +5,7 @@ Interactable::Interactable()
     intTexture = TextureManager();
     dxManager = NULL;
     colliding = false;
+    destination = "Title";
 }
 
 bool Interactable::initialize(Game* gameptr, const char* texture = NULL)
@@ -218,7 +219,7 @@ void Interactable::update(float frameTime)
     {
         if (tag == "tpObj" && dxManager != NULL)
         {
-            dxManager->switchScene("Title");
+            dxManager->switchScene(destination);
         }
 
     }

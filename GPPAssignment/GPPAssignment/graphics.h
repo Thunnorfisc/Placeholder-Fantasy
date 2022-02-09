@@ -78,6 +78,8 @@ struct SpriteData
     int         height;     // height of sprite in pixels
     float       x;          // screen location (top left corner of sprite)
     float       y;
+    float       oriX;       //Original X and Y
+    float       oriY;
     float       scaleX;      // <1 smaller, >1 bigger
     float       scaleY;      // <1 smaller, >1 bigger
     float       angle;      // rotation angle in radians

@@ -10,8 +10,8 @@
 //                used in the initiating of the BattleScene.
 //===========================================================================================
 
-#ifndef _MAP_H             // prevent multiple definitions if this 
-#define _MAP_H             // ..file is included in more than one place
+#ifndef _OVERWORLD_H_             // prevent multiple definitions if this 
+#define _OVERWORLD_H_             // ..file is included in more than one place
 #define WIN32_LEAN_AND_MEAN
 
 #include "sceneManager.h"
@@ -19,7 +19,7 @@
 #include "EntityManagerV2.h"
 #include "Player.h"
 #include "World.h"
-//#include "NPC.h"
+#include "NPC.h"
 #include "Interactable.h"
 #include "audio.h"
 
@@ -36,19 +36,20 @@ protected:
     Player player;
 
     //NPCs
-    //NPC npc1;
+    NPC npc1;
 
     //Things to collide with
-    //Interactable cliff_1;
-    //Interactable cliff_2;
-    //Interactable cliff_3;
-    //Interactable wagon;
-    //Interactable waterfall;
+    Interactable cliff_1;
+    Interactable cliff_2;
+    Interactable cliff_3;
+    Interactable wagon;
+    Interactable waterfall;
 
     //World objects
     World world;
 
     float screenWidth, screenHeight;
+    float WorldX, WorldY;
 
 public:
     // Constructor
@@ -70,5 +71,10 @@ public:
     void resetAll();
     void onMessage(const Mail& mail);
 
+    void setWorldPos(float x, float y) { WorldX = x; WorldY = y; }
+    float getWorldX() { return WorldX; }
+    float getWorldY() { return WorldY; }
+
+    void updateWorldObj(Entity* ent);
 };
-#endif // !_MAP_H
+#endif // !_OVERWORLD_H

@@ -12,6 +12,21 @@ Character::Character()
 
 }
 
+bool Character::initialize(Game *gameptr,const char *OverworldTexture = NULL, const char* BattleTexture = NULL, int width = 0, int height = 0, int ncol = 0)
+{
+	if(OverworldTexture != NULL)
+		overworldTexture.initialize(gameptr->getGraphics(), OverworldTexture);
+	if(BattleTexture != NULL)
+		battleTexture.initialize(gameptr->getGraphics(), BattleTexture);
+
+	currentTexture = &overworldTexture;
+
+	setClass("Character");
+
+	Entity::initialize(gameptr, width, height, ncol, currentTexture);
+
+	return true;
+}
 bool Character::initialize(Game *gameptr,const char *OverworldTexture = NULL, const char* BattleTexture = NULL)
 {
 	if(OverworldTexture != NULL)
@@ -23,7 +38,7 @@ bool Character::initialize(Game *gameptr,const char *OverworldTexture = NULL, co
 
 	setClass("Character");
 
-	Entity::initialize(gameptr, 34, 34, 0, currentTexture);
+	Entity::initialize(gameptr, 0, 0, 0, currentTexture);
 
 	return true;
 }
