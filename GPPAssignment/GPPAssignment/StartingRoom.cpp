@@ -55,6 +55,7 @@ void StartingRoom::initialize()
     tpObject.setX(((world.retrieveBound()->maxX + world.retrieveBound()->minX) * 0.5) - tpObject.getWidth() / 2);
     tpObject.setY(world.retrieveBound()->maxY - tpObject.getHeight()/2);
     tpObject.setTag("tpObj");
+    tpObject.setDestination("Overworld");
     if(!entManagerV2.AddToLayer(&tpObject, 0)) throw(GameError(gameErrorNS::FATAL_ERROR, "Invalid index when adding tpObject"));
 
     //Initialize bed
@@ -67,10 +68,10 @@ void StartingRoom::initialize()
     if(!entManagerV2.AddToLayer(&bed, entManagerV2.Size() - 2)) throw(GameError(gameErrorNS::FATAL_ERROR, "Invalid index when adding Bed Objects"));
 
     //Initializing Players
-    if(!player.initialize(dxManager, MAINCHARA_ANIMATION, MAINCHARA_IMAGE)) throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize player"));
+    if(!player.initialize(dxManager, MAINCHARA_ANIMATION, MAINCHARA_IMAGE,32,32,0)) throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize player"));
 
     //Player Variables
-    player.setScale(1.5, 1.5);
+    player.setScale(CHARA_SCALE, CHARA_SCALE);
     player.setX(screenWidth/2 - player.getWidth()/2.0);
     player.setY(screenHeight/2 - player.getHeight()/2.0);
     player.setClass("Player");

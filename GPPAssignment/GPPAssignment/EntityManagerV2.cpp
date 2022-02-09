@@ -30,7 +30,7 @@ bool EntityManagerV2::Initialize(int numberOfLayers)
 
 bool EntityManagerV2::AddToLayer(Entity* ent, int layer)
 {
-	if (layer < 0 || layer > MAXLAYERS) return false;
+	if (layer < 0 || layer >= MAXLAYERS) return false;
 	listOfLayers.at(layer)->push_back(ent);
 	ent->setLayer(layer);
 	return true;

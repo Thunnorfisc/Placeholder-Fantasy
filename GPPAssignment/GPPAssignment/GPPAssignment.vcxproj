@@ -163,6 +163,7 @@
     <ClCompile Include="Interactable.cpp" />
     <ClCompile Include="mail.cpp" />
     <ClCompile Include="menuList.cpp" />
+    <ClCompile Include="NPC.cpp" />
     <ClCompile Include="StartingRoom.cpp" />
     <ClCompile Include="battleScene.cpp" />
     <ClCompile Include="Overworld.cpp" />

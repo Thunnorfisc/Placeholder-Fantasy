@@ -14,6 +14,7 @@ class Interactable : public Entity
 protected:
 	SceneManager* dxManager;
 	TextureManager intTexture;
+	string destination;
 	bool colliding;
 public:
 	Interactable();
@@ -38,6 +39,14 @@ public:
 	void setSize(float w, float h) { spriteData.width = w; spriteData.height = h; }
 
 	void setSceneManager(SceneManager* DxManager) { dxManager = DxManager; }
+	
+	/// <summary>
+	/// Used to set what the next scene will be for teleport
+	/// </summary>
+	/// <param name="dest"></param>
+	void setDestination(string dest) { destination = dest; }
+	string getDestination() { return destination; }
+
 	virtual void update(float frameTime);
 };
 #endif // !_Interactable_H_

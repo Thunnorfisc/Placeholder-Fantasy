@@ -123,7 +123,7 @@ const int CLIFF_1_POSY = 438;
 const int CLIFF_2_POSX = 122;
 const int CLIFF_2_POSY = 369;
 
-const int CLIFF_3_POSX = 182;
+const int CLIFF_3_POSX = 0;
 const int CLIFF_3_POSY = 347;
 
 //Parameters for worlds(Scales)
@@ -137,7 +137,5 @@ const float OVERWORLDBOUND_MINX = 1;
 const float OVERWORLDBOUND_MAXY = 0.403;
 const float OVERWORLDBOUND_MINY = 1;
 
-const int OVERWORLD_SCALE_X = 4;
-const int OVERWORLD_SCALE_Y = 4;
-
+const int OVERWORLD_SCALE = 3;
 #endif // !_CONSTANTS_H_

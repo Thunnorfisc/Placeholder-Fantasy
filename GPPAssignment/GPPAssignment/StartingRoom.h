@@ -10,8 +10,8 @@
 //                used in the initiating of the BattleScene.
 //===========================================================================================
 
-#ifndef _MAP_H             // prevent multiple definitions if this 
-#define _MAP_H             // ..file is included in more than one place
+#ifndef _STARTINGROOM_H             // prevent multiple definitions if this 
+#define _STARTINGROOM_H             // ..file is included in more than one place
 #define WIN32_LEAN_AND_MEAN
 
 #include "sceneManager.h"

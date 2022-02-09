@@ -15,8 +15,10 @@ protected:
 
 public:
 	NPC();
-	~NPC();
 
 	bool initialize();
+
+	virtual void update(float frameTime);
+
 };
 #endif // !_NPC_H_
