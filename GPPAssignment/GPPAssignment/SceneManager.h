@@ -22,10 +22,12 @@
 #include "game.h"
 #include "scene.h"
 #include "gameState.h"
+#include "textDX.h"
 
 class SceneManager: public Game
 {
 protected:
+	TextDX dxFPS;
 	Stack<Scene*> sceneStack;                   // Stack of scenes
 	GameState currentState;						// The state the game has, keeps data that is a global variable
 	std::vector<Character> characterList;		// The list of characters

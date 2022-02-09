@@ -33,7 +33,7 @@ void PauseMenu::initialize()
     if (!cursorTexture.initialize(dxManager->getGraphics(), Cursor))throw(gameErrorNS::FATAL_ERROR, "Error initiating Cursor");
     if (!cursor.initialize(dxManager->getGraphics(), 0, 0, 0, &cursorTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Cursor");
     
-    const float textSize = 25; // dxMenuText size
+    const float textSize = (GAME_WIDTH * GAME_HEIGHT) / 36864; // dxMenuText size
     const float originalCursorHeight = cursorTexture.getHeight(); // Original height of cursor
     const float originalCursorWidth = cursorTexture.getWidth();   // Original width of cursor
     const float scaledCursorHeight = textSize / originalCursorHeight;  // Height of cursor after scaling
@@ -48,9 +48,9 @@ void PauseMenu::initialize()
     if (dxMenuText->initialize(dxManager->getGraphics(), textSize, true, false, "Trebuchet MS") == false)
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
 
-    const std::vector<std::string> optionList = { "Back", "Stats", "Save", "Return to Title", "Exit Game" }; // Option list contains these options
+    const std::vector<std::string> optionList = { "Back", "Stats", "Save", "Options", "Return to Title", "Exit Game" }; // Option list contains these options
     
-    const int menuY = 100; // Start of the Y of menu options
+    const int menuY = GAME_HEIGHT / 8; // Start of the Y of menu options
     const int menuX = GAME_WIDTH / 15; // Split game_width to 15 parts, take the first part as X
 
     // Add to menuList the options from optionList
@@ -59,12 +59,12 @@ void PauseMenu::initialize()
         menuList.push_back({
             /*Option = */optionList.at(i),
             /*X = */menuX,
-            /*Y = */menuY + 30 * i
+            /*Y = */menuY + (GAME_HEIGHT / 24) * i
             });
     }
 
     // Cursor settings on initialize
-    cursor.setX(menuList.front().x - 30);
+    cursor.setX(menuList.front().x - GAME_WIDTH / 45);
     cursor.setY(menuList.front().y);
     cursor.setScale(scaledCursorHeight, scaledCursorWidth);
 
@@ -128,36 +128,11 @@ void PauseMenu::optionSelected(std::string option) {
     }
     else if (option == "Save")
     {
-        std::ifstream file("placeholder_save.txt"); // Check if placeholder_save.txt is there
-        if (!file.is_open()) // If not there
-        {
-            std::ofstream newFile("placeholder_save.txt"); // Create the txt file
-            std::map<std::string, Var> map = dxManager->getState()->getMap(); // Get the map
-            // Iterate through the map
-            for (std::map<std::string, Var>::iterator it = map.begin();
-                it != map.end();
-                ++it)
-            {
-                // it->first is the keys, it->second is the Var
-                newFile << it->first << " " << it->second.value << " " << it->second.type << std::endl;
-            }
-            newFile.close(); // Close the txt file
-        }
-        else
-        {
-            std::remove("placeholder_save.txt"); // Delete txt file
-            std::ofstream newFile("placeholder_save.txt"); // Recreate txt file
-            std::map<std::string, Var> map = dxManager->getState()->getMap(); // Get the map
-            // Iterate through the map
-            for (std::map<std::string, Var>::iterator it = map.begin();
-                it != map.end();
-                ++it)
-            {
-                // it->first is the keys, it->second is the Var
-                newFile << it->first << " " << it->second.value << " " << it->second.type << std::endl;
-            }
-            newFile.close(); // Close the txt file
-        }
+        
+    }
+    else if (option == "Options")
+    {
+
     }
     else if (option == "Return to Title")
     {

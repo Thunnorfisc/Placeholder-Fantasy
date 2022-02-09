@@ -255,4 +255,7 @@
       <Filter>Header Files\OverworldSystem</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
 </Project>

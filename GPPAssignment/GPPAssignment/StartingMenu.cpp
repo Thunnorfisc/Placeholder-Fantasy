@@ -45,8 +45,8 @@ void StartingMenu::initialize()
     // Set background colour: White
     dxManager->getGraphics()->setBackColor(graphicsNS::WHITE);
 
-    const float textSize = 25; // dxMenuText size
-    const float titleSize = 100; // dxTitle size
+    const float textSize = (GAME_WIDTH*GAME_HEIGHT)/36864; // dxMenuText size
+    const float titleSize = textSize * 4; // dxTitle size
     const float originalCursorHeight = cursorTexture.getHeight(); // Original height of cursor
     const float originalCursorWidth = cursorTexture.getWidth();   // Original width of cursor
     const float scaledCursorHeight = textSize / originalCursorHeight;  // Height of cursor after scaling
@@ -78,12 +78,12 @@ void StartingMenu::initialize()
         menuList.push_back({ 
             /*Option = */optionList.at(i),
             /*X = */static_cast<int>(GAME_WIDTH / 2 - dxMenuText->getWidth(optionList.at(i), dxMenuText->getFont()) / 2),
-            /*Y = */menuY + 30 * i
+            /*Y = */menuY + (GAME_HEIGHT/24) * i
             });
     }
 
     // Cursor settings on initialize
-    cursor.setX(menuList.front().x - 30);
+    cursor.setX(menuList.front().x - GAME_WIDTH/45);
     cursor.setY(menuList.front().y);
     cursor.setScale(scaledCursorHeight, scaledCursorWidth);
 
@@ -191,10 +191,7 @@ void StartingMenu::optionSelected(std::string option) {
     // Option -> Whatever options we have
     else if (option == "Options")
     {
-        // DEBUGGING, PLEASE REMOVE
 
-        Mail mail(*this, dxManager->getAudio(), mailTypes::EndStream, dxMenuMusic);
-        dxManager->getPostOffice()->addMessages(mail);
     }
     // Quit -> Quit the game
     else if (option == "Quit")
@@ -222,9 +219,9 @@ void StartingMenu::render()
     std::string musicVol = to_string(int(dxManager->getAudio().getVolume(audioTypes::Music) * 100)) + "%";
     dxManager->getGraphics()->spriteBegin();
     cursor.draw(TRANSCOLOR);
-    dxError.setFontColor(graphicsNS::RED);
+    dxError.setFontColor(graphicsNS::NAVY);
     dxTitle->setFontColor(graphicsNS::ORANGE);
-    dxTitle->print("PlaceHolder Fantasy?", static_cast<int>(GAME_WIDTH / 2 - dxTitle->getWidth("PlaceHolder Fantasy?", dxTitle->getFont()) / 2), GAME_HEIGHT / 2 - 100);
+    dxTitle->print("PlaceHolder Fantasy?", static_cast<int>(GAME_WIDTH / 2 - dxTitle->getWidth("PlaceHolder Fantasy?", dxTitle->getFont()) / 2), GAME_HEIGHT / 2 - GAME_HEIGHT / 5);
     dxError.print("(Left Arrow)<- Volume of Music: " + musicVol + " ->(Right Arrow)", static_cast<int>(GAME_WIDTH / 2 - dxError.getWidth("Volume of Music: ", dxError.getFont()) / 2), GAME_HEIGHT / 2 - 200);
     // dxError.print(errorMsg, static_cast<int>(GAME_WIDTH / 2 - dxTitle->getWidth("PlaceHolder Fantasy?", dxTitle->getFont()) / 2), GAME_HEIGHT / 2 - 200);
     dxMenuText->setFontColor(graphicsNS::BLACK);

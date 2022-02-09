@@ -10,6 +10,7 @@ Game::Game()
     paused = false;			//Game not paused
     graphics = NULL;
     initialized = false;
+    fpsOn = true;
 }
 
 //Destuctor

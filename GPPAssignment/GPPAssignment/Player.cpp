@@ -40,7 +40,6 @@ void Player::update(float frameTime)
 		setY(getY() + velocity.y * frameTime);
 	}
 
-
 	// Player Movement Inputs
 	if (input->isKeyDown(VK_LEFT))
 	{

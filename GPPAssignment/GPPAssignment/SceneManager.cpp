@@ -88,6 +88,10 @@ void SceneManager::initialize(HWND hwnd)
     Game::initialize(hwnd);
     sceneStack.push(sceneMap["Title"]);
     sceneStack.getTop()->initialize();
+    // FPS Counter
+    // Font: Trebuchet MS
+    if (dxFPS.initialize(graphics, 25, true, false, "Trebuchet MS") == false)
+        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
 }
 
 void SceneManager::reset()
@@ -116,7 +120,14 @@ void SceneManager::collisions()
 //=============================================================================
 void SceneManager::render()
 {
+    const int BUF_SIZE = 20;
+    static char buffer[BUF_SIZE];
     sceneStack.getTop()->render();
+    graphics->spriteBegin();
+    dxFPS.setFontColor(graphicsNS::NAVY);
+    _snprintf_s(buffer, BUF_SIZE, "FPS %d ", (int)fps);
+    dxFPS.print(buffer, 10, 0);
+    graphics->spriteEnd();
 }
 
 //=============================================================================
