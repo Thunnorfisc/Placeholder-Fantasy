@@ -1,3 +1,14 @@
+//===========================================================================================
+//	Module		: Game Programming Assignment 2
+//	Assignment	: Placeholder Fantasy?	
+//	Name		: Jason Teo Jun Hao
+//	S/N			: S10194978
+//	Description	: This CPP file is for the overworld scene that handles movement and
+//				  collision between the player character and the enemies in the overworld.
+//				  It stores the variables such as worldX and Y to be used to handle movement
+//                in the game and placements of objects in the world. The character list is
+//                used in the initiating of the BattleScene. (This is a Improved Version)
+//===========================================================================================
 #include "Overworld.h"
 
 Overworld::Overworld(SceneManager* manager) 

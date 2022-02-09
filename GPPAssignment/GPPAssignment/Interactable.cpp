@@ -1,3 +1,13 @@
+//===============================================================================================
+//	Module		: Game Programming Assignment 2
+//	Assignment	: Placeholder Fantasy?	
+//	Author		: Jason Teo Jun Hao
+//	Student ID	: S10194978B
+//	Description	: This is CPP file for the Interactable. It is a child of Entity. All objects in  
+//                the game is defaulted to Interactable if not a Character.The Checks for collision
+//				  is in this game object.
+//================================================================================================
+
 #include "Interactable.h"
 
 Interactable::Interactable()

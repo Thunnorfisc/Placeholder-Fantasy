@@ -1,3 +1,12 @@
+//===============================================================================================
+//	Module		: Game Programming Assignment 2
+//	Assignment	: Placeholder Fantasy?	
+//	Author		: Jason Teo Jun Hao
+//	Student ID	: S10194978B
+//	Description	: This is CPP file for Character. It is a child of Entity. All characters in  
+//                the game is defaulted to Character. While they contain the information for the
+//				  battle system, it is not being used as it is not complete.
+//===============================================================================================
 #include "Character.h"
 
 Character::Character()

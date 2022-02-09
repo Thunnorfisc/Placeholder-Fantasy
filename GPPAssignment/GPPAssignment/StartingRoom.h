@@ -3,11 +3,8 @@
 //	Assignment	: Placeholder Fantasy?	
 //	Name		: Jason Teo Jun Hao
 //	S/N			: S10194978
-//	Description	: This header file is for the overworld scene that handles movement and
-//				  collision between the player character and the enemies in the overworld.
-//				  It stores the variables such as worldX and Y to be used to handle movement
-//                in the game and placements of objects in the world. The character list is
-//                used in the initiating of the BattleScene.
+//	Description	: This header file is for the Starting Room scene that handles movement and
+//				  collision between the player character and the Objects in the room.
 //===========================================================================================
 
 #ifndef _STARTINGROOM_H             // prevent multiple definitions if this 
@@ -62,6 +59,11 @@ public:
     void resetAll();
     void onMessage(const Mail& mail);
     
+    /// <summary>
+    /// Set the world's posX and PosY
+    /// </summary>
+    /// <param name="x"></param>
+    /// <param name="y"></param>
     void setWorldPos(float x, float y) { WorldX = x; WorldY = y; }
     float getWorldX() { return WorldX; }
     float getWorldY() { return WorldY; }

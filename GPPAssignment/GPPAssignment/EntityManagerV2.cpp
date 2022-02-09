@@ -1,3 +1,12 @@
+//===============================================================================================
+//	Module		: Game Programming Assignment 2
+//	Assignment	: Placeholder Fantasy?	
+//	Author		: Jason Teo Jun Hao
+//	Student ID	: S10194978B
+//	Description	: This is CPP file for EntityManagerV2. This is the newer version of the EntityManager.
+//				  This version uses a nested list and the "Zvalues" is the list in the Layering System.
+//				  Each list of Entities acts as a layer.
+//===============================================================================================
 #include "EntityManagerV2.h"
 
 EntityManagerV2::EntityManagerV2()

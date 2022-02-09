@@ -1,3 +1,13 @@
+//===============================================================================================
+//	Module		: Game Programming Assignment 2
+//	Assignment	: Placeholder Fantasy?	
+//	Author		: Jason Teo Jun Hao
+//	Student ID	: S10194978B
+//	Description	: This is H file for the Interactable. It is a child of Entity. All objects in  
+//                the game is defaulted to Interactable if not a Character. Checks for collision
+//				  is in this game object.
+//===============================================================================================
+
 #ifndef _INTERACTABLE_H_
 #define _INTERACTABLE_H_
 #define WIN32_LEAN_AND_MEAN
@@ -27,8 +37,18 @@ public:
 
 	void triggerBox(Entity* ent, VECTOR2& collisionVector);
 
+	/// <summary>
+	/// This allows the layer to be changed in EntityManager (Deprecated)
+	/// </summary>
+	/// <param name="player"></param>
+	/// <param name="layerSystem"></param>
 	void triggerLayer(Player* player, EntityManager* layerSystem);
 
+	/// <summary>
+	/// This is the latest triggerLayer to work with EntityManagerV2
+	/// </summary>
+	/// <param name="player"></param>
+	/// <param name="layerSystem"></param>
 	void triggerLayerV2(Entity* player, EntityManagerV2* layerSystem);
 
 	/// <summary>
@@ -38,6 +58,10 @@ public:
 	/// <param name="h"></param>
 	void setSize(float w, float h) { spriteData.width = w; spriteData.height = h; }
 
+	/// <summary>
+	/// This is to set scene manager for changing to different scenes
+	/// </summary>
+	/// <param name="DxManager"></param>
 	void setSceneManager(SceneManager* DxManager) { dxManager = DxManager; }
 	
 	/// <summary>

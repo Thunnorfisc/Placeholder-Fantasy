@@ -1,3 +1,14 @@
+//===============================================================================================
+//	Module		: Game Programming Assignment 2
+//	Assignment	: Placeholder Fantasy?	
+//	Author		: Jason Teo Jun Hao
+//	Student ID	: S10194978B
+//	Description	: This is CPP file for Creating a World. This is a child of Image and acts as a way
+//				  to display the background and also set a boundary that the player can go around
+//				  If the world is larger than the window, it will allow the player character to
+//			      move freely.
+//===============================================================================================
+
 #include "World.h"
 
 World::World()

@@ -1,5 +1,5 @@
 //===========================================================================================
-//	Module		: Game Programming
+//	Module		: Game Programming Assignment 2
 //	Assignment	: Placeholder Fantasy?	
 //	Name		: Jason Teo Jun Hao
 //	S/N			: S10194978
@@ -7,7 +7,7 @@
 //				  collision between the player character and the enemies in the overworld.
 //				  It stores the variables such as worldX and Y to be used to handle movement
 //                in the game and placements of objects in the world. The character list is
-//                used in the initiating of the BattleScene.
+//                used in the initiating of the BattleScene. (This is a Improved Version)
 //===========================================================================================
 
 #ifndef _OVERWORLD_H_             // prevent multiple definitions if this 
@@ -75,10 +75,16 @@ public:
     void resetAll();
     void onMessage(const Mail& mail);
 
+    /// <summary>
+    /// Set the World Pos X and Y
+    /// </summary>
     void setWorldPos(float x, float y, World* world);
     float getWorldX() { return WorldX; }
     float getWorldY() { return WorldY; }
 
+    /// <summary>
+    /// Update the gameobjects position accordingly to the world X and Y
+    /// </summary>
     void updateWorldObj(Entity* ent);
 };
 #endif // !_OVERWORLD_H

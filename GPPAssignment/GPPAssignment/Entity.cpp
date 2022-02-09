@@ -1,3 +1,10 @@
+//===============================================================================================
+//	Module		: Game Programming Assignment 2
+//	Assignment	: Placeholder Fantasy?	
+//	Author		: Jason Teo Jun Hao
+//	Student ID	: S10194978B
+//	Description	: This is CPP file for Entity. For now it only uses BoxColliders
+//===============================================================================================
 #include "Entity.h"
 
 Entity::Entity() 

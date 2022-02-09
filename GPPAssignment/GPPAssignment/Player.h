@@ -1,3 +1,12 @@
+//===========================================================================================
+//	Module		: Game Programming Assignment 2
+//	Assignment	: Placeholder Fantasy?	
+//	Name		: Jason Teo Jun Hao
+//	S/N			: S10194978
+//	Description	: This header file is for the player object which is a child of Character.
+//				  This is the player character that will be checked against. Will also contain
+//				  teamList that could be used in the future.
+//===========================================================================================
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
 #define WIN32_LEAN_AND_MEAN

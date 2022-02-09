@@ -1,3 +1,13 @@
+//===============================================================================================
+//	Module		: Game Programming Assignment 2
+//	Assignment	: Placeholder Fantasy?	
+//	Author		: Jason Teo Jun Hao
+//	Student ID	: S10194978B
+//	Description	: This is CPP file for EntityManager. This is the older version of the EntityManager.
+//				  This version uses one list and the "Zvalues" is the index in the list, Except 
+//				  the larger the value the more forward it will be.
+//===============================================================================================
+
 #include "EntityManager.h"
 
 //Constructor
