@@ -28,7 +28,7 @@ protected:
 	Graphics* graphics;             // pointer to Graphics
 	Input* input;					// pointer to Input
 	PostOffice* mailManager;        // Pointer to Post Office (AKA Mail Manager)
-	Audio* audio;
+	Audio* audio;                   // Pointer to Audio
 	HWND    hwnd;                   // window handle
 	HRESULT hr;                     // standard return type
 	LARGE_INTEGER timeStart;        // Performance Counter start value

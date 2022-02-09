@@ -1,3 +1,9 @@
+//============================================================================<<
+//  Module:             Gameplay Programming
+//  Assignment 2:       PlaceHolder Fantasy?
+//  Student Name:       William Wibisana Dumanauw
+//  Student Number:     S10195561A
+//============================================================================<>
 #ifndef _POSTOFFICE_H
 #define	_POSTOFFICE_H
 #define WIN32_LEAN_AND_MEAN

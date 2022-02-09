@@ -1,3 +1,9 @@
+//============================================================================
+//  Module:             Gameplay Programming
+//  Assignment 2:       PlaceHolder Fantasy?
+//  Student Name:       William Wibisana Dumanauw
+//  Student Number:     S10195561A
+//============================================================================
 #ifndef _STACK_HPP             // prevent multiple definitions if this 
 #define _STACK_HPP             // ..file is included in more than one place
 #pragma once
