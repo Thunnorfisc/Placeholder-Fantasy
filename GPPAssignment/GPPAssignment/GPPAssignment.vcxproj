@@ -164,6 +164,7 @@
     <ClCompile Include="mail.cpp" />
     <ClCompile Include="menuList.cpp" />
     <ClCompile Include="NPC.cpp" />
+    <ClCompile Include="optionsMenu.cpp" />
     <ClCompile Include="StartingRoom.cpp" />
     <ClCompile Include="battleScene.cpp" />
     <ClCompile Include="Overworld.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="mail.h" />
     <ClInclude Include="menuOption.h" />
     <ClInclude Include="NPC.h" />
+    <ClInclude Include="optionsMenu.h" />
     <ClInclude Include="Overworld.h" />
     <ClInclude Include="StartingRoom.h" />
     <ClInclude Include="battleScene.h" />

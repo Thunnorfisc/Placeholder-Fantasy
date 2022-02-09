@@ -23,6 +23,9 @@
 #include "constants.h"
 #include <vector>
 #include <thread>
+#include <fstream>
+#include <iomanip>
+#include <nlohmann/json.hpp>
 
 enum audioTypes { Music, Sfx };
 class AudioEngine;
@@ -107,6 +110,7 @@ public:
 	const float getVolume(const audioTypes& audioType);
 
 	void loadVolume();
+	void saveVolume();
 
 	void onMessage(const Mail& mail);
 

@@ -28,6 +28,7 @@ class SceneManager: public Game
 {
 protected:
 	TextDX dxFPS;
+	std::string baseSceneName;                  // The base scene name, the scene being layered over
 	Stack<Scene*> sceneStack;                   // Stack of scenes
 	GameState currentState;						// The state the game has, keeps data that is a global variable
 	std::vector<Character> characterList;		// The list of characters
@@ -66,5 +67,8 @@ public:
 	std::vector<Character>* getCharacterList() { return sceneStack.getTop()->getCharacterList(); }
 	// Gets the game state
 	GameState* getState() { return &currentState;  }
+
+	// Gets the scene name
+	std::string getSceneName() { return baseSceneName; }
 };
 #endif
