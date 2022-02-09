@@ -31,5 +31,8 @@ public:
 	void CheckBoundsCollision(Player* player);
 
 	Boundary* retrieveBound() { return &worldBounds; }
+
+	void CheckCameraBound(Player* player, float WorldX, float WorldY);
+
 };
 #endif // !_WORLD_H_

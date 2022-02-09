@@ -20,10 +20,10 @@ bool World::initialize(Game* gameptr, const char* backgroundTexture)
 
 void World::BoundsSetup(float maxX, float minX, float maxY, float minY)
 {
-	worldBounds.maxX = maxX * getScaleX();
-	worldBounds.minX = minX * getScaleX();
-	worldBounds.maxY = maxY * getScaleY();
-	worldBounds.minY = minY * getScaleY();
+	worldBounds.maxX = maxX;
+	worldBounds.minX = minX;
+	worldBounds.maxY = maxY;
+	worldBounds.minY = minY;
 }
 
 void World::CheckBoundsCollision(Player* player)
@@ -34,7 +34,6 @@ void World::CheckBoundsCollision(Player* player)
 
 		return;
 	}
-
 	if (player->getX() + player->getWidth() > worldBounds.maxX)
 	{
 		player->setWorldCollisionVector(VECTOR2(player->getX() - worldBounds.maxX,0 + player->getWorldCollisionVector().y));
@@ -53,5 +52,19 @@ void World::CheckBoundsCollision(Player* player)
 	{
 		player->setWorldCollisionVector(VECTOR2(0 + player->getWorldCollisionVector().x,worldBounds.minY - player->getY()));
 
+	}
+}
+
+void World::CheckCameraBound(Player* player, float WorldX, float WorldY)
+{
+	if (getWidth() <= GAME_WIDTH)
+	{
+		player->isCenterX(false);
+		if (getHeight() <= GAME_HEIGHT)
+		{
+			player->isCenterY(false);
+			return;
+		}
+		return;
 	}
 }

@@ -65,6 +65,7 @@ const char OPTIONCHANGESFX[] = "sound\\sound_effects\\switch27.mp3";
 const int HPBAR_HEIGHT = 18;
 const int HPBAR_WIDTH = 240;
 const float CHARA_SCALE = 2;
+const float CHARA_SIZE = 34;
 
 // key mappings
 // In this game simple constants are used for key mappings. If variables were used
@@ -105,6 +106,10 @@ const char CLIFF_3_IMAGE[]		= "assets\\Overworld\\Cliff_3.png";
 const int BEDROOM_TP_WIDTH	= 192;
 const int BEDROOM_TP_HEIGHT = 54;
 
+const int OVERWORLD_TP_WIDTH = 17;
+const int OVERWORLD_TP_HEIGHT = 17;
+const int OVERWORLD_TP_X = 72;
+const int OVERWORLD_TP_Y = 261;
 //Starting Room Objects Position
 const int BED_POSX = 0;
 const int BED_POSY = 0;
@@ -133,7 +138,7 @@ const float STARTINGROOM_MINY = 1;
 
 const float OVERWORLDBOUND_MAXX = 1;
 const float OVERWORLDBOUND_MINX = 1;
-const float OVERWORLDBOUND_MAXY = 0.403;
+const float OVERWORLDBOUND_MAXY = 0.6;
 const float OVERWORLDBOUND_MINY = 1;
 
 const int OVERWORLD_SCALE = 3;

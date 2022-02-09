@@ -22,6 +22,8 @@ StartingRoom::StartingRoom(SceneManager* manager) {
     dxManager = manager;
     screenHeight = GAME_HEIGHT;
     screenWidth = GAME_WIDTH;
+    WorldX = 0;
+    WorldY = 0;
 }
 
 StartingRoom::~StartingRoom()
@@ -40,10 +42,13 @@ void StartingRoom::initialize()
 
     //Initializing starting world
     if (!world.initialize(dxManager, BEDROOM_IMAGE)) throw(GameError(gameErrorNS::FATAL_ERROR,"Failed to initialize world"));
-
+    
+    //Initialize starting World Coordinates
+    setWorldPos(screenWidth / 2 - world.getWidth() / 2.0, screenHeight / 2 - world.getHeight() / 2.0);
+    
     //Set world parameters
-    world.setX(screenWidth / 2 - world.getWidth() / 2.0);
-    world.setY(screenHeight / 2 - world.getHeight() / 2.0);
+    world.setX(getWorldX());
+    world.setY(getWorldY());
     world.BoundsSetup(world.getWidth() * 0.75, world.getWidth() * 0.25, world.getHeight() * 0.9, world.getHeight() * 0.1);
 
     //initialize teleportation
@@ -68,13 +73,14 @@ void StartingRoom::initialize()
     if(!entManagerV2.AddToLayer(&bed, entManagerV2.Size() - 2)) throw(GameError(gameErrorNS::FATAL_ERROR, "Invalid index when adding Bed Objects"));
 
     //Initializing Players
-    if(!player.initialize(dxManager, MAINCHARA_ANIMATION, MAINCHARA_IMAGE,32,32,0)) throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize player"));
+    if(!player.initialize(dxManager, MAINCHARA_ANIMATION, MAINCHARA_IMAGE, CHARA_SIZE, CHARA_SIZE,0)) throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize player"));
 
     //Player Variables
     player.setScale(CHARA_SCALE, CHARA_SCALE);
     player.setX(screenWidth/2 - player.getWidth()/2.0);
     player.setY(screenHeight/2 - player.getHeight()/2.0);
     player.setClass("Player");
+    player.setFrame(0, 4);
 
     //Add the entities to the lists
     if (!entManagerV2.AddToLayer(&player, entManagerV2.Size() - 3)) throw(GameError(gameErrorNS::FATAL_ERROR, "Invalid index when adding Player Objects"));
@@ -124,6 +130,7 @@ void StartingRoom::collisions()
     VECTOR2 collisionVector;
 
     world.CheckBoundsCollision(&player);
+    world.CheckCameraBound(&player, WorldX, WorldY);
 
     //V2 TriggerLayers
     for (std::vector<Entity*>* layer : entManagerV2.GetLayers())

@@ -44,13 +44,17 @@ protected:
     Interactable cliff_3;
     Interactable wagon;
     Interactable waterfall;
+    Interactable TPOBJECT;
 
     //World objects
     World world;
+    float worldVelocityX;
+    float worldVelocityY;
 
     float screenWidth, screenHeight;
     float WorldX, WorldY;
 
+    VECTOR2 collisionVector;
 public:
     // Constructor
     Overworld(SceneManager* manager);
@@ -71,7 +75,7 @@ public:
     void resetAll();
     void onMessage(const Mail& mail);
 
-    void setWorldPos(float x, float y) { WorldX = x; WorldY = y; }
+    void setWorldPos(float x, float y, World* world);
     float getWorldX() { return WorldX; }
     float getWorldY() { return WorldY; }
 

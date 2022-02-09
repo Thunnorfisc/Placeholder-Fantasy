@@ -33,6 +33,7 @@ bool Interactable::collideBox(Entity* ent, VECTOR2& collisionVector)
     if (!ent->getActive() || !getActive())
     {
         ent->setCollisionVector(VECTOR2(0, 0));
+        collisionVector = VECTOR2(0, 0);
         colliding = false;
         return false;
     }
@@ -44,6 +45,8 @@ bool Interactable::collideBox(Entity* ent, VECTOR2& collisionVector)
         (getCenterY() + getEdge().top * getHeight() / 2 + TRIGGEROFFSET >= ent->getCenterY() + ent->getEdge().bottom * ent->getHeight() / 2))
     {
         ent->setCollisionVector(VECTOR2(0, 0));
+        collisionVector = VECTOR2(0, 0);
+
         colliding = false;
         return false;
     }
@@ -74,6 +77,7 @@ bool Interactable::collideBox(Entity* ent, VECTOR2& collisionVector)
          (getCenterY() + getEdge().top * getHeight() / 2 + TRIGGEROFFSET< ent->getCenterY() + ent->getEdge().bottom * ent->getHeight() / 2))
         )
     {
+        collisionVector = VECTOR2(ent->getCenterX() - getCenterX(), 0);
 
         ent->setCollisionVector(VECTOR2(ent->getCenterX() - getCenterX(), 0));
     }
@@ -85,7 +89,7 @@ bool Interactable::collideBox(Entity* ent, VECTOR2& collisionVector)
          (getCenterX() + getEdge().left * getWidth() / 2 + 1< ent->getCenterX() + ent->getEdge().right * ent->getWidth() / 2))
         )
     {
-
+        collisionVector = VECTOR2(0, ent->getCenterY() - getCenterY());
         ent->setCollisionVector(VECTOR2(0, ent->getCenterY() - getCenterY()));
     }
     //set collision Vector

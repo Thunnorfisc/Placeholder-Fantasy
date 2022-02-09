@@ -27,7 +27,14 @@ Overworld::~Overworld()
 void Overworld::initialize()
 {
 	//Initialize WorldX and Y
-	setWorldPos(0, 0);
+	setWorldPos(0, 0, &world);
+
+	if (!TPOBJECT.initialize(dxManager, NULL)) throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize TP"));
+	TPOBJECT.setSize(OVERWORLD_TP_WIDTH, OVERWORLD_TP_HEIGHT);
+	TPOBJECT.setPos(getWorldX() + OVERWORLD_TP_X * OVERWORLD_SCALE, getWorldY() + OVERWORLD_TP_Y * OVERWORLD_SCALE);
+	TPOBJECT.setTag("tpObj");
+	TPOBJECT.setSceneManager(dxManager);
+	TPOBJECT.setDestination("StartingRoom");
 
 	//Initialize Layering System
 	if (!entManagerV2.Initialize(MAXLAYERS)) throw(GameError(gameErrorNS::FATAL_ERROR, "Invalid Max Layers"));
@@ -38,8 +45,8 @@ void Overworld::initialize()
 	//Set Parameters
 	world.setScale(OVERWORLD_SCALE);
 	world.setPos(getWorldX(), getWorldY());
-	world.BoundsSetup(getWorldX(), getWorldY(), getWorldX() + world.getWidth(), getWorldY() + world.getHeight());
-	
+	world.BoundsSetup(getWorldX() + world.getWidth(), getWorldX(), getWorldY() + world.getHeight() * OVERWORLDBOUND_MAXY, getWorldY());
+
 	//initialize cliffs
 	if (!cliff_1.initialize(dxManager, CLIFF_1_IMAGE)) throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize Cliff_1"));
 	if (!cliff_2.initialize(dxManager, CLIFF_2_IMAGE)) throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize Cliff_2"));
@@ -63,9 +70,10 @@ void Overworld::initialize()
 	waterfall.setPos(getWorldX() + WATERFALL_POSX * OVERWORLD_SCALE, getWorldY() + WATERFALL_POSY * OVERWORLD_SCALE);
 
 	//initialize Player
-	if (!player.initialize(dxManager, MAINCHARA_ANIMATION, MAINCHARA_IMAGE, 32, 32, 0)) throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize player"));
+	if (!player.initialize(dxManager, MAINCHARA_ANIMATION, MAINCHARA_IMAGE, CHARA_SIZE, CHARA_SIZE, 0)) throw(GameError(gameErrorNS::FATAL_ERROR, "Failed to initialize player"));
 	player.setScale(CHARA_SCALE);
 	player.setPos(screenWidth/2 - player.getWidth(), screenHeight / 2 - player.getHeight() / 2);
+	player.setFrame(0, 4);
 
 	//Add Game Objects to Layers
 	entManagerV2.AddToLayer(&cliff_1,MAXLAYERS - 1);
@@ -74,6 +82,7 @@ void Overworld::initialize()
 	entManagerV2.AddToLayer(&wagon,MAXLAYERS - 2);
 	entManagerV2.AddToLayer(&waterfall,MAXLAYERS - 2);
 	entManagerV2.AddToLayer(&player,MAXLAYERS - 2);
+	entManagerV2.AddToLayer(&TPOBJECT,MAXLAYERS - MAXLAYERS);
 
 	for (std::vector<Entity*>* layer : entManagerV2.GetLayers())
 	{
@@ -88,49 +97,89 @@ void Overworld::initialize()
 
 void Overworld::update(float frameTime) 
 {
+	if (player.ifCenterX())
+	{
+		if (collisionVector.x != 0 || player.getWorldCollisionVector().x != 0)
+		{
+			collisionVector.x += isinf(worldVelocityX / collisionVector.x) * worldVelocityX;
+
+			float testInf = player.getWorldCollisionVector().x;
+			if (isinf(worldVelocityX / player.getWorldCollisionVector().x)) testInf = isinf(worldVelocityX / player.getWorldCollisionVector().x) * worldVelocityX;
+
+			if (worldVelocityX / collisionVector.x < 0 || worldVelocityX / testInf < 0)
+			{
+				setWorldPos(getWorldX() + worldVelocityX * frameTime, getWorldY(), &world);
+				collisionVector.x = 0;
+			}
+		}
+		else {
+			setWorldPos(getWorldX() + worldVelocityX * frameTime, getWorldY(), &world);
+		}
+
+	}
+	if (player.ifCenterY())
+	{
+		if (collisionVector.y != 0 || player.getWorldCollisionVector().y != 0)
+		{
+			collisionVector.y += isinf(worldVelocityY / collisionVector.y) * worldVelocityY;
+
+			float testInf = player.getWorldCollisionVector().y;
+			if (isinf(worldVelocityY / player.getWorldCollisionVector().y)) testInf = isinf(worldVelocityY / player.getWorldCollisionVector().y) * worldVelocityY;
+
+			if (worldVelocityY / collisionVector.y < 0 || worldVelocityY / testInf < 0)
+			{
+				setWorldPos(getWorldX(), getWorldY() + worldVelocityY * frameTime, &world);
+				collisionVector.y = 0;
+			}
+		}
+		else {
+			setWorldPos(getWorldX(), getWorldY() + worldVelocityY * frameTime, &world);
+		}
+	}
+
 	if (dxManager->getInput()->isKeyDown(VK_LEFT))
 	{
-		setWorldPos(getWorldX() + 200 * frameTime, getWorldY());
-		world.setX(getWorldX());
+		worldVelocityX = MOVEMENTSPEED;
 	}	
-	if (dxManager->getInput()->isKeyDown(VK_RIGHT))
+	else if (dxManager->getInput()->isKeyDown(VK_RIGHT))
 	{
-		setWorldPos(getWorldX() - 200 * frameTime, getWorldY());
-		world.setX(getWorldX());
-	}	
+		worldVelocityX = -MOVEMENTSPEED;
+	}
+	else { worldVelocityX = 0; }
+
 	if (dxManager->getInput()->isKeyDown(VK_UP))
 	{
-		setWorldPos(getWorldX(), getWorldY() + 200 * frameTime);
-		world.setY(getWorldY());
+		worldVelocityY = MOVEMENTSPEED;
 	}	
-	if (dxManager->getInput()->isKeyDown(VK_DOWN))
+	else if (dxManager->getInput()->isKeyDown(VK_DOWN))
 	{
-		setWorldPos(getWorldX(), getWorldY() - 200 * frameTime);
-		world.setY(getWorldY());
+		worldVelocityY = -MOVEMENTSPEED;
 	}
+	else { worldVelocityY = 0; }
 
 	//V2 TriggerLayers
 	for (std::vector<Entity*>* layer : entManagerV2.GetLayers())
 	{
 		for (int i = 0; i < layer->size(); i++)
 		{
-			
+			layer->at(i)->update(frameTime);
 			if (layer->at(i)->getClass() == "Interactable")
 			{
-				layer->at(i)->update(frameTime);
+				
 				updateWorldObj(layer->at(i));
 			}
 		}
 	}
+	world.BoundsSetup(getWorldX() + world.getWidth(), getWorldX(), getWorldY() + world.getHeight() * OVERWORLDBOUND_MAXY, getWorldY());
+
 }
 
 void Overworld::ai() {}
 
 void Overworld::collisions() 
 {
-	//VECTOR2 collisionVector;
 
-	//world.CheckBoundsCollision(&player);
+	world.CheckBoundsCollision(&player);
 
 	//V2 TriggerLayers
 	for (std::vector<Entity*>* layer : entManagerV2.GetLayers())
@@ -141,8 +190,12 @@ void Overworld::collisions()
 			{
 				Interactable* interactable = dynamic_cast<Interactable*> (layer->at(i));
 				interactable->triggerLayerV2(&player, &entManagerV2);
-				//interactable->collideBox(&player, collisionVector);
-				//interactable->triggerBox(&player, collisionVector);
+				if (interactable->collideBox(&player, collisionVector))
+				{
+					return;
+				}
+
+				interactable->triggerBox(&player, collisionVector);
 			}
 		}
 	}
@@ -173,6 +226,14 @@ void Overworld::releaseAll() {}
 void Overworld::resetAll() {}
 
 void Overworld::onMessage(const Mail& mail) {}
+
+void Overworld::setWorldPos(float x, float y, World* w)
+{
+	WorldX = x; 
+	WorldY = y;
+	world.setX(x);
+	world.setY(y);
+}
 
 void Overworld::updateWorldObj(Entity* ent)
 {

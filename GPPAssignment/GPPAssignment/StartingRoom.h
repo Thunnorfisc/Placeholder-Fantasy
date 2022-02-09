@@ -40,6 +40,7 @@ protected:
     World world;
 
     float screenWidth, screenHeight;
+    float WorldX, WorldY;
 
 public:
     // Constructor
@@ -61,5 +62,8 @@ public:
     void resetAll();
     void onMessage(const Mail& mail);
     
+    void setWorldPos(float x, float y) { WorldX = x; WorldY = y; }
+    float getWorldX() { return WorldX; }
+    float getWorldY() { return WorldY; }
 };
 #endif // !_MAP_H

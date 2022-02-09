@@ -9,7 +9,8 @@ class Player : public Character
 {
 protected:
 	std::vector<Character> teamList;
-	bool centered;
+	bool centeredX;
+	bool centeredY;
 
 public:
 	Player();
@@ -19,5 +20,13 @@ public:
 	int attack() {
 		return 0;
 	}
+
+	void playerInputs(float velocity, float frameTime);
+
+	void isCenterX(bool iscenterX) { centeredX = iscenterX; }
+	void isCenterY(bool iscenterY) { centeredY = iscenterY; }
+
+	bool ifCenterX() { return centeredX; }
+	bool ifCenterY() { return centeredY; }
 };
 #endif // !_PLAYER_H_
