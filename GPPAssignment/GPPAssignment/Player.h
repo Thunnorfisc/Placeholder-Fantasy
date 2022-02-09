@@ -4,6 +4,7 @@
 
 #include <vector>
 #include "Character.h"
+#include "audio.h"
 
 class Player : public Character
 {

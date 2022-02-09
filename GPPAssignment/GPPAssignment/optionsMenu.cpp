@@ -4,17 +4,17 @@
 //  Student Name:       William Wibisana Dumanauw
 //  Student Number:     S10195561A
 //============================================================================
-#include "pauseMenu.h"
+#include "optionsMenu.h"
 #include <iostream>
 #include <nlohmann/json.hpp>
 
-PauseMenu::PauseMenu(SceneManager* manager)
+OptionsMenu::OptionsMenu(SceneManager* manager)
 {
     dxManager = manager;
     dxMenuText = new TextDX();     // DirectX fonts
 }
 
-PauseMenu::~PauseMenu()
+OptionsMenu::~OptionsMenu()
 {
     dxManager->getAudio().stopSound(*dxOptionChange);
     releaseAll();
@@ -26,14 +26,14 @@ PauseMenu::~PauseMenu()
 // initializes the game
 // Throws GameError on error
 //=============================================================================
-void PauseMenu::initialize() 
+void OptionsMenu::initialize()
 {
     // Reset menu index to 0 on initialize 
     menuIndex = 0;
     // Cursor initialization
     if (!cursorTexture.initialize(dxManager->getGraphics(), Cursor))throw(gameErrorNS::FATAL_ERROR, "Error initiating Cursor");
     if (!cursor.initialize(dxManager->getGraphics(), 0, 0, 0, &cursorTexture))throw(gameErrorNS::FATAL_ERROR, "Error initiating Cursor");
-    
+
     const float textSize = (GAME_WIDTH * GAME_HEIGHT) / 36864; // dxMenuText size
     const float originalCursorHeight = cursorTexture.getHeight(); // Original height of cursor
     const float originalCursorWidth = cursorTexture.getWidth();   // Original width of cursor
@@ -49,8 +49,18 @@ void PauseMenu::initialize()
     if (dxMenuText->initialize(dxManager->getGraphics(), textSize, true, false, "Trebuchet MS") == false)
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
 
-    const std::vector<std::string> optionList = { "Back", "Stats", "Save", "Options", "Return to Title", "Exit Game" }; // Option list contains these options
-    
+    // Music Volume Text
+    // Font: Trebuchet MS
+    if (dxMusicVol.initialize(dxManager->getGraphics(), textSize, true, false, "Trebuchet MS") == false)
+        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
+
+    // Sfx Volume Text
+    // Font: Trebuchet MS
+    if (dxSfxVol.initialize(dxManager->getGraphics(), textSize, true, false, "Trebuchet MS") == false)
+        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
+
+    const std::vector<std::string> optionList = { "Back", "Music", "Sound Effects" }; // Option list contains these options
+
     const int menuY = GAME_HEIGHT / 8; // Start of the Y of menu options
     const int menuX = GAME_WIDTH / 15; // Split game_width to 15 parts, take the first part as X
 
@@ -80,7 +90,7 @@ void PauseMenu::initialize()
 //=============================================================================
 // Reset the game to begin play and after a score
 //=============================================================================
-void PauseMenu::reset()
+void OptionsMenu::reset()
 {
     return;
 }
@@ -89,9 +99,9 @@ void PauseMenu::reset()
 // move all game items
 // frameTime is used to regulate the speed of movement
 //=============================================================================
-void PauseMenu::update(float frameTime)
+void OptionsMenu::update(float frameTime)
 {
-    if (dxManager->getInput()->wasKeyPressed(VK_RETURN))
+    if (dxManager->getInput()->isKeyDown(VK_RETURN))
     {
         optionSelected(menuList.at(menuIndex).option);
     }
@@ -117,49 +127,56 @@ void PauseMenu::update(float frameTime)
 // Return the function
 // ===================================================
 // *Switch case doesn't work because C++ doesn't allow strings in switch cases.
-void PauseMenu::optionSelected(std::string option) {
+void OptionsMenu::optionSelected(std::string option) {
     if (option == "Back")
     {
         dxManager->getAudio().stopSound(*dxOptionChange);
+        dxManager->getAudio().saveVolume();
         dxManager->unlayerScene();
-    }
-    else if (option == "Stats")
-    {
 
     }
-    else if (option == "Save")
+    else if (option == "Music")
     {
-        std::ofstream file("PH_save.json");
-        if (file.is_open())
+        // Volume going down
+        // TESTING PURPOSES, REMOVE LATER...NOT <== NO LONGER FOR TESTING, COMMENT KEPT AS JOKE
+        if (dxManager->getInput()->isKeyDown(CURSOR_LEFT_KEY))
         {
-            nlohmann::json filejson;
-            filejson["scene"] = dxManager->getSceneName();
-            file << std::setw(4) << filejson << std::endl;
-            file.close();
+            if (dxManager->getAudio().getVolume(audioTypes::Music) >= 0.0f)
+                dxManager->getAudio().setVolume(audioTypes::Music, dxManager->getAudio().getVolume(audioTypes::Music) - 0.01f);
+        }
+        // Volume going up
+        // TESTING PURPOSES, REMOVE LATER...NOT <== NO LONGER FOR TESTING, COMMENT KEPT AS JOKE
+        if (dxManager->getInput()->isKeyDown(CURSOR_RIGHT_KEY))
+        {
+            if (dxManager->getAudio().getVolume(audioTypes::Music) < 1.0f)
+                dxManager->getAudio().setVolume(audioTypes::Music, dxManager->getAudio().getVolume(audioTypes::Music) + 0.01f);
         }
     }
-    else if (option == "Options")
+    else if (option == "Sound Effects")
     {
-        dxManager->layerScene("Options");
-    }
-    else if (option == "Return to Title")
-    {
-        dxManager->getAudio().stopSound(*dxOptionChange);
-        dxManager->getState()->resetState();
-        dxManager->switchScene("Title");
-    }
-    else if (option == "Exit Game")
-    {
-        PostQuitMessage(0);
+        // Volume going down
+        // TESTING PURPOSES, REMOVE LATER...NOT <== NO LONGER FOR TESTING, COMMENT KEPT AS JOKE
+        if (dxManager->getInput()->isKeyDown(CURSOR_LEFT_KEY))
+        {
+            if (dxManager->getAudio().getVolume(audioTypes::Sfx) >= 0.0f)
+            dxManager->getAudio().setVolume(audioTypes::Sfx, dxManager->getAudio().getVolume(audioTypes::Sfx) - 0.01f);
+        }
+        // Volume going up
+        // TESTING PURPOSES, REMOVE LATER...NOT <== NO LONGER FOR TESTING, COMMENT KEPT AS JOKE
+        if (dxManager->getInput()->isKeyDown(CURSOR_RIGHT_KEY))
+        {
+            if (dxManager->getAudio().getVolume(audioTypes::Sfx) < 1.0f)
+                dxManager->getAudio().setVolume(audioTypes::Sfx, dxManager->getAudio().getVolume(audioTypes::Sfx) + 0.01f);
+        }
     }
 }
 
-void PauseMenu::ai()
+void OptionsMenu::ai()
 {
 
 }
 
-void PauseMenu::collisions()
+void OptionsMenu::collisions()
 {
 
 }
@@ -167,14 +184,26 @@ void PauseMenu::collisions()
 //=============================================================================
 // render game items
 //=============================================================================
-void PauseMenu::render()
+void OptionsMenu::render()
 {
+    std::string musicVol = to_string(int(dxManager->getAudio().getVolume(audioTypes::Music) * 100)) + "%";
+    std::string sfxVol = to_string(int(dxManager->getAudio().getVolume(audioTypes::Sfx) * 100)) + "%";
     dxManager->getGraphics()->spriteBegin();
     cursor.draw(TRANSCOLOR);
     dxMenuText->setFontColor(graphicsNS::BLACK);
+    dxMusicVol.setFontColor(graphicsNS::NAVY);
+    dxSfxVol.setFontColor(graphicsNS::NAVY);
     for (auto option : menuList)
     {
         dxMenuText->print(option.option, option.x, option.y);
+        if (option.option == "Music")
+        {
+            dxMusicVol.print(musicVol, option.x + dxMenuText->getWidth(option.option, dxMenuText->getFont()) + GAME_WIDTH / 45, option.y);
+        }
+        else if (option.option == "Sound Effects")
+        {
+            dxSfxVol.print(sfxVol, option.x + dxMenuText->getWidth(option.option, dxMenuText->getFont()) + GAME_WIDTH / 45, option.y);
+        }
     }
     dxManager->getGraphics()->spriteEnd();
 }
@@ -183,7 +212,7 @@ void PauseMenu::render()
 // The graphics device was lost.
 // Release all reserved video memory so graphics device may be reset.
 //=============================================================================
-void PauseMenu::releaseAll()
+void OptionsMenu::releaseAll()
 {
     cursorTexture.onLostDevice();
     dxMenuText->onLostDevice();
@@ -194,7 +223,7 @@ void PauseMenu::releaseAll()
 // The graphics device has been reset.
 // Recreate all surfaces and reset all entities.
 //=============================================================================
-void PauseMenu::resetAll()
+void OptionsMenu::resetAll()
 {
     cursorTexture.onResetDevice();
     dxMenuText->onResetDevice();
@@ -202,5 +231,5 @@ void PauseMenu::resetAll()
 }
 
 // Neccessary Evil Why Please God No More LNK2001 Errors
-void PauseMenu::onMessage(const Mail& mail)
+void OptionsMenu::onMessage(const Mail& mail)
 { }

@@ -153,6 +153,9 @@
     <ClCompile Include="NPC.cpp">
       <Filter>Source Files\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="optionsMenu.cpp">
+      <Filter>Source Files\MenuSystem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="battleScene.h">
@@ -257,5 +260,11 @@
     <ClInclude Include="Overworld.h">
       <Filter>Header Files\OverworldSystem</Filter>
     </ClInclude>
+    <ClInclude Include="optionsMenu.h">
+      <Filter>Header Files\MenuSystem</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

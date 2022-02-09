@@ -29,6 +29,7 @@
 #include "audio.h"
 #include <vector>
 #include <fstream>
+#include <nlohmann/json.hpp>
 
 //===================
 // MENU CLASS

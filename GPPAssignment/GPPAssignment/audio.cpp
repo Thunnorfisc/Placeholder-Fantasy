@@ -57,6 +57,7 @@ Audio::Audio()
 	sendMusic = { 0, musicSubmix };
 	musicSendList = { 1, &sendMusic };
 
+	loadVolume();
 	musicSubmix->SetVolume(musicVolume);
 	sfxSubmix->SetVolume(sfxVolume);
 }
@@ -168,7 +169,40 @@ const float Audio::getVolume(const audioTypes& audioType)
 
 void Audio::loadVolume()
 {
-	
+	std::ifstream file("config.json");
+	if (file.is_open())
+	{
+		nlohmann::json savejson;
+		file >> savejson;
+		musicVolume = savejson["audio"]["musicVolume"];
+		sfxVolume = savejson["audio"]["sfxVolume"];
+		file.close();
+	}
+	else
+	{
+		std::ofstream newFile("config.json");
+		if (file.is_open())
+		{
+			nlohmann::json savejson;
+			savejson["audio"]["musicVolume"] = 1.0f;
+			savejson["audio"]["sfxVolume"] = 1.0f;
+			newFile << std::setw(4) << savejson << std::endl;
+			newFile.close();
+		}
+	}
+}
+
+void Audio::saveVolume()
+{
+	std::ofstream file("config.json");
+	if (file.is_open())
+	{
+		nlohmann::json savejson;
+		savejson["audio"]["musicVolume"] = musicVolume;
+		savejson["audio"]["sfxVolume"] = sfxVolume;
+		file << std::setw(4) << savejson << std::endl;
+		file.close();
+	}
 }
 
 void Audio::onMessage(const Mail& mail)

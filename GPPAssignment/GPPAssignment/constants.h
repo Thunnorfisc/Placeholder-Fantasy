@@ -26,8 +26,8 @@
 const char CLASS_NAME[] = "Placeholder Fantasy";
 const char GAME_TITLE[] = "Placeholder Fantasy";
 const bool FULLSCREEN = false;              // windowed or fullscreen
-const int  GAME_WIDTH = 1280;              // width of game in pixels
-const int  GAME_HEIGHT = 720;              // height of game in pixels
+const int  GAME_WIDTH = 1280;              // width of game in pixels //1280
+const int  GAME_HEIGHT = 720;              // height of game in pixels //720
 
 //game
 const double PI = 3.14159265;
@@ -57,6 +57,7 @@ const char PLAYERCHARA_IMAGE[] = "assets\\blue_char.png";
 // Sound files
 const char MENUMUSIC[] = "sound\\music\\CASTLEVANIA_MENU_1.mp3";
 const char OPTIONCHANGESFX[] = "sound\\sound_effects\\switch27.mp3";
+const char FOOTSTEP[] = "sound\\sound_effects\\footstep.ogg";
 
 //Asset Constants
 //const int SHIP_START_FRAME = 0;

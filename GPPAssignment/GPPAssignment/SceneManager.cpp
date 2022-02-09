@@ -10,6 +10,7 @@
 #include "StartingRoom.h"
 #include "Overworld.h"
 #include "pauseMenu.h"
+#include "optionsMenu.h"
 
 SceneManager::SceneManager()
 {
@@ -20,6 +21,7 @@ SceneManager::SceneManager()
     sceneMap["Overworld"] = new Overworld(this);
     //sceneMap["Battle"] = new BattleScene(this);
     sceneMap["PauseMenu"] = new PauseMenu(this);
+    sceneMap["Options"] = new OptionsMenu(this);
 }
 
 
@@ -41,6 +43,7 @@ void SceneManager::switchScene(std::string scene)
     sceneStack.clearStack();
     // Push the new scene to the stack
     sceneStack.push(sceneMap[scene]);
+    baseSceneName = scene;
     // Initialize the scene
     sceneStack.getTop()->initialize();
 }
@@ -51,6 +54,7 @@ void SceneManager::switchScene(std::string scene, std::vector<Character> charact
     sceneStack.clearStack();
     // Push the new scene to the stack
     sceneStack.push(sceneMap[scene]);
+    baseSceneName = scene;
     // Set the character list
     sceneStack.getTop()->setCharacterList(characterList);
     // Initialize the scene
@@ -88,7 +92,12 @@ void SceneManager::initialize(HWND hwnd)
 {
     Game::initialize(hwnd);
     sceneStack.push(sceneMap["Title"]);
+    baseSceneName = "Title";
     sceneStack.getTop()->initialize();
+    // FPS Counter
+    // Font: Trebuchet MS
+    if (dxFPS.initialize(graphics, 25, true, false, "Trebuchet MS") == false)
+        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
 }
 
 void SceneManager::reset()
@@ -117,7 +126,14 @@ void SceneManager::collisions()
 //=============================================================================
 void SceneManager::render()
 {
+    const int BUF_SIZE = 20;
+    static char buffer[BUF_SIZE];
     sceneStack.getTop()->render();
+    graphics->spriteBegin();
+    dxFPS.setFontColor(graphicsNS::NAVY);
+    _snprintf_s(buffer, BUF_SIZE, "FPS: %d ", (int)fps);
+    dxFPS.print(buffer, 10, 0);
+    graphics->spriteEnd();
 }
 
 //=============================================================================

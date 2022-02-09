@@ -12,8 +12,8 @@
 // If they return to the title or exit the game, gameState is wiped! (AKA Global Map is cleared).
 // When they save, world coordinates are placed on a text file for future loads.
 //============================================================================>>
-#ifndef _PAUSEMENU_H             // prevent multiple definitions if this 
-#define _PAUSEMENU_H             // ..file is included in more than one place
+#ifndef _OPTIONSMENU_H             // prevent multiple definitions if this 
+#define _OPTIONSMENU_H             // ..file is included in more than one place
 #define WIN32_LEAN_AND_MEAN
 
 #include "game.h"
@@ -33,11 +33,13 @@
 //===================
 // MENU CLASS
 //===================
-class PauseMenu : public Scene
+class OptionsMenu : public Scene
 {
 protected:
     SceneManager* dxManager;          // Call to the SceneManager
     TextDX  dxError;                  // Error Text
+    TextDX dxMusicVol;                // Music Volume Text
+    TextDX dxSfxVol;                  // Sfx Volume Text
     TextDX* dxMenuText;               // Menu Text
     Sound* dxOptionChange;            // Change Options Sound Effect
     TextureManager cursorTexture;     // Cursor Texture
@@ -48,10 +50,10 @@ protected:
     Image cursor;                     // Cursor Object
 public:
     // Constructor
-    PauseMenu(SceneManager* manager);
+    OptionsMenu(SceneManager* manager);
 
     // Destructor
-    virtual ~PauseMenu();
+    virtual ~OptionsMenu();
 
     void initialize();
     void reset();
