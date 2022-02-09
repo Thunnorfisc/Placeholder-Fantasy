@@ -1,3 +1,9 @@
+//============================================================================
+//  Module:             Gameplay Programming
+//  Assignment 2:       PlaceHolder Fantasy?
+//  Student Name:       William Wibisana Dumanauw
+//  Student Number:     S10195561A
+//============================================================================
 #include "mail.h"
 
 Mail::Mail(): sender(nullptr), receiver(nullptr), type((mailTypes)0), message(nullptr) 

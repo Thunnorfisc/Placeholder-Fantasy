@@ -1,3 +1,9 @@
+//============================================================================<<
+//  Module:             Gameplay Programming
+//  Assignment 2:       PlaceHolder Fantasy?
+//  Student Name:       William Wibisana Dumanauw
+//  Student Number:     S10195561A
+//============================================================================<>
 #ifndef _AUDIO_H             // Prevent multiple definitions if this 
 #define _AUDIO_H             // file is included in more than one place
 #define WIN32_LEAN_AND_MEAN

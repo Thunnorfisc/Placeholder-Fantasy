@@ -1,3 +1,9 @@
+//============================================================================
+//  Module:             Gameplay Programming
+//  Assignment 2:       PlaceHolder Fantasy?
+//  Student Name:       William Wibisana Dumanauw
+//  Student Number:     S10195561A
+//============================================================================
 #include "audio.h"
 #include <stdexcept>
 
